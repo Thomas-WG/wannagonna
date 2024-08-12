@@ -75,7 +75,8 @@
         "y": 100,
         "wires": [
             [
-                "d015e2d9c547fff8"
+                "d015e2d9c547fff8",
+                "14e5426f4385592e"
             ]
         ]
     },
@@ -93,6 +94,34 @@
         "statusType": "auto",
         "x": 540,
         "y": 100,
+        "wires": []
+    },
+    {
+        "id": "59cddae29935302b",
+        "type": "http in",
+        "z": "dbab6edfda7971c1",
+        "name": "GET Countries",
+        "url": "/countries",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 240,
+        "y": 160,
+        "wires": [
+            [
+                "892d19e13d561664"
+            ]
+        ]
+    },
+    {
+        "id": "14e5426f4385592e",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 530,
+        "y": 160,
         "wires": []
     }
 ]
