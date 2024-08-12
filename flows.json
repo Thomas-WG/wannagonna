@@ -8,6 +8,31 @@
         "env": []
     },
     {
+        "id": "cf1453eb80b45c35",
+        "type": "postgreSQLConfig",
+        "name": "",
+        "host": "c3l5o0rb2a6o4l.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com",
+        "hostFieldType": "str",
+        "port": "5432",
+        "portFieldType": "num",
+        "database": "d24smrlddl3o6r",
+        "databaseFieldType": "str",
+        "ssl": "{ \"require\": true, \"rejectUnauthorized\": false }",
+        "sslFieldType": "json",
+        "applicationName": "",
+        "applicationNameType": "str",
+        "max": "10",
+        "maxFieldType": "num",
+        "idle": "1000",
+        "idleFieldType": "num",
+        "connectionTimeout": "10000",
+        "connectionTimeoutFieldType": "num",
+        "user": "u3o5m09c1bkaba",
+        "userFieldType": "str",
+        "password": "pbfdd59cb11d1c99c9ba14ec9f634f458bc82694a22cee30e4534dd8da3783961",
+        "passwordFieldType": "str"
+    },
+    {
         "id": "022207e55802b8f3",
         "type": "inject",
         "z": "dbab6edfda7971c1",
@@ -32,12 +57,31 @@
         "y": 100,
         "wires": [
             [
-                "ecd10df4224b4a4c"
+                "892d19e13d561664"
             ]
         ]
     },
     {
-        "id": "ecd10df4224b4a4c",
+        "id": "892d19e13d561664",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "name": "",
+        "query": "SELECT * FROM countries;",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 370,
+        "y": 100,
+        "wires": [
+            [
+                "d015e2d9c547fff8",
+                "14e5426f4385592e"
+            ]
+        ]
+    },
+    {
+        "id": "d015e2d9c547fff8",
         "type": "debug",
         "z": "dbab6edfda7971c1",
         "name": "debug 1",
@@ -48,8 +92,36 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 360,
-        "y": 80,
+        "x": 540,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "59cddae29935302b",
+        "type": "http in",
+        "z": "dbab6edfda7971c1",
+        "name": "GET Countries",
+        "url": "/countries",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 240,
+        "y": 160,
+        "wires": [
+            [
+                "892d19e13d561664"
+            ]
+        ]
+    },
+    {
+        "id": "14e5426f4385592e",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 530,
+        "y": 160,
         "wires": []
     }
 ]
