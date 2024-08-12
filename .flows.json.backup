@@ -8,6 +8,24 @@
         "env": []
     },
     {
+        "id": "39bab5e26253c8ec",
+        "type": "group",
+        "z": "dbab6edfda7971c1",
+        "name": "GET Countries",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "892d19e13d561664",
+            "59cddae29935302b",
+            "14e5426f4385592e"
+        ],
+        "x": 94,
+        "y": 59,
+        "w": 492,
+        "h": 82
+    },
+    {
         "id": "cf1453eb80b45c35",
         "type": "postgreSQLConfig",
         "name": "",
@@ -17,7 +35,7 @@
         "portFieldType": "env",
         "database": "DB_NAME",
         "databaseFieldType": "env",
-        "ssl": "{ \"require\": true, \"rejectUnauthorized\": false }",
+        "ssl": "{\"require\":true,\"rejectUnauthorized\":false}",
         "sslFieldType": "json",
         "applicationName": "",
         "applicationNameType": "str",
@@ -33,38 +51,10 @@
         "passwordFieldType": "env"
     },
     {
-        "id": "022207e55802b8f3",
-        "type": "inject",
-        "z": "dbab6edfda7971c1",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 200,
-        "y": 100,
-        "wires": [
-            [
-                "892d19e13d561664"
-            ]
-        ]
-    },
-    {
         "id": "892d19e13d561664",
         "type": "postgresql",
         "z": "dbab6edfda7971c1",
+        "g": "39bab5e26253c8ec",
         "name": "",
         "query": "SELECT * FROM countries;",
         "postgreSQLConfig": "cf1453eb80b45c35",
@@ -75,38 +65,22 @@
         "y": 100,
         "wires": [
             [
-                "d015e2d9c547fff8",
                 "14e5426f4385592e"
             ]
         ]
     },
     {
-        "id": "d015e2d9c547fff8",
-        "type": "debug",
-        "z": "dbab6edfda7971c1",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 540,
-        "y": 100,
-        "wires": []
-    },
-    {
         "id": "59cddae29935302b",
         "type": "http in",
         "z": "dbab6edfda7971c1",
+        "g": "39bab5e26253c8ec",
         "name": "GET Countries",
         "url": "/countries",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 240,
-        "y": 160,
+        "x": 200,
+        "y": 100,
         "wires": [
             [
                 "892d19e13d561664"
@@ -117,11 +91,12 @@
         "id": "14e5426f4385592e",
         "type": "http response",
         "z": "dbab6edfda7971c1",
+        "g": "39bab5e26253c8ec",
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 530,
-        "y": 160,
+        "x": 510,
+        "y": 100,
         "wires": []
     }
 ]
