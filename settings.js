@@ -81,7 +81,15 @@ module.exports = {
     //        permissions: "*"
     //    }]
     //},
-
+    adminAuth: {
+        type: "credentials",
+        users: [{
+            username: "admin",
+            password: "$2y$08$WxH6i7uahAVy6gaVN0ymqOGDHUnDrKSSuLEVA.RNUM9HEt01u8.Zi",
+            permissions: "*"
+        }]
+    },
+    
     /** The following property can be used to enable HTTPS
      * This property can be either an object, containing both a (private) key
      * and a (public) certificate, or a function that returns such an object.
