@@ -17,8 +17,8 @@
         "portFieldType": "num",
         "database": "d5molm28oll9eb",
         "databaseFieldType": "str",
-        "ssl": "true",
-        "sslFieldType": "bool",
+        "ssl": "{ \"require\": true, \"rejectUnauthorized\": false }",
+        "sslFieldType": "json",
         "applicationName": "",
         "applicationNameType": "str",
         "max": "10",
@@ -91,8 +91,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 520,
-        "y": 160,
+        "x": 500,
+        "y": 140,
         "wires": []
     },
     {
