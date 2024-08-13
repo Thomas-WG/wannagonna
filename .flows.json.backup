@@ -32,7 +32,7 @@
         "id": "5e64576d309c62f9",
         "type": "group",
         "z": "dbab6edfda7971c1",
-        "name": "GET Organizations",
+        "name": "List Organizations",
         "style": {
             "label": true,
             "stroke": "#dbcbe7",
@@ -121,10 +121,35 @@
             "2b7eed18ecbca6f1",
             "54387abb3b891c74"
         ],
-        "x": 54,
-        "y": 779,
+        "x": 74,
+        "y": 759,
         "w": 1152,
         "h": 142
+    },
+    {
+        "id": "2d9b645b715b3674",
+        "type": "group",
+        "z": "dbab6edfda7971c1",
+        "name": "Get Member Info",
+        "style": {
+            "stroke": "#3f93cf",
+            "fill": "#bfdbef",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "4e6ae77d45269344",
+            "541012e863a8c76e",
+            "a23c829360ae74a5",
+            "fe0cb3ef10d094be",
+            "f586c686d6c6d459",
+            "41226e2964bced0c",
+            "82295bac7cc91747"
+        ],
+        "x": 74,
+        "y": 919,
+        "w": 1242,
+        "h": 162
     },
     {
         "id": "cf1453eb80b45c35",
@@ -475,7 +500,7 @@
         "z": "dbab6edfda7971c1",
         "g": "5e64576d309c62f9",
         "name": "Prepare SQL Query",
-        "func": "msg.query = \"SELECT * FROM organizations\";\nreturn msg;",
+        "func": "msg.query = \"SELECT org_name, org_id FROM organizations\";\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -577,8 +602,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 160,
-        "y": 840,
+        "x": 180,
+        "y": 820,
         "wires": [
             [
                 "92b39ec92961af98"
@@ -598,8 +623,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
-        "y": 840,
+        "x": 400,
+        "y": 820,
         "wires": [
             [
                 "22db6159d7c74659"
@@ -627,8 +652,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 790,
-        "y": 840,
+        "x": 810,
+        "y": 820,
         "wires": [
             [
                 "54387abb3b891c74"
@@ -646,8 +671,8 @@
         "name": "201 Created",
         "statusCode": "201",
         "headers": {},
-        "x": 1110,
-        "y": 820,
+        "x": 1130,
+        "y": 800,
         "wires": []
     },
     {
@@ -658,8 +683,8 @@
         "name": "400 Bad Request",
         "statusCode": "400",
         "headers": {},
-        "x": 1060,
-        "y": 880,
+        "x": 1080,
+        "y": 860,
         "wires": []
     },
     {
@@ -710,8 +735,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 590,
-        "y": 840,
+        "x": 610,
+        "y": 820,
         "wires": [
             [
                 "a5b57367463c4ecf"
@@ -731,8 +756,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 970,
-        "y": 820,
+        "x": 990,
+        "y": 800,
         "wires": [
             [
                 "e4a8ee9f08e8c364"
@@ -743,6 +768,7 @@
         "id": "82295bac7cc91747",
         "type": "http in",
         "z": "dbab6edfda7971c1",
+        "g": "2d9b645b715b3674",
         "name": "Get Member by ID",
         "url": "/members/:member_id",
         "method": "get",
@@ -760,6 +786,7 @@
         "id": "4e6ae77d45269344",
         "type": "function",
         "z": "dbab6edfda7971c1",
+        "g": "2d9b645b715b3674",
         "name": "Prepare SQL Query",
         "func": "const member_id = msg.req.params.member_id;\n\n// Prepare SQL to get the member without the password\nmsg.query = `\n    SELECT \n        member_id, \n        member_firstname, \n        member_lastname, \n        member_email, \n        member_picture, \n        member_languages, \n        member_summary, \n        team_id, \n        country_id, \n        member_status, \n        member_level, \n        member_credit, \n        member_xp, \n        skill_id, \n        creation_date\n    FROM \n        members\n    WHERE \n        member_id = $1\n`;\n\nmsg.params = [member_id];\n\nreturn msg;",
         "outputs": 1,
@@ -780,6 +807,7 @@
         "id": "541012e863a8c76e",
         "type": "switch",
         "z": "dbab6edfda7971c1",
+        "g": "2d9b645b715b3674",
         "name": "Check Query Result",
         "property": "payload",
         "propertyType": "msg",
@@ -809,6 +837,7 @@
         "id": "a23c829360ae74a5",
         "type": "function",
         "z": "dbab6edfda7971c1",
+        "g": "2d9b645b715b3674",
         "name": "Format Response",
         "func": "// Extract the member data from the query result\nconst member = msg.payload[0];\n\n// Prepare the response message\nmsg.payload = {\n    message: \"Member found\",\n    member: member\n};\n\n// Set the response status code\nmsg.statusCode = 200;\n\nreturn msg;",
         "outputs": 1,
@@ -828,6 +857,7 @@
         "id": "fe0cb3ef10d094be",
         "type": "http response",
         "z": "dbab6edfda7971c1",
+        "g": "2d9b645b715b3674",
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
@@ -839,6 +869,7 @@
         "id": "f586c686d6c6d459",
         "type": "http response",
         "z": "dbab6edfda7971c1",
+        "g": "2d9b645b715b3674",
         "name": "200 OK",
         "statusCode": "200",
         "headers": {},
@@ -850,6 +881,7 @@
         "id": "41226e2964bced0c",
         "type": "postgresql",
         "z": "dbab6edfda7971c1",
+        "g": "2d9b645b715b3674",
         "name": "",
         "query": "",
         "postgreSQLConfig": "cf1453eb80b45c35",
@@ -861,6 +893,131 @@
         "wires": [
             [
                 "541012e863a8c76e"
+            ]
+        ]
+    },
+    {
+        "id": "85eb02be4a9401ad",
+        "type": "http in",
+        "z": "dbab6edfda7971c1",
+        "name": "Create Organization",
+        "url": "/organizations",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 460,
+        "wires": [
+            [
+                "63739fed659fe368"
+            ]
+        ]
+    },
+    {
+        "id": "63739fed659fe368",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "name": "Prepare SQL Insert",
+        "func": "const { \n    org_name, \n    org_email, \n    org_picture, \n    org_languages, \n    org_summary, \n    country_id \n} = msg.payload;\n\n// Validation\nif (!org_name || typeof org_name !== 'string' || org_name.trim() === '') {\n    node.error('Missing or invalid org_name', msg);\n    return null;\n}\n\nif (!org_email || typeof org_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(org_email)) {\n    node.error('Missing or invalid org_email', msg);\n    return null;\n}\n\n\n\n// Convert org_languages array to PostgreSQL array literal format\nconst formatted_languages = `{${org_languages.join(',')}}`;\n\n// Prepare SQL\nmsg.query = `\n    INSERT INTO organizations (\n        org_name, org_email, org_picture, \n        org_languages, org_summary, country_id\n    ) \n    VALUES (\n        $1, $2, $3, \n        $4, $5, $6\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    org_name, \n    org_email, \n    org_picture, \n    formatted_languages, \n    org_summary, \n    country_id || null\n];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 460,
+        "wires": [
+            [
+                "cee2b67c7a1b2eb8"
+            ]
+        ]
+    },
+    {
+        "id": "76cd51faaace4d2a",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "name": "Check Insert Result",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 790,
+        "y": 460,
+        "wires": [
+            [
+                "4cbff012b0a8503e"
+            ],
+            [
+                "b15896363a42e71b"
+            ]
+        ]
+    },
+    {
+        "id": "4cbff012b0a8503e",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "name": "Create Response",
+        "func": "// Extract the organization ID from the query result\nconst createdOrg = msg.payload[0];\n\n// Prepare the response message\nmsg.payload = {\n    message: \"Organization has been successfully created\",\n    org_id: createdOrg.org_id\n};\n\n// Set the response status code\nmsg.statusCode = 201;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 440,
+        "wires": [
+            [
+                "5f67325b39410bc6"
+            ]
+        ]
+    },
+    {
+        "id": "b15896363a42e71b",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "name": "400 Bad Request",
+        "statusCode": "400",
+        "headers": {},
+        "x": 1050,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "5f67325b39410bc6",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "name": "201 Created",
+        "statusCode": "201",
+        "headers": {},
+        "x": 1170,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "cee2b67c7a1b2eb8",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 570,
+        "y": 460,
+        "wires": [
+            [
+                "76cd51faaace4d2a"
             ]
         ]
     }

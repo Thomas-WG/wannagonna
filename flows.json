@@ -32,11 +32,11 @@
         "id": "5e64576d309c62f9",
         "type": "group",
         "z": "dbab6edfda7971c1",
-        "name": "GET Organizations",
+        "name": "List Organizations",
         "style": {
             "label": true,
-            "stroke": "#dbcbe7",
-            "fill": "#9363b7",
+            "stroke": "#9363b7",
+            "fill": "#dbcbe7",
             "color": "#000000"
         },
         "nodes": [
@@ -96,8 +96,8 @@
             "a1f8c1b0.8a3f9",
             "d4d62d83d3a983e7"
         ],
-        "x": 64,
-        "y": 579,
+        "x": 84,
+        "y": 759,
         "w": 1062,
         "h": 162
     },
@@ -121,8 +121,8 @@
             "2b7eed18ecbca6f1",
             "54387abb3b891c74"
         ],
-        "x": 74,
-        "y": 759,
+        "x": 94,
+        "y": 939,
         "w": 1152,
         "h": 142
     },
@@ -146,8 +146,58 @@
             "41226e2964bced0c",
             "82295bac7cc91747"
         ],
-        "x": 74,
-        "y": 919,
+        "x": 94,
+        "y": 1099,
+        "w": 1242,
+        "h": 162
+    },
+    {
+        "id": "383b1f1fa33c8505",
+        "type": "group",
+        "z": "dbab6edfda7971c1",
+        "name": "Create Organizations",
+        "style": {
+            "stroke": "#9363b7",
+            "fill": "#dbcbe7",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "85eb02be4a9401ad",
+            "63739fed659fe368",
+            "76cd51faaace4d2a",
+            "4cbff012b0a8503e",
+            "b15896363a42e71b",
+            "5f67325b39410bc6",
+            "cee2b67c7a1b2eb8"
+        ],
+        "x": 54,
+        "y": 599,
+        "w": 1232,
+        "h": 142
+    },
+    {
+        "id": "05b8ed53065a8cd1",
+        "type": "group",
+        "z": "dbab6edfda7971c1",
+        "name": "Get Organization Info",
+        "style": {
+            "stroke": "#9363b7",
+            "fill": "#dbcbe7",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "aeaf33e6aaa4f214",
+            "cd60ed703e819022",
+            "213939d54a3fc324",
+            "9b103e3f30e49e8d",
+            "eacd64c8e4844be5",
+            "2e0619425460a3d3",
+            "4fa2ca320785a2e4"
+        ],
+        "x": 54,
+        "y": 419,
         "w": 1242,
         "h": 162
     },
@@ -272,8 +322,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 160,
-        "y": 660,
+        "x": 180,
+        "y": 840,
         "wires": [
             [
                 "9e9d7e60.87b97"
@@ -293,8 +343,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 660,
+        "x": 360,
+        "y": 840,
         "wires": [
             [
                 "d4d62d83d3a983e7"
@@ -322,8 +372,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 760,
-        "y": 660,
+        "x": 780,
+        "y": 840,
         "wires": [
             [
                 "c2f7fbb0.89f8a8"
@@ -341,8 +391,8 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1020,
-        "y": 620,
+        "x": 1040,
+        "y": 800,
         "wires": []
     },
     {
@@ -353,8 +403,8 @@
         "name": "200 OK",
         "statusCode": "200",
         "headers": {},
-        "x": 1020,
-        "y": 700,
+        "x": 1040,
+        "y": 880,
         "wires": []
     },
     {
@@ -500,7 +550,7 @@
         "z": "dbab6edfda7971c1",
         "g": "5e64576d309c62f9",
         "name": "Prepare SQL Query",
-        "func": "msg.query = \"SELECT * FROM organizations\";\nreturn msg;",
+        "func": "msg.query = \"SELECT org_name, org_id FROM organizations\";\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -602,8 +652,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 180,
-        "y": 820,
+        "x": 200,
+        "y": 1000,
         "wires": [
             [
                 "92b39ec92961af98"
@@ -623,8 +673,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
-        "y": 820,
+        "x": 420,
+        "y": 1000,
         "wires": [
             [
                 "22db6159d7c74659"
@@ -652,8 +702,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 810,
-        "y": 820,
+        "x": 830,
+        "y": 1000,
         "wires": [
             [
                 "54387abb3b891c74"
@@ -671,8 +721,8 @@
         "name": "201 Created",
         "statusCode": "201",
         "headers": {},
-        "x": 1130,
-        "y": 800,
+        "x": 1150,
+        "y": 980,
         "wires": []
     },
     {
@@ -683,8 +733,8 @@
         "name": "400 Bad Request",
         "statusCode": "400",
         "headers": {},
-        "x": 1080,
-        "y": 860,
+        "x": 1100,
+        "y": 1040,
         "wires": []
     },
     {
@@ -716,8 +766,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 550,
-        "y": 660,
+        "x": 570,
+        "y": 840,
         "wires": [
             [
                 "cbf657c0.fdae98"
@@ -735,8 +785,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 610,
-        "y": 820,
+        "x": 630,
+        "y": 1000,
         "wires": [
             [
                 "a5b57367463c4ecf"
@@ -756,8 +806,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 990,
-        "y": 800,
+        "x": 1010,
+        "y": 980,
         "wires": [
             [
                 "e4a8ee9f08e8c364"
@@ -774,8 +824,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 190,
-        "y": 1000,
+        "x": 210,
+        "y": 1180,
         "wires": [
             [
                 "4e6ae77d45269344"
@@ -795,8 +845,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
-        "y": 1000,
+        "x": 430,
+        "y": 1180,
         "wires": [
             [
                 "41226e2964bced0c"
@@ -822,8 +872,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 830,
-        "y": 1000,
+        "x": 850,
+        "y": 1180,
         "wires": [
             [
                 "a23c829360ae74a5"
@@ -845,8 +895,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1050,
-        "y": 960,
+        "x": 1070,
+        "y": 1140,
         "wires": [
             [
                 "f586c686d6c6d459"
@@ -861,8 +911,8 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1090,
-        "y": 1040,
+        "x": 1110,
+        "y": 1220,
         "wires": []
     },
     {
@@ -873,8 +923,8 @@
         "name": "200 OK",
         "statusCode": "200",
         "headers": {},
-        "x": 1230,
-        "y": 960,
+        "x": 1250,
+        "y": 1140,
         "wires": []
     },
     {
@@ -888,11 +938,276 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 610,
-        "y": 1000,
+        "x": 630,
+        "y": 1180,
         "wires": [
             [
                 "541012e863a8c76e"
+            ]
+        ]
+    },
+    {
+        "id": "85eb02be4a9401ad",
+        "type": "http in",
+        "z": "dbab6edfda7971c1",
+        "g": "383b1f1fa33c8505",
+        "name": "Create Organization",
+        "url": "/organizations",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 660,
+        "wires": [
+            [
+                "63739fed659fe368"
+            ]
+        ]
+    },
+    {
+        "id": "63739fed659fe368",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "383b1f1fa33c8505",
+        "name": "Prepare SQL Insert",
+        "func": "const { \n    org_name, \n    org_email, \n    org_picture, \n    org_languages, \n    org_summary, \n    country_id \n} = msg.payload;\n\n// Validation\nif (!org_name || typeof org_name !== 'string' || org_name.trim() === '') {\n    node.error('Missing or invalid org_name', msg);\n    return null;\n}\n\nif (!org_email || typeof org_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(org_email)) {\n    node.error('Missing or invalid org_email', msg);\n    return null;\n}\n\n\n\n// Convert org_languages array to PostgreSQL array literal format\nconst formatted_languages = `{${org_languages.join(',')}}`;\n\n// Prepare SQL\nmsg.query = `\n    INSERT INTO organizations (\n        org_name, org_email, org_picture, \n        org_languages, org_summary, country_id\n    ) \n    VALUES (\n        $1, $2, $3, \n        $4, $5, $6\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    org_name, \n    org_email, \n    org_picture, \n    formatted_languages, \n    org_summary, \n    country_id || null\n];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 660,
+        "wires": [
+            [
+                "cee2b67c7a1b2eb8"
+            ]
+        ]
+    },
+    {
+        "id": "76cd51faaace4d2a",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "383b1f1fa33c8505",
+        "name": "Check Insert Result",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 810,
+        "y": 660,
+        "wires": [
+            [
+                "4cbff012b0a8503e"
+            ],
+            [
+                "b15896363a42e71b"
+            ]
+        ]
+    },
+    {
+        "id": "4cbff012b0a8503e",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "383b1f1fa33c8505",
+        "name": "Create Response",
+        "func": "// Extract the organization ID from the query result\nconst createdOrg = msg.payload[0];\n\n// Prepare the response message\nmsg.payload = {\n    message: \"Organization has been successfully created\",\n    org_id: createdOrg.org_id\n};\n\n// Set the response status code\nmsg.statusCode = 201;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 640,
+        "wires": [
+            [
+                "5f67325b39410bc6"
+            ]
+        ]
+    },
+    {
+        "id": "b15896363a42e71b",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "383b1f1fa33c8505",
+        "name": "400 Bad Request",
+        "statusCode": "400",
+        "headers": {},
+        "x": 1070,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "5f67325b39410bc6",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "383b1f1fa33c8505",
+        "name": "201 Created",
+        "statusCode": "201",
+        "headers": {},
+        "x": 1190,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "cee2b67c7a1b2eb8",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "383b1f1fa33c8505",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 590,
+        "y": 660,
+        "wires": [
+            [
+                "76cd51faaace4d2a"
+            ]
+        ]
+    },
+    {
+        "id": "aeaf33e6aaa4f214",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "05b8ed53065a8cd1",
+        "name": "Prepare SQL Query",
+        "func": "const org_id = msg.req.params.org_id;\n\n// Prepare SQL to get the member without the password\nmsg.query = `\n    SELECT \n        *\n    FROM \n        organizations\n    WHERE \n        org_id = $1\n`;\n\nmsg.params = [org_id];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 500,
+        "wires": [
+            [
+                "2e0619425460a3d3"
+            ]
+        ]
+    },
+    {
+        "id": "cd60ed703e819022",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "05b8ed53065a8cd1",
+        "name": "Check Query Result",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 810,
+        "y": 500,
+        "wires": [
+            [
+                "213939d54a3fc324"
+            ],
+            [
+                "9b103e3f30e49e8d"
+            ]
+        ]
+    },
+    {
+        "id": "213939d54a3fc324",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "05b8ed53065a8cd1",
+        "name": "Format Response",
+        "func": "// Extract the member data from the query result\nconst organization = msg.payload[0];\n\n// Prepare the response message\nmsg.payload = {\n    message: \"Organization found\",\n    organization: organization\n};\n\n// Set the response status code\nmsg.statusCode = 200;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 460,
+        "wires": [
+            [
+                "eacd64c8e4844be5"
+            ]
+        ]
+    },
+    {
+        "id": "9b103e3f30e49e8d",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "05b8ed53065a8cd1",
+        "name": "404 Not Found",
+        "statusCode": "404",
+        "headers": {},
+        "x": 1070,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "eacd64c8e4844be5",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "05b8ed53065a8cd1",
+        "name": "200 OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1210,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "2e0619425460a3d3",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "05b8ed53065a8cd1",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 590,
+        "y": 500,
+        "wires": [
+            [
+                "cd60ed703e819022"
+            ]
+        ]
+    },
+    {
+        "id": "4fa2ca320785a2e4",
+        "type": "http in",
+        "z": "dbab6edfda7971c1",
+        "g": "05b8ed53065a8cd1",
+        "name": "Get Organization by ID",
+        "url": "/organizations/:org_id",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 500,
+        "wires": [
+            [
+                "aeaf33e6aaa4f214"
             ]
         ]
     }
