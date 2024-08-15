@@ -8,6 +8,72 @@
         "env": []
     },
     {
+        "id": "803db7b38fcbf7c9",
+        "type": "subflow",
+        "name": "Verify JWT",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 50,
+                "y": 30,
+                "wires": [
+                    {
+                        "id": "35fb4ffbd20b0ed1"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 460,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "35fb4ffbd20b0ed1",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "147c3624ebe2d286",
+        "type": "subflow",
+        "name": "Check NPO Role",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 50,
+                "y": 30,
+                "wires": [
+                    {
+                        "id": "a97b472b2c19fb8e"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 500,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "a97b472b2c19fb8e",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
         "id": "39bab5e26253c8ec",
         "type": "group",
         "z": "dbab6edfda7971c1",
@@ -70,12 +136,14 @@
             "6d5f7d78.22c164",
             "35edc91d.7b924e",
             "5d2c72d4.7c8dec",
-            "3c2ec599cb5c2c3e"
+            "3c2ec599cb5c2c3e",
+            "4f932c4991bce055",
+            "81c7faff4cb614fd"
         ],
         "x": 94,
-        "y": 19,
-        "w": 732,
-        "h": 202
+        "y": -1,
+        "w": 832,
+        "h": 242
     },
     {
         "id": "aad75d5c826ca0b1",
@@ -276,6 +344,33 @@
         "h": 162
     },
     {
+        "id": "ed79720e50c3c5aa",
+        "type": "group",
+        "z": "dbab6edfda7971c1",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "1",
+            "2",
+            "4",
+            "6",
+            "7",
+            "91763faa8f876344",
+            "f59ee31030a28138"
+        ],
+        "x": 1334,
+        "y": 199,
+        "w": 952,
+        "h": 82
+    },
+    {
         "id": "cf1453eb80b45c35",
         "type": "postgreSQLConfig",
         "name": "",
@@ -299,6 +394,70 @@
         "userFieldType": "env",
         "password": "DB_PASSWORD",
         "passwordFieldType": "env"
+    },
+    {
+        "id": "35fb4ffbd20b0ed1",
+        "type": "function",
+        "z": "803db7b38fcbf7c9",
+        "name": "Verify JWT",
+        "func": "const jwt = global.get('jsonwebtoken');\n\nconst token = msg.req.headers.authorization.split(' ')[1];\n\ntry {\n    const decoded = jwt.verify(token, 'your-secret-key');\n    msg.user = decoded;\n    return [msg, null];\n} catch (err) {\n    msg.statusCode = 403;\n    msg.payload = { error: 'Forbidden: Invalid or expired token.' };\n    return [null, msg];\n}",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 190,
+        "y": 40,
+        "wires": [
+            [],
+            [
+                "a919bd79238eef76"
+            ]
+        ]
+    },
+    {
+        "id": "a919bd79238eef76",
+        "type": "http response",
+        "z": "803db7b38fcbf7c9",
+        "name": "Send Error",
+        "statusCode": "",
+        "headers": {},
+        "x": 410,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "1491efa5dc2fb8df",
+        "type": "http response",
+        "z": "147c3624ebe2d286",
+        "name": "Send Error",
+        "statusCode": "",
+        "headers": {},
+        "x": 410,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "a97b472b2c19fb8e",
+        "type": "function",
+        "z": "147c3624ebe2d286",
+        "name": "Check NPO Role",
+        "func": "if (msg.user.role !== 'NPO') {\n    msg.statusCode = 403;\n    msg.payload = { error: 'Forbidden: Only members with NPO role can create activities.' };\n    return [null, msg];\n}\nreturn [msg, null];",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 210,
+        "y": 40,
+        "wires": [
+            [],
+            [
+                "1491efa5dc2fb8df"
+            ]
+        ]
     },
     {
         "id": "892d19e13d561664",
@@ -410,7 +569,7 @@
         "z": "dbab6edfda7971c1",
         "g": "aad75d5c826ca0b1",
         "name": "Prepare SQL Query",
-        "func": "msg.query = \"SELECT * FROM members LIMIT 50\";\nreturn msg;",
+        "func": "// Extract query parameters\nconst skip = parseInt(msg.req.query.skip) || 0;  // Default to 0 if not provided\nconst limit = parseInt(msg.req.query.limit) || 50;  // Default to 50 if not provided\n\n// Validate skip and limit\nif (isNaN(skip) || skip < 0) {\n    node.error('Invalid skip parameter', msg);\n    return null;\n}\n\nif (isNaN(limit) || limit <= 0) {\n    node.error('Invalid limit parameter', msg);\n    return null;\n}\nmsg.query = \"SELECT * FROM members LIMIT $1 OFFSET $2\";\nmsg.params = [\n    limit,\n    skip\n];\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -524,7 +683,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 3,
-        "x": 420,
+        "x": 390,
         "y": 120,
         "wires": [
             [
@@ -534,7 +693,7 @@
                 "35edc91d.7b924e"
             ],
             [
-                "5d2c72d4.7c8dec"
+                "81c7faff4cb614fd"
             ]
         ]
     },
@@ -547,7 +706,7 @@
         "statusCode": "400",
         "headers": {},
         "x": 690,
-        "y": 60,
+        "y": 40,
         "wires": []
     },
     {
@@ -570,8 +729,8 @@
         "name": "403 Forbidden",
         "statusCode": "403",
         "headers": {},
-        "x": 690,
-        "y": 180,
+        "x": 800,
+        "y": 200,
         "wires": []
     },
     {
@@ -624,7 +783,7 @@
         "z": "dbab6edfda7971c1",
         "g": "5e64576d309c62f9",
         "name": "Prepare SQL Query",
-        "func": "msg.query = \"SELECT org_name, org_id FROM organizations\";\nreturn msg;",
+        "func": "// Extract query parameters\nconst skip = parseInt(msg.req.query.skip) || 0;  // Default to 0 if not provided\nconst limit = parseInt(msg.req.query.limit) || 50;  // Default to 50 if not provided\n\n// Validate skip and limit\nif (isNaN(skip) || skip < 0) {\n    node.error('Invalid skip parameter', msg);\n    return null;\n}\n\nif (isNaN(limit) || limit <= 0) {\n    node.error('Invalid limit parameter', msg);\n    return null;\n}\nmsg.query = \"SELECT org_name, org_id FROM organizations LIMIT $1 OFFSET $2\";\nmsg.params = [\n    limit,\n    skip\n];\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -825,8 +984,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 360,
-        "y": 160,
+        "x": 300,
+        "y": 180,
         "wires": []
     },
     {
@@ -1347,7 +1506,7 @@
         "z": "dbab6edfda7971c1",
         "g": "2b91f5927dfc193f",
         "name": "Prepare SQL Query",
-        "func": "msg.query = \"SELECT * FROM activities LIMIT 50\";\nreturn msg;",
+        "func": "// Extract query parameters\nconst skip = parseInt(msg.req.query.skip) || 0;  // Default to 0 if not provided\nconst limit = parseInt(msg.req.query.limit) || 50;  // Default to 50 if not provided\n\n// Validate skip and limit\nif (isNaN(skip) || skip < 0) {\n    node.error('Invalid skip parameter', msg);\n    return null;\n}\n\nif (isNaN(limit) || limit <= 0) {\n    node.error('Invalid limit parameter', msg);\n    return null;\n}\n\nmsg.query = \"SELECT * FROM activities LIMIT $1 OFFSET $2\";\nmsg.params = [\n    limit,\n    skip\n];\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -1403,6 +1562,7 @@
         "id": "238b583f038c7769",
         "type": "http in",
         "z": "dbab6edfda7971c1",
+        "d": true,
         "g": "4e3f58172aca87d0",
         "name": "Create Activity",
         "url": "/activities",
@@ -1664,6 +1824,287 @@
         "wires": [
             [
                 "b019c1b471ba4625"
+            ]
+        ]
+    },
+    {
+        "id": "1",
+        "type": "http in",
+        "z": "dbab6edfda7971c1",
+        "g": "ed79720e50c3c5aa",
+        "name": "Login",
+        "url": "/login",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1410,
+        "y": 240,
+        "wires": [
+            [
+                "2"
+            ]
+        ]
+    },
+    {
+        "id": "2",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "ed79720e50c3c5aa",
+        "name": "Prepare SQL Query",
+        "func": "const { member_email, member_password } = msg.payload;\n\n// Prepare the SQL query to verify the password using crypt()\nmsg.query = `SELECT member_id, member_password FROM members WHERE member_email = $1 AND member_password = crypt($2, member_password)`\nmsg.params = [member_email, member_password]\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1570,
+        "y": 240,
+        "wires": [
+            [
+                "f59ee31030a28138"
+            ]
+        ]
+    },
+    {
+        "id": "4",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "ed79720e50c3c5aa",
+        "name": "Generate JWT",
+        "func": "if (msg.payload.length === 0) {\n    msg.statusCode = 401;\n    node.error('Unauthorized: Invalid email or password', msg);\n    return null;\n}\n\nconst jwt = global.get('jsonwebtoken');\n\nconst user = msg.payload[0];\n\n// Query to get the user's role\nmsg.query = `SELECT r.role_name FROM roles r JOIN member_roles mr ON r.role_id = mr.role_id WHERE mr.member_id = $1`\nmsg.params = [user.member_id]\nmsg.user_id = user.member_id;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1820,
+        "y": 240,
+        "wires": [
+            [
+                "91763faa8f876344"
+            ]
+        ]
+    },
+    {
+        "id": "6",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "ed79720e50c3c5aa",
+        "name": "Sign JWT",
+        "func": "const jwt = global.get('jsonwebtoken');\n\nconst role = msg.payload.length > 0 ? msg.payload[0].role_name : null;\n\nmsg.payload = jwt.sign({ member_id: msg.user_id, role }, 'your-secret-key', { expiresIn: '1h' });\nmsg.statusCode = 200;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2040,
+        "y": 240,
+        "wires": [
+            [
+                "7"
+            ]
+        ]
+    },
+    {
+        "id": "7",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "ed79720e50c3c5aa",
+        "name": "Send JWT",
+        "statusCode": "",
+        "headers": {},
+        "x": 2190,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "91763faa8f876344",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "ed79720e50c3c5aa",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 1935,
+        "y": 240,
+        "wires": [
+            [
+                "6"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "f59ee31030a28138",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "ed79720e50c3c5aa",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 1695,
+        "y": 240,
+        "wires": [
+            [
+                "4"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "4f932c4991bce055",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "14a048fb108bd56c",
+        "name": "401 Unauthorized",
+        "statusCode": "401",
+        "headers": {},
+        "x": 810,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "81c7faff4cb614fd",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "14a048fb108bd56c",
+        "name": "Check Error Code",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "401",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 610,
+        "y": 160,
+        "wires": [
+            [
+                "4f932c4991bce055"
+            ],
+            [
+                "5d2c72d4.7c8dec"
+            ]
+        ]
+    },
+    {
+        "id": "1b8ce087ab3c6546",
+        "type": "http in",
+        "z": "dbab6edfda7971c1",
+        "name": "Create Activity",
+        "url": "/activities",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1420,
+        "y": 360,
+        "wires": [
+            [
+                "4773489e70b6246f"
+            ]
+        ]
+    },
+    {
+        "id": "de093b47a157dc06",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "name": "Create Activity",
+        "func": "const { \n    activity_name, \n    activity_desc, \n    activity_xp, \n    activity_credit, \n    activity_type, \n    activity_startdate, \n    activity_enddate, \n    activity_owner, \n    activity_org, \n    skills_id, \n    sdg_id \n} = msg.payload;\n\n// Validation\nif (!activity_name || typeof activity_name !== 'string' || activity_name.trim() === '') {\n    node.error('Missing or invalid activity_name', msg);\n    return null;\n}\n\nif (!activity_type || typeof activity_type !== 'string' || activity_type.trim() === '') {\n    node.error('Missing or invalid activity_type', msg);\n    return null;\n}\n\nif (!activity_xp || typeof activity_xp !== 'number') {\n    node.error('Missing or invalid activity_xp', msg);\n    return null;\n}\n\nif (!activity_credit || typeof activity_credit !== 'number') {\n    node.error('Missing or invalid activity_credit', msg);\n    return null;\n}\n\nif (!activity_owner || !/^[0-9a-fA-F-]{36}$/.test(activity_owner)) {\n    node.error('Missing or invalid activity_owner (UUID)', msg);\n    return null;\n}\n\nif (!activity_org || !/^[0-9a-fA-F-]{36}$/.test(activity_org)) {\n    node.error('Missing or invalid activity_org (UUID)', msg);\n    return null;\n}\n\n// Use current timestamp if activity_startdate is not provided\nconst start_date = activity_startdate || new Date().toISOString();\n\n// Prepare SQL\nmsg.query = `\n    INSERT INTO activities (\n        activity_name, \n        activity_desc, \n        activity_xp, \n        activity_credit, \n        activity_type, \n        activity_startdate, \n        activity_enddate, \n        activity_owner, \n        activity_org, \n        skills_id, \n        sdg_id\n    ) \n    VALUES (\n        $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    activity_name, \n    activity_desc || null, \n    activity_xp, \n    activity_credit, \n    activity_type, \n    start_date, \n    activity_enddate || null, \n    activity_owner, \n    activity_org, \n    skills_id || null, \n    sdg_id || null\n];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1940,
+        "y": 360,
+        "wires": [
+            [
+                "829b26652cb941a5"
+            ]
+        ]
+    },
+    {
+        "id": "a2bce6ef2bc9fc32",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "name": "Send Success",
+        "statusCode": "201",
+        "headers": {},
+        "x": 2220,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "829b26652cb941a5",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "name": " ",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 2065,
+        "y": 360,
+        "wires": [
+            [
+                "a2bce6ef2bc9fc32"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "4773489e70b6246f",
+        "type": "subflow:803db7b38fcbf7c9",
+        "z": "dbab6edfda7971c1",
+        "name": "",
+        "x": 1580,
+        "y": 360,
+        "wires": [
+            [
+                "ee1f5f30fbb8d0bf"
+            ]
+        ]
+    },
+    {
+        "id": "06b9bf810cecea35",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "name": "Send Success",
+        "statusCode": "201",
+        "headers": {},
+        "x": 2480,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "ee1f5f30fbb8d0bf",
+        "type": "subflow:147c3624ebe2d286",
+        "z": "dbab6edfda7971c1",
+        "name": "",
+        "x": 1740,
+        "y": 360,
+        "wires": [
+            [
+                "de093b47a157dc06"
             ]
         ]
     }

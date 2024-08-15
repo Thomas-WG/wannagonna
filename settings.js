@@ -519,6 +519,7 @@ module.exports = {
      */
     functionGlobalContext: {
         // os:require('os'),
+        jsonwebtoken: require('jsonwebtoken')
     },
 
     /** The maximum number of messages nodes will buffer internally as part of their
