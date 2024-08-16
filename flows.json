@@ -43,7 +43,7 @@
     {
         "id": "147c3624ebe2d286",
         "type": "subflow",
-        "name": "Check NPO Role",
+        "name": "Check npo Role",
         "info": "",
         "category": "",
         "in": [
@@ -64,6 +64,105 @@
                 "wires": [
                     {
                         "id": "a97b472b2c19fb8e",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "880ae79f14619c5d",
+        "type": "subflow",
+        "name": "Check admin Role",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 50,
+                "y": 30,
+                "wires": [
+                    {
+                        "id": "e85a591d55583266"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 480,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "e85a591d55583266",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "84b08c8e5dbc93fb",
+        "type": "subflow",
+        "name": "Check Member Role",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 50,
+                "y": 30,
+                "wires": [
+                    {
+                        "id": "f8ea6c2a09142886"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 440,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "f8ea6c2a09142886",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "230b6c6a6e6632b6",
+        "type": "subflow",
+        "name": "Check ambassador role",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 50,
+                "y": 30,
+                "wires": [
+                    {
+                        "id": "9f42231760e0e299"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 460,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "9f42231760e0e299",
                         "port": 0
                     }
                 ]
@@ -111,11 +210,12 @@
             "10fe39b43b926ffa",
             "5ccdd48129b1bb9b",
             "4850bfe9234cfc08",
-            "fb2c076c83639249"
+            "fb2c076c83639249",
+            "1c03ca4d05a7267c"
         ],
-        "x": 74,
+        "x": 54,
         "y": 259,
-        "w": 1052,
+        "w": 1072,
         "h": 142
     },
     {
@@ -162,7 +262,8 @@
             "c2f7fbb0.89f8a8",
             "9e9d7e60.87b97",
             "a1f8c1b0.8a3f9",
-            "d4d62d83d3a983e7"
+            "d4d62d83d3a983e7",
+            "a44c078fe6fa21d3"
         ],
         "x": 84,
         "y": 759,
@@ -187,18 +288,30 @@
             "a5b57367463c4ecf",
             "e4a8ee9f08e8c364",
             "2b7eed18ecbca6f1",
-            "54387abb3b891c74"
+            "54387abb3b891c74",
+            "7a611a120c3cf5a7",
+            "d56cb3323c3a56e5",
+            "67478bbf2dddb2b7",
+            "56b0520943f83b20",
+            "a8d159671889b121",
+            "3b321b9933e736a3",
+            "1bc22e46e42f09f4",
+            "a6b4245d22ee9cef",
+            "4b96dbd38e612725",
+            "831acb19d938a2b4",
+            "20b0454a4cd033d6",
+            "1f53358b748a2053"
         ],
-        "x": 94,
-        "y": 939,
-        "w": 1152,
-        "h": 142
+        "x": 74,
+        "y": 959,
+        "w": 2372,
+        "h": 162
     },
     {
         "id": "2d9b645b715b3674",
         "type": "group",
         "z": "dbab6edfda7971c1",
-        "name": "Get Member Info",
+        "name": "Get Member Info - Public",
         "style": {
             "stroke": "#3f93cf",
             "fill": "#bfdbef",
@@ -212,10 +325,11 @@
             "fe0cb3ef10d094be",
             "f586c686d6c6d459",
             "41226e2964bced0c",
-            "82295bac7cc91747"
+            "82295bac7cc91747",
+            "4ffb7cc971eb13e8"
         ],
-        "x": 94,
-        "y": 1099,
+        "x": 74,
+        "y": 1139,
         "w": 1242,
         "h": 162
     },
@@ -237,11 +351,13 @@
             "4cbff012b0a8503e",
             "b15896363a42e71b",
             "5f67325b39410bc6",
-            "cee2b67c7a1b2eb8"
+            "cee2b67c7a1b2eb8",
+            "5daa9143b83d6644",
+            "6954bcca671f3ab5"
         ],
         "x": 54,
         "y": 599,
-        "w": 1232,
+        "w": 1252,
         "h": 142
     },
     {
@@ -262,7 +378,8 @@
             "9b103e3f30e49e8d",
             "eacd64c8e4844be5",
             "2e0619425460a3d3",
-            "4fa2ca320785a2e4"
+            "4fa2ca320785a2e4",
+            "abfcdd74d9498979"
         ],
         "x": 54,
         "y": 419,
@@ -288,8 +405,8 @@
             "a507e8ae8429cd78",
             "aef9c751fd89b4db"
         ],
-        "x": 64,
-        "y": 1299,
+        "x": 84,
+        "y": 1559,
         "w": 1062,
         "h": 162
     },
@@ -313,8 +430,8 @@
             "18a014b66159eb6f",
             "bc531713bb82c1d0"
         ],
-        "x": 74,
-        "y": 1479,
+        "x": 94,
+        "y": 1739,
         "w": 1152,
         "h": 142
     },
@@ -338,8 +455,8 @@
             "36a435dd5284487f",
             "aac726b02e5b233f"
         ],
-        "x": 74,
-        "y": 1639,
+        "x": 94,
+        "y": 1899,
         "w": 1242,
         "h": 162
     },
@@ -369,6 +486,35 @@
         "y": 199,
         "w": 952,
         "h": 82
+    },
+    {
+        "id": "0c3cf55a6354c68b",
+        "type": "group",
+        "z": "dbab6edfda7971c1",
+        "name": "Get Member Info - Private",
+        "style": {
+            "stroke": "#3f93cf",
+            "fill": "#bfdbef",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "a18fada39e5856bb",
+            "809a00406fc68fd0",
+            "a69fa02be399df48",
+            "12f0731055ed70ce",
+            "dd90a9d2d460e1d5",
+            "6e6299c02a5c9fa9",
+            "6f49aed723f6683e",
+            "a64c0842ee32a3f8",
+            "3dbce8cf909fc75b",
+            "0641024d2baa6972",
+            "1396e0707a32ca26"
+        ],
+        "x": 74,
+        "y": 1319,
+        "w": 1242,
+        "h": 162
     },
     {
         "id": "cf1453eb80b45c35",
@@ -443,7 +589,7 @@
         "type": "function",
         "z": "147c3624ebe2d286",
         "name": "Check NPO Role",
-        "func": "if (msg.user.role !== 'NPO') {\n    msg.statusCode = 403;\n    msg.payload = { error: 'Forbidden: Only members with NPO role can create activities.' };\n    return [null, msg];\n}\nreturn [msg, null];",
+        "func": "if (msg.user.role !== 'npo') {\n    msg.statusCode = 403;\n    msg.payload = { error: 'Forbidden: Only members with \"npo\" role can create activities.' };\n    return [null, msg];\n}\nreturn [msg, null];",
         "outputs": 2,
         "timeout": "",
         "noerr": 0,
@@ -456,6 +602,102 @@
             [],
             [
                 "1491efa5dc2fb8df"
+            ]
+        ]
+    },
+    {
+        "id": "433bc35d7abae6e0",
+        "type": "http response",
+        "z": "880ae79f14619c5d",
+        "name": "Send Error",
+        "statusCode": "",
+        "headers": {},
+        "x": 390,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "e85a591d55583266",
+        "type": "function",
+        "z": "880ae79f14619c5d",
+        "name": "Check admin Role",
+        "func": "if (msg.user.role !== 'admin') {\n    msg.statusCode = 403;\n    msg.payload = { error: 'Forbidden: Only members with admin role can perform this action.' };\n    return [null, msg];\n}\nreturn [msg, null];",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 190,
+        "y": 40,
+        "wires": [
+            [],
+            [
+                "433bc35d7abae6e0"
+            ]
+        ]
+    },
+    {
+        "id": "3e77f02a470c8f38",
+        "type": "http response",
+        "z": "84b08c8e5dbc93fb",
+        "name": "Send Error",
+        "statusCode": "",
+        "headers": {},
+        "x": 430,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "f8ea6c2a09142886",
+        "type": "function",
+        "z": "84b08c8e5dbc93fb",
+        "name": "Check member Role",
+        "func": "if (msg.user.role !== 'member') {\n    msg.statusCode = 403;\n    msg.payload = { error: 'Forbidden: Only members can perform this action.' };\n    return [null, msg];\n}\nreturn [msg, null];",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 60,
+        "wires": [
+            [],
+            [
+                "3e77f02a470c8f38"
+            ]
+        ]
+    },
+    {
+        "id": "a7e14c166c419a9f",
+        "type": "http response",
+        "z": "230b6c6a6e6632b6",
+        "name": "Send Error",
+        "statusCode": "",
+        "headers": {},
+        "x": 450,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "9f42231760e0e299",
+        "type": "function",
+        "z": "230b6c6a6e6632b6",
+        "name": "Check ambassador Role",
+        "func": "if (msg.user.role !== 'ambassador') {\n    msg.statusCode = 403;\n    msg.payload = { error: 'Forbidden: Only members with \"ambassador\" role can perform this action.' };\n    return [null, msg];\n}\nreturn [msg, null];",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 60,
+        "wires": [
+            [],
+            [
+                "a7e14c166c419a9f"
             ]
         ]
     },
@@ -507,7 +749,7 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 515,
+        "x": 635,
         "y": 340,
         "wires": [
             [
@@ -526,11 +768,11 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 190,
+        "x": 170,
         "y": 340,
         "wires": [
             [
-                "fb2c076c83639249"
+                "1c03ca4d05a7267c"
             ]
         ]
     },
@@ -577,7 +819,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
+        "x": 570,
         "y": 840,
         "wires": [
             [
@@ -606,7 +848,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 780,
+        "x": 840,
         "y": 840,
         "wires": [
             [
@@ -791,7 +1033,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 390,
+        "x": 510,
         "y": 340,
         "wires": [
             [
@@ -886,11 +1128,11 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 200,
-        "y": 1000,
+        "x": 180,
+        "y": 1040,
         "wires": [
             [
-                "92b39ec92961af98"
+                "67478bbf2dddb2b7"
             ]
         ]
     },
@@ -899,16 +1141,16 @@
         "type": "function",
         "z": "dbab6edfda7971c1",
         "g": "ba352a33ad13b2d1",
-        "name": "Prepare SQL Insert",
-        "func": "const { \n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture, \n    member_languages, \n    member_summary, \n    country_id, \n    member_password, \n    skill_id \n} = msg.payload;\n\n// Validation\nif (!member_firstname || typeof member_firstname !== 'string' || member_firstname.trim() === '') {\n    node.error('Missing or invalid member_firstname', msg);\n    return null;\n}\n\nif (!member_lastname || typeof member_lastname !== 'string' || member_lastname.trim() === '') {\n    node.error('Missing or invalid member_lastname', msg);\n    return null;\n}\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\nif (!member_password || typeof member_password !== 'string' || member_password.trim() === '') {\n    node.error('Missing or invalid member_password', msg);\n    return null;\n}\n\n\n// Convert member_languages array to PostgreSQL array literal format\nconst formatted_languages = `{${member_languages.join(',')}}`;\n\n// Prepare SQL\nmsg.query = `\n    INSERT INTO members (\n        member_firstname, member_lastname, member_email, member_picture, \n        member_languages, member_summary, country_id, \n        member_password, member_status, skill_id\n    ) \n    VALUES (\n        $1, $2, $3, $4, \n        $5, $6, $7, $8, \n        $9, $10\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture || null, \n    formatted_languages, \n    member_summary, \n    country_id || null, \n    member_password, \n    \"new\", \n    skill_id || null\n];\n\nreturn msg;\n",
+        "name": "PSQL Insert Member",
+        "func": "const { \n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture, \n    member_languages, \n    member_summary, \n    country_id, \n    member_password, \n    skill_id \n} = msg.newmember;\n\n// Validation\nif (!member_firstname || typeof member_firstname !== 'string' || member_firstname.trim() === '') {\n    node.error('Missing or invalid member_firstname', msg);\n    return null;\n}\n\nif (!member_lastname || typeof member_lastname !== 'string' || member_lastname.trim() === '') {\n    node.error('Missing or invalid member_lastname', msg);\n    return null;\n}\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\nif (!member_password || typeof member_password !== 'string' || member_password.trim() === '') {\n    node.error('Missing or invalid member_password', msg);\n    return null;\n}\n\n\n// Convert member_languages array to PostgreSQL array literal format\nconst formatted_languages = `{${member_languages.join(',')}}`;\n\n// Prepare SQL\nmsg.query = `\n    INSERT INTO members (\n        member_firstname, member_lastname, member_email, member_picture, \n        member_languages, member_summary, country_id, \n        member_password, member_status, skill_id\n    ) \n    VALUES (\n        $1, $2, $3, $4, \n        $5, $6, $7, $8, \n        $9, $10\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture || null, \n    formatted_languages, \n    member_summary, \n    country_id || null, \n    member_password, \n    \"new\", \n    skill_id || null\n];\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
-        "y": 1000,
+        "x": 720,
+        "y": 1040,
         "wires": [
             [
                 "22db6159d7c74659"
@@ -936,8 +1178,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 830,
-        "y": 1000,
+        "x": 2030,
+        "y": 1020,
         "wires": [
             [
                 "54387abb3b891c74"
@@ -955,8 +1197,8 @@
         "name": "201 Created",
         "statusCode": "201",
         "headers": {},
-        "x": 1150,
-        "y": 980,
+        "x": 2350,
+        "y": 1000,
         "wires": []
     },
     {
@@ -967,7 +1209,7 @@
         "name": "400 Bad Request",
         "statusCode": "400",
         "headers": {},
-        "x": 1100,
+        "x": 2260,
         "y": 1040,
         "wires": []
     },
@@ -1000,7 +1242,7 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 515,
+        "x": 705,
         "y": 840,
         "wires": [
             [
@@ -1020,11 +1262,11 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 575,
-        "y": 1000,
+        "x": 855,
+        "y": 1040,
         "wires": [
             [
-                "a5b57367463c4ecf"
+                "a6b4245d22ee9cef"
             ]
         ],
         "l": false
@@ -1042,8 +1284,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1010,
-        "y": 980,
+        "x": 2210,
+        "y": 1000,
         "wires": [
             [
                 "e4a8ee9f08e8c364"
@@ -1060,11 +1302,11 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 210,
-        "y": 1180,
+        "x": 190,
+        "y": 1220,
         "wires": [
             [
-                "4e6ae77d45269344"
+                "4ffb7cc971eb13e8"
             ]
         ]
     },
@@ -1074,15 +1316,15 @@
         "z": "dbab6edfda7971c1",
         "g": "2d9b645b715b3674",
         "name": "Prepare SQL Query",
-        "func": "const member_id = msg.req.params.member_id;\n\n// Prepare SQL to get the member without the password\nmsg.query = `\n    SELECT \n        member_id, \n        member_firstname, \n        member_lastname, \n        member_email, \n        member_picture, \n        member_languages, \n        member_summary, \n        team_id, \n        country_id, \n        member_status, \n        member_level, \n        member_credit, \n        member_xp, \n        skill_id, \n        creation_date\n    FROM \n        members\n    WHERE \n        member_id = $1\n`;\n\nmsg.params = [member_id];\n\nreturn msg;",
+        "func": "const member_id = msg.req.params.member_id;\n\n// Prepare SQL to get the member without the password\nmsg.query = `\n    SELECT \n        member_id, \n        member_firstname, \n        member_lastname, \n        member_picture, \n        member_languages, \n        member_summary, \n        team_id, \n        country_id, \n        member_status, \n        member_level, \n        skill_id, \n        creation_date\n    FROM \n        members\n    WHERE \n        member_id = $1\n`;\n\nmsg.params = [member_id];\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 430,
-        "y": 1180,
+        "x": 570,
+        "y": 1220,
         "wires": [
             [
                 "41226e2964bced0c"
@@ -1108,8 +1350,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 850,
-        "y": 1180,
+        "x": 830,
+        "y": 1220,
         "wires": [
             [
                 "a23c829360ae74a5"
@@ -1131,8 +1373,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1070,
-        "y": 1140,
+        "x": 1050,
+        "y": 1180,
         "wires": [
             [
                 "f586c686d6c6d459"
@@ -1147,8 +1389,8 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1110,
-        "y": 1220,
+        "x": 1090,
+        "y": 1260,
         "wires": []
     },
     {
@@ -1159,8 +1401,8 @@
         "name": "200 OK",
         "statusCode": "200",
         "headers": {},
-        "x": 1250,
-        "y": 1140,
+        "x": 1230,
+        "y": 1180,
         "wires": []
     },
     {
@@ -1174,8 +1416,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 575,
-        "y": 1180,
+        "x": 695,
+        "y": 1220,
         "wires": [
             [
                 "541012e863a8c76e"
@@ -1197,7 +1439,7 @@
         "y": 660,
         "wires": [
             [
-                "63739fed659fe368"
+                "5daa9143b83d6644"
             ]
         ]
     },
@@ -1214,7 +1456,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 390,
+        "x": 590,
         "y": 660,
         "wires": [
             [
@@ -1241,7 +1483,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 810,
+        "x": 830,
         "y": 660,
         "wires": [
             [
@@ -1264,7 +1506,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1010,
+        "x": 1030,
         "y": 640,
         "wires": [
             [
@@ -1280,7 +1522,7 @@
         "name": "400 Bad Request",
         "statusCode": "400",
         "headers": {},
-        "x": 1070,
+        "x": 1110,
         "y": 700,
         "wires": []
     },
@@ -1292,7 +1534,7 @@
         "name": "201 Created",
         "statusCode": "201",
         "headers": {},
-        "x": 1190,
+        "x": 1210,
         "y": 640,
         "wires": []
     },
@@ -1307,7 +1549,7 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 535,
+        "x": 705,
         "y": 660,
         "wires": [
             [
@@ -1329,7 +1571,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 390,
+        "x": 550,
         "y": 500,
         "wires": [
             [
@@ -1423,7 +1665,7 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 535,
+        "x": 675,
         "y": 500,
         "wires": [
             [
@@ -1446,7 +1688,7 @@
         "y": 500,
         "wires": [
             [
-                "aeaf33e6aaa4f214"
+                "abfcdd74d9498979"
             ]
         ]
     },
@@ -1458,8 +1700,8 @@
         "name": "200 OK",
         "statusCode": "200",
         "headers": {},
-        "x": 1020,
-        "y": 1420,
+        "x": 1040,
+        "y": 1680,
         "wires": []
     },
     {
@@ -1483,8 +1725,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 760,
-        "y": 1380,
+        "x": 780,
+        "y": 1640,
         "wires": [
             [
                 "c2478e40eca32f8d"
@@ -1502,8 +1744,8 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1020,
-        "y": 1340,
+        "x": 1040,
+        "y": 1600,
         "wires": []
     },
     {
@@ -1519,8 +1761,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 1380,
+        "x": 360,
+        "y": 1640,
         "wires": [
             [
                 "aef9c751fd89b4db"
@@ -1537,8 +1779,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 160,
-        "y": 1380,
+        "x": 180,
+        "y": 1640,
         "wires": [
             [
                 "0ca2e856aba81c1d"
@@ -1556,8 +1798,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 495,
-        "y": 1380,
+        "x": 515,
+        "y": 1640,
         "wires": [
             [
                 "b374cb0fea6b3897"
@@ -1576,8 +1818,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 180,
-        "y": 1540,
+        "x": 200,
+        "y": 1800,
         "wires": [
             [
                 "f5b74102881341fa"
@@ -1597,8 +1839,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
-        "y": 1540,
+        "x": 420,
+        "y": 1800,
         "wires": [
             [
                 "307e56627f59548e"
@@ -1616,8 +1858,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 555,
-        "y": 1540,
+        "x": 575,
+        "y": 1800,
         "wires": [
             [
                 "bf2f9e68553ccb75"
@@ -1646,8 +1888,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 810,
-        "y": 1540,
+        "x": 830,
+        "y": 1800,
         "wires": [
             [
                 "bc531713bb82c1d0"
@@ -1665,8 +1907,8 @@
         "name": "201 Created",
         "statusCode": "201",
         "headers": {},
-        "x": 1130,
-        "y": 1520,
+        "x": 1150,
+        "y": 1780,
         "wires": []
     },
     {
@@ -1677,8 +1919,8 @@
         "name": "400 Bad Request",
         "statusCode": "400",
         "headers": {},
-        "x": 1080,
-        "y": 1580,
+        "x": 1100,
+        "y": 1840,
         "wires": []
     },
     {
@@ -1694,8 +1936,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 990,
-        "y": 1520,
+        "x": 1010,
+        "y": 1780,
         "wires": [
             [
                 "ed2d2dc8c080fab8"
@@ -1715,8 +1957,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
-        "y": 1720,
+        "x": 430,
+        "y": 1980,
         "wires": [
             [
                 "36a435dd5284487f"
@@ -1742,8 +1984,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 830,
-        "y": 1720,
+        "x": 850,
+        "y": 1980,
         "wires": [
             [
                 "45582769dbee1f97"
@@ -1766,8 +2008,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1050,
-        "y": 1680,
+        "x": 1070,
+        "y": 1940,
         "wires": [
             [
                 "85a14efd439eb0a3"
@@ -1782,8 +2024,8 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1090,
-        "y": 1760,
+        "x": 1110,
+        "y": 2020,
         "wires": []
     },
     {
@@ -1794,8 +2036,8 @@
         "name": "200 OK",
         "statusCode": "200",
         "headers": {},
-        "x": 1230,
-        "y": 1680,
+        "x": 1250,
+        "y": 1940,
         "wires": []
     },
     {
@@ -1809,8 +2051,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 555,
-        "y": 1720,
+        "x": 575,
+        "y": 1980,
         "wires": [
             [
                 "1b1493fa8a5b9912"
@@ -1828,8 +2070,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 180,
-        "y": 1720,
+        "x": 200,
+        "y": 1980,
         "wires": [
             [
                 "b019c1b471ba4625"
@@ -2094,17 +2336,6 @@
         ]
     },
     {
-        "id": "06b9bf810cecea35",
-        "type": "http response",
-        "z": "dbab6edfda7971c1",
-        "name": "Send Success",
-        "statusCode": "201",
-        "headers": {},
-        "x": 2480,
-        "y": 500,
-        "wires": []
-    },
-    {
         "id": "ee1f5f30fbb8d0bf",
         "type": "subflow:147c3624ebe2d286",
         "z": "dbab6edfda7971c1",
@@ -2116,5 +2347,543 @@
                 "de093b47a157dc06"
             ]
         ]
+    },
+    {
+        "id": "1c03ca4d05a7267c",
+        "type": "subflow:803db7b38fcbf7c9",
+        "z": "dbab6edfda7971c1",
+        "g": "5e64576d309c62f9",
+        "name": "",
+        "x": 340,
+        "y": 340,
+        "wires": [
+            [
+                "fb2c076c83639249"
+            ]
+        ]
+    },
+    {
+        "id": "abfcdd74d9498979",
+        "type": "subflow:803db7b38fcbf7c9",
+        "z": "dbab6edfda7971c1",
+        "g": "05b8ed53065a8cd1",
+        "name": "",
+        "x": 360,
+        "y": 500,
+        "wires": [
+            [
+                "aeaf33e6aaa4f214"
+            ]
+        ]
+    },
+    {
+        "id": "5daa9143b83d6644",
+        "type": "subflow:803db7b38fcbf7c9",
+        "z": "dbab6edfda7971c1",
+        "g": "383b1f1fa33c8505",
+        "name": "",
+        "x": 340,
+        "y": 660,
+        "wires": [
+            [
+                "6954bcca671f3ab5"
+            ]
+        ]
+    },
+    {
+        "id": "6954bcca671f3ab5",
+        "type": "subflow:880ae79f14619c5d",
+        "z": "dbab6edfda7971c1",
+        "g": "383b1f1fa33c8505",
+        "name": "",
+        "x": 430,
+        "y": 700,
+        "wires": [
+            [
+                "63739fed659fe368"
+            ]
+        ]
+    },
+    {
+        "id": "a44c078fe6fa21d3",
+        "type": "subflow:803db7b38fcbf7c9",
+        "z": "dbab6edfda7971c1",
+        "g": "aad75d5c826ca0b1",
+        "name": "",
+        "x": 360,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4ffb7cc971eb13e8",
+        "type": "subflow:803db7b38fcbf7c9",
+        "z": "dbab6edfda7971c1",
+        "g": "2d9b645b715b3674",
+        "name": "",
+        "x": 360,
+        "y": 1220,
+        "wires": [
+            [
+                "4e6ae77d45269344"
+            ]
+        ]
+    },
+    {
+        "id": "7a611a120c3cf5a7",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "PSQL get member Role",
+        "func": "msg.member_id = msg.payload[0].member_id\n\n// Prepare SQL\nmsg.query = `SELECT role_id FROM roles WHERE role_name = $1;`;\nmsg.params = ['member']\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1190,
+        "y": 1020,
+        "wires": [
+            [
+                "d56cb3323c3a56e5"
+            ]
+        ]
+    },
+    {
+        "id": "d56cb3323c3a56e5",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 1345,
+        "y": 1020,
+        "wires": [
+            [
+                "4b96dbd38e612725"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "67478bbf2dddb2b7",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "PSQL Check if exists",
+        "func": "msg.newmember = msg.payload\nconst { \n    member_email\n} = msg.payload;\n\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\n// Prepare SQL\nmsg.query = `\n    SELECT member_id\n    FROM members\n    WHERE member_email = $1;\n`;\n\nmsg.params = [member_email];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 1040,
+        "wires": [
+            [
+                "56b0520943f83b20"
+            ]
+        ]
+    },
+    {
+        "id": "56b0520943f83b20",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 525,
+        "y": 1040,
+        "wires": [
+            [
+                "a8d159671889b121"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "a8d159671889b121",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "empty"
+            },
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 575,
+        "y": 1040,
+        "wires": [
+            [
+                "92b39ec92961af98"
+            ],
+            [
+                "3b321b9933e736a3"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "3b321b9933e736a3",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "409 Conflict",
+        "statusCode": "409",
+        "headers": {},
+        "x": 710,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "1bc22e46e42f09f4",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "PSQL Insert member role",
+        "func": "var role_id = msg.payload[0].role_id\n// Prepare SQL\nmsg.query = `INSERT INTO member_roles (\n    role_id,\n    member_id\n) VALUES ( $1, $2)\nRETURNING *;`;\n\nmsg.params = [role_id,msg.member_id]\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1750,
+        "y": 1020,
+        "wires": [
+            [
+                "1f53358b748a2053"
+            ]
+        ]
+    },
+    {
+        "id": "a6b4245d22ee9cef",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "Check Insert Result",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "array",
+                "vt": "array"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 970,
+        "y": 1040,
+        "wires": [
+            [
+                "7a611a120c3cf5a7"
+            ],
+            [
+                "20b0454a4cd033d6"
+            ]
+        ]
+    },
+    {
+        "id": "4b96dbd38e612725",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "Check Query Result",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "eq",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1500,
+        "y": 1020,
+        "wires": [
+            [
+                "1bc22e46e42f09f4"
+            ],
+            [
+                "831acb19d938a2b4"
+            ]
+        ]
+    },
+    {
+        "id": "831acb19d938a2b4",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "404 Not Found",
+        "statusCode": "404",
+        "headers": {},
+        "x": 1720,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "20b0454a4cd033d6",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "400 Bad Request",
+        "statusCode": "400",
+        "headers": {},
+        "x": 1170,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "1f53358b748a2053",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 1895,
+        "y": 1020,
+        "wires": [
+            [
+                "a5b57367463c4ecf"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "a18fada39e5856bb",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "0c3cf55a6354c68b",
+        "name": "Prepare SQL Query",
+        "func": "const member_id = msg.req.params.member_id;\n\n// Prepare SQL to get the member without the password\nmsg.query = `\n    SELECT \n        *\n    FROM \n        members\n    WHERE \n        member_id = $1\n`;\n\nmsg.params = [member_id];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 1400,
+        "wires": [
+            [
+                "6e6299c02a5c9fa9"
+            ]
+        ]
+    },
+    {
+        "id": "809a00406fc68fd0",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "0c3cf55a6354c68b",
+        "name": "Check Query Result",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 830,
+        "y": 1400,
+        "wires": [
+            [
+                "a69fa02be399df48"
+            ],
+            [
+                "12f0731055ed70ce"
+            ]
+        ]
+    },
+    {
+        "id": "a69fa02be399df48",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "0c3cf55a6354c68b",
+        "name": "Format Response",
+        "func": "// Extract the member data from the query result\nconst member = msg.payload[0];\n\n// Prepare the response message\nmsg.payload = {\n    message: \"Member found\",\n    member: member\n};\n\n// Set the response status code\nmsg.statusCode = 200;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1050,
+        "y": 1360,
+        "wires": [
+            [
+                "dd90a9d2d460e1d5"
+            ]
+        ]
+    },
+    {
+        "id": "12f0731055ed70ce",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "0c3cf55a6354c68b",
+        "name": "404 Not Found",
+        "statusCode": "404",
+        "headers": {},
+        "x": 1090,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "dd90a9d2d460e1d5",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "0c3cf55a6354c68b",
+        "name": "200 OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1230,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "6e6299c02a5c9fa9",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "0c3cf55a6354c68b",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 695,
+        "y": 1400,
+        "wires": [
+            [
+                "809a00406fc68fd0"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "6f49aed723f6683e",
+        "type": "http in",
+        "z": "dbab6edfda7971c1",
+        "g": "0c3cf55a6354c68b",
+        "name": "Get Member by ID",
+        "url": "/member_full/:member_id",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 1360,
+        "wires": [
+            [
+                "a64c0842ee32a3f8"
+            ]
+        ]
+    },
+    {
+        "id": "a64c0842ee32a3f8",
+        "type": "subflow:803db7b38fcbf7c9",
+        "z": "dbab6edfda7971c1",
+        "g": "0c3cf55a6354c68b",
+        "name": "",
+        "x": 360,
+        "y": 1360,
+        "wires": [
+            [
+                "3dbce8cf909fc75b",
+                "1396e0707a32ca26"
+            ]
+        ]
+    },
+    {
+        "id": "3dbce8cf909fc75b",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "0c3cf55a6354c68b",
+        "name": "Check access",
+        "func": "console.log(msg.user.member_id)\nconsole.log(msg.req.params.member_id)\nif((msg.user.role !== 'admin') && (msg.user.member_id !== msg.req.params.member_id)){\n    msg.statusCode = 403;\n    msg.payload = { error: \"Forbidden: Only members with 'admin' role or the owner can get those info\" };\n    return [null, msg];\n}\nreturn [msg, null];",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 1360,
+        "wires": [
+            [
+                "a18fada39e5856bb"
+            ],
+            [
+                "0641024d2baa6972"
+            ]
+        ]
+    },
+    {
+        "id": "0641024d2baa6972",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "0c3cf55a6354c68b",
+        "name": "Send Error",
+        "statusCode": "",
+        "headers": {},
+        "x": 730,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "1396e0707a32ca26",
+        "type": "debug",
+        "z": "dbab6edfda7971c1",
+        "g": "0c3cf55a6354c68b",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 1440,
+        "wires": []
     }
 ]
