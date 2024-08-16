@@ -269,7 +269,7 @@
         ],
         "x": 84,
         "y": 759,
-        "w": 1062,
+        "w": 1222,
         "h": 162
     },
     {
@@ -359,7 +359,7 @@
         ],
         "x": 54,
         "y": 599,
-        "w": 1252,
+        "w": 1352,
         "h": 142
     },
     {
@@ -406,11 +406,12 @@
             "0ca2e856aba81c1d",
             "a507e8ae8429cd78",
             "aef9c751fd89b4db",
-            "06527b6a60f2adfb"
+            "06527b6a60f2adfb",
+            "35083f92f80d197f"
         ],
         "x": 84,
-        "y": 1559,
-        "w": 1062,
+        "y": 1739,
+        "w": 1282,
         "h": 162
     },
     {
@@ -431,11 +432,13 @@
             "bf2f9e68553ccb75",
             "ed2d2dc8c080fab8",
             "18a014b66159eb6f",
-            "bc531713bb82c1d0"
+            "bc531713bb82c1d0",
+            "773d749297e54a80",
+            "2c1a6fd5171b3b59"
         ],
         "x": 94,
-        "y": 1739,
-        "w": 1152,
+        "y": 1919,
+        "w": 1292,
         "h": 142
     },
     {
@@ -456,11 +459,13 @@
             "98680c88a7e3bbb2",
             "85a14efd439eb0a3",
             "36a435dd5284487f",
-            "aac726b02e5b233f"
+            "aac726b02e5b233f",
+            "3ec8d3f7f2a966a4",
+            "31ab2ada5a324f3a"
         ],
         "x": 94,
-        "y": 1899,
-        "w": 1242,
+        "y": 2079,
+        "w": 1392,
         "h": 162
     },
     {
@@ -511,13 +516,71 @@
             "6f49aed723f6683e",
             "a64c0842ee32a3f8",
             "3dbce8cf909fc75b",
-            "0641024d2baa6972",
-            "1396e0707a32ca26"
+            "0641024d2baa6972"
         ],
         "x": 74,
         "y": 1319,
         "w": 1242,
         "h": 162
+    },
+    {
+        "id": "5a0547259b4b944c",
+        "type": "group",
+        "z": "dbab6edfda7971c1",
+        "name": "Apply to Activity",
+        "style": {
+            "stroke": "#addb7b",
+            "fill": "#e3f3d3",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "3b3e9dc44a7c6a77",
+            "0b4c5f339010e936",
+            "03095899b605f037",
+            "399ae07379df565f",
+            "cfee23617ff5e557",
+            "22fd5f8992199711",
+            "e2460e7e0c4be608",
+            "e5734a3238d892fb",
+            "eb9feefa75040452"
+        ],
+        "x": 94,
+        "y": 2259,
+        "w": 1392,
+        "h": 162
+    },
+    {
+        "id": "083ef5064dfa9c6f",
+        "type": "group",
+        "z": "dbab6edfda7971c1",
+        "name": "Update Member",
+        "style": {
+            "stroke": "#3f93cf",
+            "fill": "#bfdbef",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "6b0c9df1c7ee1dce",
+            "8110795bc64320e3",
+            "694b2e4518918768",
+            "1d4824f0f1daec6c",
+            "633962cfc38dfcc8",
+            "20d5cd7713e05a40",
+            "1c841b9718cfb1a3",
+            "af94c79376d8504f",
+            "3fedc1bd3a0da237",
+            "7fe4a3b20b4c9f24",
+            "9c73712dd6014031",
+            "87e3519ad243592b",
+            "367d7037f8f7e71d",
+            "9813d77d28293b73"
+        ],
+        "x": 74,
+        "y": 1539,
+        "w": 1712,
+        "h": 142
     },
     {
         "id": "cf1453eb80b45c35",
@@ -822,7 +885,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 570,
+        "x": 730,
         "y": 840,
         "wires": [
             [
@@ -851,7 +914,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 840,
+        "x": 1000,
         "y": 840,
         "wires": [
             [
@@ -870,7 +933,7 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1040,
+        "x": 1200,
         "y": 800,
         "wires": []
     },
@@ -882,7 +945,7 @@
         "name": "200 OK",
         "statusCode": "200",
         "headers": {},
-        "x": 1040,
+        "x": 1200,
         "y": 880,
         "wires": []
     },
@@ -1245,7 +1308,7 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 705,
+        "x": 865,
         "y": 840,
         "wires": [
             [
@@ -1301,7 +1364,7 @@
         "z": "dbab6edfda7971c1",
         "g": "2d9b645b715b3674",
         "name": "Get Member by ID",
-        "url": "/members/:member_id",
+        "url": "/members/public/:member_id",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
@@ -1459,7 +1522,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 590,
+        "x": 710,
         "y": 660,
         "wires": [
             [
@@ -1486,8 +1549,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 830,
-        "y": 660,
+        "x": 970,
+        "y": 680,
         "wires": [
             [
                 "4cbff012b0a8503e"
@@ -1509,7 +1572,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1030,
+        "x": 1130,
         "y": 640,
         "wires": [
             [
@@ -1525,7 +1588,7 @@
         "name": "400 Bad Request",
         "statusCode": "400",
         "headers": {},
-        "x": 1110,
+        "x": 1210,
         "y": 700,
         "wires": []
     },
@@ -1537,7 +1600,7 @@
         "name": "201 Created",
         "statusCode": "201",
         "headers": {},
-        "x": 1210,
+        "x": 1310,
         "y": 640,
         "wires": []
     },
@@ -1552,7 +1615,7 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 705,
+        "x": 845,
         "y": 660,
         "wires": [
             [
@@ -1703,8 +1766,8 @@
         "name": "200 OK",
         "statusCode": "200",
         "headers": {},
-        "x": 1040,
-        "y": 1680,
+        "x": 1260,
+        "y": 1860,
         "wires": []
     },
     {
@@ -1728,8 +1791,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 780,
-        "y": 1640,
+        "x": 1000,
+        "y": 1820,
         "wires": [
             [
                 "c2478e40eca32f8d"
@@ -1747,8 +1810,8 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1040,
-        "y": 1600,
+        "x": 1260,
+        "y": 1780,
         "wires": []
     },
     {
@@ -1764,8 +1827,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 510,
-        "y": 1640,
+        "x": 730,
+        "y": 1820,
         "wires": [
             [
                 "aef9c751fd89b4db"
@@ -1783,7 +1846,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 180,
-        "y": 1640,
+        "y": 1820,
         "wires": [
             [
                 "06527b6a60f2adfb"
@@ -1801,8 +1864,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 635,
-        "y": 1640,
+        "x": 855,
+        "y": 1820,
         "wires": [
             [
                 "b374cb0fea6b3897"
@@ -1814,7 +1877,6 @@
         "id": "238b583f038c7769",
         "type": "http in",
         "z": "dbab6edfda7971c1",
-        "d": true,
         "g": "4e3f58172aca87d0",
         "name": "Create Activity",
         "url": "/activities",
@@ -1822,10 +1884,10 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 200,
-        "y": 1800,
+        "y": 1980,
         "wires": [
             [
-                "f5b74102881341fa"
+                "773d749297e54a80"
             ]
         ]
     },
@@ -1842,8 +1904,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 420,
-        "y": 1800,
+        "x": 730,
+        "y": 1980,
         "wires": [
             [
                 "307e56627f59548e"
@@ -1861,8 +1923,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 575,
-        "y": 1800,
+        "x": 845,
+        "y": 1980,
         "wires": [
             [
                 "bf2f9e68553ccb75"
@@ -1891,8 +1953,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 830,
-        "y": 1800,
+        "x": 970,
+        "y": 1980,
         "wires": [
             [
                 "bc531713bb82c1d0"
@@ -1910,8 +1972,8 @@
         "name": "201 Created",
         "statusCode": "201",
         "headers": {},
-        "x": 1150,
-        "y": 1780,
+        "x": 1290,
+        "y": 1960,
         "wires": []
     },
     {
@@ -1922,8 +1984,8 @@
         "name": "400 Bad Request",
         "statusCode": "400",
         "headers": {},
-        "x": 1100,
-        "y": 1840,
+        "x": 1240,
+        "y": 2020,
         "wires": []
     },
     {
@@ -1939,8 +2001,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1010,
-        "y": 1780,
+        "x": 1150,
+        "y": 1960,
         "wires": [
             [
                 "ed2d2dc8c080fab8"
@@ -1960,8 +2022,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 430,
-        "y": 1980,
+        "x": 730,
+        "y": 2160,
         "wires": [
             [
                 "36a435dd5284487f"
@@ -1987,8 +2049,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 850,
-        "y": 1980,
+        "x": 1000,
+        "y": 2160,
         "wires": [
             [
                 "45582769dbee1f97"
@@ -2011,8 +2073,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1070,
-        "y": 1940,
+        "x": 1220,
+        "y": 2120,
         "wires": [
             [
                 "85a14efd439eb0a3"
@@ -2027,8 +2089,8 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1110,
-        "y": 2020,
+        "x": 1260,
+        "y": 2200,
         "wires": []
     },
     {
@@ -2039,8 +2101,8 @@
         "name": "200 OK",
         "statusCode": "200",
         "headers": {},
-        "x": 1250,
-        "y": 1940,
+        "x": 1400,
+        "y": 2120,
         "wires": []
     },
     {
@@ -2054,8 +2116,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 575,
-        "y": 1980,
+        "x": 855,
+        "y": 2160,
         "wires": [
             [
                 "1b1493fa8a5b9912"
@@ -2074,10 +2136,10 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 200,
-        "y": 1980,
+        "y": 2160,
         "wires": [
             [
-                "b019c1b471ba4625"
+                "3ec8d3f7f2a966a4"
             ]
         ]
     },
@@ -2259,99 +2321,6 @@
         ]
     },
     {
-        "id": "1b8ce087ab3c6546",
-        "type": "http in",
-        "z": "dbab6edfda7971c1",
-        "name": "Create Activity",
-        "url": "/activities",
-        "method": "post",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 1420,
-        "y": 360,
-        "wires": [
-            [
-                "4773489e70b6246f"
-            ]
-        ]
-    },
-    {
-        "id": "de093b47a157dc06",
-        "type": "function",
-        "z": "dbab6edfda7971c1",
-        "name": "Create Activity",
-        "func": "const { \n    activity_name, \n    activity_desc, \n    activity_xp, \n    activity_credit, \n    activity_type, \n    activity_startdate, \n    activity_enddate, \n    activity_owner, \n    activity_org, \n    skills_id, \n    sdg_id \n} = msg.payload;\n\n// Validation\nif (!activity_name || typeof activity_name !== 'string' || activity_name.trim() === '') {\n    node.error('Missing or invalid activity_name', msg);\n    return null;\n}\n\nif (!activity_type || typeof activity_type !== 'string' || activity_type.trim() === '') {\n    node.error('Missing or invalid activity_type', msg);\n    return null;\n}\n\nif (!activity_xp || typeof activity_xp !== 'number') {\n    node.error('Missing or invalid activity_xp', msg);\n    return null;\n}\n\nif (!activity_credit || typeof activity_credit !== 'number') {\n    node.error('Missing or invalid activity_credit', msg);\n    return null;\n}\n\nif (!activity_owner || !/^[0-9a-fA-F-]{36}$/.test(activity_owner)) {\n    node.error('Missing or invalid activity_owner (UUID)', msg);\n    return null;\n}\n\nif (!activity_org || !/^[0-9a-fA-F-]{36}$/.test(activity_org)) {\n    node.error('Missing or invalid activity_org (UUID)', msg);\n    return null;\n}\n\n// Use current timestamp if activity_startdate is not provided\nconst start_date = activity_startdate || new Date().toISOString();\n\n// Prepare SQL\nmsg.query = `\n    INSERT INTO activities (\n        activity_name, \n        activity_desc, \n        activity_xp, \n        activity_credit, \n        activity_type, \n        activity_startdate, \n        activity_enddate, \n        activity_owner, \n        activity_org, \n        skills_id, \n        sdg_id\n    ) \n    VALUES (\n        $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    activity_name, \n    activity_desc || null, \n    activity_xp, \n    activity_credit, \n    activity_type, \n    start_date, \n    activity_enddate || null, \n    activity_owner, \n    activity_org, \n    skills_id || null, \n    sdg_id || null\n];\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1940,
-        "y": 360,
-        "wires": [
-            [
-                "829b26652cb941a5"
-            ]
-        ]
-    },
-    {
-        "id": "a2bce6ef2bc9fc32",
-        "type": "http response",
-        "z": "dbab6edfda7971c1",
-        "name": "Send Success",
-        "statusCode": "201",
-        "headers": {},
-        "x": 2220,
-        "y": 360,
-        "wires": []
-    },
-    {
-        "id": "829b26652cb941a5",
-        "type": "postgresql",
-        "z": "dbab6edfda7971c1",
-        "name": " ",
-        "query": "",
-        "postgreSQLConfig": "cf1453eb80b45c35",
-        "split": false,
-        "rowsPerMsg": 1,
-        "outputs": 1,
-        "x": 2065,
-        "y": 360,
-        "wires": [
-            [
-                "a2bce6ef2bc9fc32"
-            ]
-        ],
-        "l": false
-    },
-    {
-        "id": "4773489e70b6246f",
-        "type": "subflow:803db7b38fcbf7c9",
-        "z": "dbab6edfda7971c1",
-        "name": "",
-        "x": 1580,
-        "y": 360,
-        "wires": [
-            [
-                "ee1f5f30fbb8d0bf"
-            ]
-        ]
-    },
-    {
-        "id": "ee1f5f30fbb8d0bf",
-        "type": "subflow:147c3624ebe2d286",
-        "z": "dbab6edfda7971c1",
-        "name": "",
-        "x": 1740,
-        "y": 360,
-        "wires": [
-            [
-                "de093b47a157dc06"
-            ]
-        ]
-    },
-    {
         "id": "1c03ca4d05a7267c",
         "type": "subflow:803db7b38fcbf7c9",
         "z": "dbab6edfda7971c1",
@@ -2399,8 +2368,8 @@
         "z": "dbab6edfda7971c1",
         "g": "383b1f1fa33c8505",
         "name": "",
-        "x": 430,
-        "y": 700,
+        "x": 510,
+        "y": 660,
         "wires": [
             [
                 "63739fed659fe368"
@@ -2810,7 +2779,7 @@
         "z": "dbab6edfda7971c1",
         "g": "0c3cf55a6354c68b",
         "name": "Get Member by ID",
-        "url": "/member_full/:member_id",
+        "url": "/member/private/:member_id",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
@@ -2832,8 +2801,7 @@
         "y": 1360,
         "wires": [
             [
-                "3dbce8cf909fc75b",
-                "1396e0707a32ca26"
+                "3dbce8cf909fc75b"
             ]
         ]
     },
@@ -2874,34 +2842,16 @@
         "wires": []
     },
     {
-        "id": "1396e0707a32ca26",
-        "type": "debug",
-        "z": "dbab6edfda7971c1",
-        "g": "0c3cf55a6354c68b",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 360,
-        "y": 1440,
-        "wires": []
-    },
-    {
         "id": "06527b6a60f2adfb",
         "type": "subflow:803db7b38fcbf7c9",
         "z": "dbab6edfda7971c1",
         "g": "2b91f5927dfc193f",
         "name": "",
         "x": 340,
-        "y": 1640,
+        "y": 1820,
         "wires": [
             [
-                "0ca2e856aba81c1d"
+                "35083f92f80d197f"
             ]
         ]
     },
@@ -2911,8 +2861,8 @@
         "z": "dbab6edfda7971c1",
         "g": "aad75d5c826ca0b1",
         "name": "",
-        "x": 410,
-        "y": 800,
+        "x": 510,
+        "y": 840,
         "wires": [
             [
                 "9e9d7e60.87b97"
@@ -2930,6 +2880,509 @@
         "wires": [
             [
                 "fb2c076c83639249"
+            ]
+        ]
+    },
+    {
+        "id": "773d749297e54a80",
+        "type": "subflow:803db7b38fcbf7c9",
+        "z": "dbab6edfda7971c1",
+        "g": "4e3f58172aca87d0",
+        "name": "",
+        "x": 360,
+        "y": 1980,
+        "wires": [
+            [
+                "2c1a6fd5171b3b59"
+            ]
+        ]
+    },
+    {
+        "id": "2c1a6fd5171b3b59",
+        "type": "subflow:880ae79f14619c5d",
+        "z": "dbab6edfda7971c1",
+        "g": "4e3f58172aca87d0",
+        "name": "",
+        "x": 530,
+        "y": 1980,
+        "wires": [
+            [
+                "f5b74102881341fa"
+            ]
+        ]
+    },
+    {
+        "id": "3ec8d3f7f2a966a4",
+        "type": "subflow:803db7b38fcbf7c9",
+        "z": "dbab6edfda7971c1",
+        "g": "aefbdd2e49c81e3f",
+        "name": "",
+        "x": 360,
+        "y": 2160,
+        "wires": [
+            [
+                "31ab2ada5a324f3a"
+            ]
+        ]
+    },
+    {
+        "id": "31ab2ada5a324f3a",
+        "type": "subflow:84b08c8e5dbc93fb",
+        "z": "dbab6edfda7971c1",
+        "g": "aefbdd2e49c81e3f",
+        "name": "",
+        "x": 530,
+        "y": 2160,
+        "wires": [
+            [
+                "b019c1b471ba4625"
+            ]
+        ]
+    },
+    {
+        "id": "35083f92f80d197f",
+        "type": "subflow:84b08c8e5dbc93fb",
+        "z": "dbab6edfda7971c1",
+        "g": "2b91f5927dfc193f",
+        "name": "",
+        "x": 510,
+        "y": 1820,
+        "wires": [
+            [
+                "0ca2e856aba81c1d"
+            ]
+        ]
+    },
+    {
+        "id": "3b3e9dc44a7c6a77",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "d": true,
+        "g": "5a0547259b4b944c",
+        "name": "Prepare SQL Query",
+        "func": "const { \n    activity_name, \n    activity_desc, \n    activity_xp, \n    activity_credit, \n    activity_type, \n    activity_startdate, \n    activity_enddate, \n    activity_owner, \n    activity_org, \n    skills_id, \n    sdg_id \n} = msg.payload;\n\n// Validation\nif (!activity_name || typeof activity_name !== 'string' || activity_name.trim() === '') {\n    node.error('Missing or invalid activity_name', msg);\n    return null;\n}\n\nif (!activity_type || typeof activity_type !== 'string' || activity_type.trim() === '') {\n    node.error('Missing or invalid activity_type', msg);\n    return null;\n}\n\nif (!activity_xp || typeof activity_xp !== 'number') {\n    node.error('Missing or invalid activity_xp', msg);\n    return null;\n}\n\nif (!activity_credit || typeof activity_credit !== 'number') {\n    node.error('Missing or invalid activity_credit', msg);\n    return null;\n}\n\nif (!activity_owner || !/^[0-9a-fA-F-]{36}$/.test(activity_owner)) {\n    node.error('Missing or invalid activity_owner (UUID)', msg);\n    return null;\n}\n\nif (!activity_org || !/^[0-9a-fA-F-]{36}$/.test(activity_org)) {\n    node.error('Missing or invalid activity_org (UUID)', msg);\n    return null;\n}\n\n// Use current timestamp if activity_startdate is not provided\nconst start_date = activity_startdate || new Date().toISOString();\n\n// Prepare SQL\nmsg.query = `\n    INSERT INTO activities (\n        activity_name, \n        activity_desc, \n        activity_xp, \n        activity_credit, \n        activity_type, \n        activity_startdate, \n        activity_enddate, \n        activity_owner, \n        activity_org, \n        skills_id, \n        sdg_id\n    ) \n    VALUES (\n        $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    activity_name, \n    activity_desc || null, \n    activity_xp, \n    activity_credit, \n    activity_type, \n    start_date, \n    activity_enddate || null, \n    activity_owner, \n    activity_org, \n    skills_id || null, \n    sdg_id || null\n];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 2340,
+        "wires": [
+            [
+                "22fd5f8992199711"
+            ]
+        ]
+    },
+    {
+        "id": "0b4c5f339010e936",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "5a0547259b4b944c",
+        "name": "Check Query Result",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1000,
+        "y": 2340,
+        "wires": [
+            [
+                "03095899b605f037"
+            ],
+            [
+                "399ae07379df565f"
+            ]
+        ]
+    },
+    {
+        "id": "03095899b605f037",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "5a0547259b4b944c",
+        "name": "Format Response",
+        "func": "// Extract the member data from the query result\nconst activity = msg.payload[0];\n\n// Prepare the response message\nmsg.payload = {\n    message: \"Activity found\",\n    activity: activity\n};\n\n// Set the response status code\nmsg.statusCode = 200;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 2300,
+        "wires": [
+            [
+                "cfee23617ff5e557"
+            ]
+        ]
+    },
+    {
+        "id": "399ae07379df565f",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "5a0547259b4b944c",
+        "name": "404 Not Found",
+        "statusCode": "404",
+        "headers": {},
+        "x": 1260,
+        "y": 2380,
+        "wires": []
+    },
+    {
+        "id": "cfee23617ff5e557",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "5a0547259b4b944c",
+        "name": "200 OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1400,
+        "y": 2300,
+        "wires": []
+    },
+    {
+        "id": "22fd5f8992199711",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "5a0547259b4b944c",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 855,
+        "y": 2340,
+        "wires": [
+            [
+                "0b4c5f339010e936"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "e2460e7e0c4be608",
+        "type": "http in",
+        "z": "dbab6edfda7971c1",
+        "g": "5a0547259b4b944c",
+        "name": "Apply to activity",
+        "url": "/activities/apply/:activity_id",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 2340,
+        "wires": [
+            [
+                "e5734a3238d892fb"
+            ]
+        ]
+    },
+    {
+        "id": "e5734a3238d892fb",
+        "type": "subflow:803db7b38fcbf7c9",
+        "z": "dbab6edfda7971c1",
+        "g": "5a0547259b4b944c",
+        "name": "",
+        "x": 360,
+        "y": 2340,
+        "wires": [
+            [
+                "eb9feefa75040452"
+            ]
+        ]
+    },
+    {
+        "id": "eb9feefa75040452",
+        "type": "subflow:84b08c8e5dbc93fb",
+        "z": "dbab6edfda7971c1",
+        "g": "5a0547259b4b944c",
+        "name": "",
+        "x": 530,
+        "y": 2340,
+        "wires": [
+            [
+                "3b3e9dc44a7c6a77"
+            ]
+        ]
+    },
+    {
+        "id": "6b0c9df1c7ee1dce",
+        "type": "http in",
+        "z": "dbab6edfda7971c1",
+        "g": "083ef5064dfa9c6f",
+        "name": "Update Member",
+        "url": "/members/:member_id",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 1600,
+        "wires": [
+            [
+                "9813d77d28293b73"
+            ]
+        ]
+    },
+    {
+        "id": "8110795bc64320e3",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "083ef5064dfa9c6f",
+        "name": "PSQL Update Member",
+        "func": "const member_id = msg.payload[0].member_id;\nconst { \n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture, \n    member_languages, \n    member_summary, \n    country_id, \n    member_password, \n    skill_id \n} = msg.member;\n\n// Validation\nif (!member_firstname || typeof member_firstname !== 'string' || member_firstname.trim() === '') {\n    node.error('Missing or invalid member_firstname', msg);\n    return null;\n}\n\nif (!member_lastname || typeof member_lastname !== 'string' || member_lastname.trim() === '') {\n    node.error('Missing or invalid member_lastname', msg);\n    return null;\n}\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\nif (!member_password || typeof member_password !== 'string' || member_password.trim() === '') {\n    node.error('Missing or invalid member_password', msg);\n    return null;\n}\n\n\n// Convert member_languages array to PostgreSQL array literal format\nconst formatted_languages = `{${member_languages.join(',')}}`;\n\n// Prepare SQL\nmsg.query = `\n    UPDATE members \n    SET\n        member_firstname = $1, \n        member_lastname = $2, \n        member_email = $3, \n        member_picture = $4, \n        member_languages = $5, \n        member_summary = $6, \n        country_id = $7, \n        member_password = $8, \n        skill_id = $9\n    WHERE member_id = $10\n    RETURNING *;\n`;\n\nmsg.params = [\n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture || null, \n    formatted_languages, \n    member_summary, \n    country_id || null, \n    member_password, \n    skill_id || null,\n    member_id\n];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1120,
+        "y": 1600,
+        "wires": [
+            [
+                "694b2e4518918768"
+            ]
+        ]
+    },
+    {
+        "id": "694b2e4518918768",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "083ef5064dfa9c6f",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 1255,
+        "y": 1600,
+        "wires": [
+            [
+                "3fedc1bd3a0da237"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "1d4824f0f1daec6c",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "083ef5064dfa9c6f",
+        "name": "201 Updated",
+        "statusCode": "201",
+        "headers": {},
+        "x": 1690,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "633962cfc38dfcc8",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "083ef5064dfa9c6f",
+        "name": "resp",
+        "func": "// Extract the member ID from the database query result\nconst createdMember = msg.payload[0]; // Assuming the result is in the first element of the array\n\n// Prepare the response message\nmsg.payload = {\n    message: \"Member has been successfully updated\",\n    member_id: createdMember.member_id\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1550,
+        "y": 1580,
+        "wires": [
+            [
+                "1d4824f0f1daec6c"
+            ]
+        ]
+    },
+    {
+        "id": "20d5cd7713e05a40",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "083ef5064dfa9c6f",
+        "name": "PSQL Check if exists",
+        "func": "msg.member = msg.payload\nconst { \n    member_email\n} = msg.payload;\n\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\n// Prepare SQL\nmsg.query = `\n    SELECT member_id\n    FROM members\n    WHERE member_email = $1;\n`;\n\nmsg.params = [member_email];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 1600,
+        "wires": [
+            [
+                "1c841b9718cfb1a3"
+            ]
+        ]
+    },
+    {
+        "id": "1c841b9718cfb1a3",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "083ef5064dfa9c6f",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 925,
+        "y": 1600,
+        "wires": [
+            [
+                "af94c79376d8504f"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "af94c79376d8504f",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "083ef5064dfa9c6f",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 975,
+        "y": 1600,
+        "wires": [
+            [
+                "8110795bc64320e3"
+            ],
+            [
+                "9c73712dd6014031"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "3fedc1bd3a0da237",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "083ef5064dfa9c6f",
+        "name": "Check Insert Result",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "array",
+                "vt": "array"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1370,
+        "y": 1600,
+        "wires": [
+            [
+                "633962cfc38dfcc8"
+            ],
+            [
+                "7fe4a3b20b4c9f24"
+            ]
+        ]
+    },
+    {
+        "id": "7fe4a3b20b4c9f24",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "083ef5064dfa9c6f",
+        "name": "400 Bad Request",
+        "statusCode": "400",
+        "headers": {},
+        "x": 1570,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "9c73712dd6014031",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "083ef5064dfa9c6f",
+        "name": "404 Not Found",
+        "statusCode": "404",
+        "headers": {},
+        "x": 1100,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "87e3519ad243592b",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "083ef5064dfa9c6f",
+        "name": "Send Error",
+        "statusCode": "",
+        "headers": {},
+        "x": 730,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "367d7037f8f7e71d",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "083ef5064dfa9c6f",
+        "name": "Check access",
+        "func": "console.log(msg.user.member_id)\nconsole.log(msg.req.params.member_id)\nif((msg.user.role !== 'admin') && (msg.user.member_id !== msg.req.params.member_id)){\n    msg.statusCode = 403;\n    msg.payload = { error: \"Forbidden: Only members with 'admin' role or the owner can get those info\" };\n    return [null, msg];\n}\nreturn [msg, null];",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 1600,
+        "wires": [
+            [
+                "20d5cd7713e05a40"
+            ],
+            [
+                "87e3519ad243592b"
+            ]
+        ]
+    },
+    {
+        "id": "9813d77d28293b73",
+        "type": "subflow:803db7b38fcbf7c9",
+        "z": "dbab6edfda7971c1",
+        "g": "083ef5064dfa9c6f",
+        "name": "",
+        "x": 360,
+        "y": 1600,
+        "wires": [
+            [
+                "367d7037f8f7e71d"
             ]
         ]
     }
