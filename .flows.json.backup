@@ -2,7 +2,7 @@
     {
         "id": "dbab6edfda7971c1",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Main",
         "disabled": false,
         "info": "",
         "env": []
@@ -211,11 +211,12 @@
             "5ccdd48129b1bb9b",
             "4850bfe9234cfc08",
             "fb2c076c83639249",
-            "1c03ca4d05a7267c"
+            "1c03ca4d05a7267c",
+            "e338455bad8a47c6"
         ],
         "x": 54,
         "y": 259,
-        "w": 1072,
+        "w": 1252,
         "h": 142
     },
     {
@@ -263,7 +264,8 @@
             "9e9d7e60.87b97",
             "a1f8c1b0.8a3f9",
             "d4d62d83d3a983e7",
-            "a44c078fe6fa21d3"
+            "a44c078fe6fa21d3",
+            "083f6f43ae863331"
         ],
         "x": 84,
         "y": 759,
@@ -403,7 +405,8 @@
             "c2478e40eca32f8d",
             "0ca2e856aba81c1d",
             "a507e8ae8429cd78",
-            "aef9c751fd89b4db"
+            "aef9c751fd89b4db",
+            "06527b6a60f2adfb"
         ],
         "x": 84,
         "y": 1559,
@@ -546,7 +549,7 @@
         "type": "function",
         "z": "803db7b38fcbf7c9",
         "name": "Verify JWT",
-        "func": "const jwt = global.get('jsonwebtoken');\n\nconst token = msg.req.headers.authorization.split(' ')[1];\n\ntry {\n    const decoded = jwt.verify(token, 'your-secret-key');\n    msg.user = decoded;\n    return [msg, null];\n} catch (err) {\n    msg.statusCode = 403;\n    msg.payload = { error: 'Forbidden: Invalid or expired token.' };\n    return [null, msg];\n}",
+        "func": "const jwt = global.get('jsonwebtoken');\n\nconst token = msg.req.headers.authorization.split(' ')[1];\n\ntry {\n    const decoded = jwt.verify(token, 'your-secret-key');\n    msg.user = decoded;\n    console.log(decoded);\n    return [msg, null];\n} catch (err) {\n    msg.statusCode = 403;\n    msg.payload = { error: 'Forbidden: Invalid or expired token.' };\n    return [null, msg];\n}",
         "outputs": 2,
         "timeout": "",
         "noerr": 0,
@@ -653,7 +656,7 @@
         "type": "function",
         "z": "84b08c8e5dbc93fb",
         "name": "Check member Role",
-        "func": "if (msg.user.role !== 'member') {\n    msg.statusCode = 403;\n    msg.payload = { error: 'Forbidden: Only members can perform this action.' };\n    return [null, msg];\n}\nreturn [msg, null];",
+        "func": "\nconst hasMember = msg.user.role.some(role => role.role_name === 'member');\n\nif (!hasMember) {\n    msg.statusCode = 403;\n    msg.payload = { error: 'Forbidden: Only members can perform this action.' };\n    return [null, msg];\n}\n\nreturn [msg, null];",
         "outputs": 2,
         "timeout": "",
         "noerr": 0,
@@ -749,7 +752,7 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 635,
+        "x": 865,
         "y": 340,
         "wires": [
             [
@@ -784,7 +787,7 @@
         "name": "200 OK",
         "statusCode": "",
         "headers": {},
-        "x": 1000,
+        "x": 1180,
         "y": 360,
         "wires": []
     },
@@ -802,7 +805,7 @@
         "y": 840,
         "wires": [
             [
-                "9e9d7e60.87b97"
+                "a44c078fe6fa21d3"
             ]
         ]
     },
@@ -812,7 +815,7 @@
         "z": "dbab6edfda7971c1",
         "g": "aad75d5c826ca0b1",
         "name": "Prepare SQL Query",
-        "func": "// Extract query parameters\nconst skip = parseInt(msg.req.query.skip) || 0;  // Default to 0 if not provided\nconst limit = parseInt(msg.req.query.limit) || 50;  // Default to 50 if not provided\n\n// Validate skip and limit\nif (isNaN(skip) || skip < 0) {\n    node.error('Invalid skip parameter', msg);\n    return null;\n}\n\nif (isNaN(limit) || limit <= 0) {\n    node.error('Invalid limit parameter', msg);\n    return null;\n}\nmsg.query = \"SELECT * FROM members LIMIT $1 OFFSET $2\";\nmsg.params = [\n    limit,\n    skip\n];\nreturn msg;",
+        "func": "// Extract query parameters\nconst skip = parseInt(msg.req.query.skip) || 0;  // Default to 0 if not provided\nconst limit = parseInt(msg.req.query.limit) || 50;  // Default to 50 if not provided\n\n// Validate skip and limit\nif (isNaN(skip) || skip < 0) {\n    node.error('Invalid skip parameter', msg);\n    return null;\n}\n\nif (isNaN(limit) || limit <= 0) {\n    node.error('Invalid limit parameter', msg);\n    return null;\n}\nmsg.query = `SELECT \n        member_id, \n        member_firstname, \n        member_lastname, \n        member_picture, \n        member_languages, \n        member_summary, \n        country_id, \n        member_status, \n        member_level, \n        skill_id, \n        creation_date\n        FROM members \n        LIMIT $1 \n        OFFSET $2`;\nmsg.params = [\n    limit,\n    skip\n];\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -997,7 +1000,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 760,
+        "x": 1000,
         "y": 340,
         "wires": [
             [
@@ -1016,7 +1019,7 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1020,
+        "x": 1200,
         "y": 300,
         "wires": []
     },
@@ -1033,7 +1036,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 510,
+        "x": 730,
         "y": 340,
         "wires": [
             [
@@ -1761,7 +1764,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
+        "x": 510,
         "y": 1640,
         "wires": [
             [
@@ -1783,7 +1786,7 @@
         "y": 1640,
         "wires": [
             [
-                "0ca2e856aba81c1d"
+                "06527b6a60f2adfb"
             ]
         ]
     },
@@ -1798,7 +1801,7 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 515,
+        "x": 635,
         "y": 1640,
         "wires": [
             [
@@ -2144,7 +2147,7 @@
         "z": "dbab6edfda7971c1",
         "g": "ed79720e50c3c5aa",
         "name": "Sign JWT",
-        "func": "const jwt = global.get('jsonwebtoken');\n\nconst role = msg.payload.length > 0 ? msg.payload[0].role_name : null;\n\nmsg.payload = jwt.sign({ member_id: msg.user_id, role }, 'your-secret-key', { expiresIn: '1h' });\nmsg.statusCode = 200;\nreturn msg;",
+        "func": "const jwt = global.get('jsonwebtoken');\n\n//const role = msg.payload.length > 0 ? msg.payload[0].role_name : null;\nconst role = msg.payload.length > 0 ? msg.payload : null;\n\nmsg.payload = jwt.sign({ member_id: msg.user_id, role }, 'your-secret-key', { expiresIn: '1h' });\nmsg.statusCode = 200;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2358,7 +2361,7 @@
         "y": 340,
         "wires": [
             [
-                "fb2c076c83639249"
+                "e338455bad8a47c6"
             ]
         ]
     },
@@ -2410,10 +2413,12 @@
         "z": "dbab6edfda7971c1",
         "g": "aad75d5c826ca0b1",
         "name": "",
-        "x": 360,
+        "x": 320,
         "y": 840,
         "wires": [
-            []
+            [
+                "083f6f43ae863331"
+            ]
         ]
     },
     {
@@ -2838,7 +2843,7 @@
         "z": "dbab6edfda7971c1",
         "g": "0c3cf55a6354c68b",
         "name": "Check access",
-        "func": "console.log(msg.user.member_id)\nconsole.log(msg.req.params.member_id)\nif ((msg.user.role !== 'admin') && (msg.user.user_id !== msg.req.params.member_id)) {\n    msg.statusCode = 403;\n    msg.payload = { error: \"Forbidden: Only members with 'admin' role or the owner can get those info\" };\n    return [null, msg];\n}\nreturn [msg, null];",
+        "func": "console.log(msg.user.member_id)\nconsole.log(msg.req.params.member_id)\nif((msg.user.role !== 'admin') && (msg.user.member_id !== msg.req.params.member_id)){\n    msg.statusCode = 403;\n    msg.payload = { error: \"Forbidden: Only members with 'admin' role or the owner can get those info\" };\n    return [null, msg];\n}\nreturn [msg, null];",
         "outputs": 2,
         "timeout": "",
         "noerr": 0,
@@ -2885,5 +2890,47 @@
         "x": 360,
         "y": 1440,
         "wires": []
+    },
+    {
+        "id": "06527b6a60f2adfb",
+        "type": "subflow:803db7b38fcbf7c9",
+        "z": "dbab6edfda7971c1",
+        "g": "2b91f5927dfc193f",
+        "name": "",
+        "x": 340,
+        "y": 1640,
+        "wires": [
+            [
+                "0ca2e856aba81c1d"
+            ]
+        ]
+    },
+    {
+        "id": "083f6f43ae863331",
+        "type": "subflow:84b08c8e5dbc93fb",
+        "z": "dbab6edfda7971c1",
+        "g": "aad75d5c826ca0b1",
+        "name": "",
+        "x": 410,
+        "y": 800,
+        "wires": [
+            [
+                "9e9d7e60.87b97"
+            ]
+        ]
+    },
+    {
+        "id": "e338455bad8a47c6",
+        "type": "subflow:84b08c8e5dbc93fb",
+        "z": "dbab6edfda7971c1",
+        "g": "5e64576d309c62f9",
+        "name": "",
+        "x": 510,
+        "y": 340,
+        "wires": [
+            [
+                "fb2c076c83639249"
+            ]
+        ]
     }
 ]
