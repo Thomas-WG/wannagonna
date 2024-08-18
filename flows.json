@@ -186,11 +186,12 @@
             "3fa02e6179b373a7",
             "7798693f4d1c5ad7",
             "fab558f57eee55da",
-            "5c48384cd53ed955"
+            "5c48384cd53ed955",
+            "edc37b59d467ecd7"
         ],
         "x": 934,
         "y": 19,
-        "w": 1012,
+        "w": 1232,
         "h": 122
     },
     {
@@ -615,6 +616,36 @@
         "h": 142
     },
     {
+        "id": "17f3dd73bc75226d",
+        "type": "group",
+        "z": "dbab6edfda7971c1",
+        "name": "Accept application to Activity",
+        "style": {
+            "stroke": "#addb7b",
+            "fill": "#e3f3d3",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "50a7270d03ea421d",
+            "c7556b5f2e2ac7c7",
+            "1c28a0b01e6117ec",
+            "42a8b7494a855086",
+            "a200331a564dfa23",
+            "b9ccf4737b019414",
+            "05a3cf1cc5633843",
+            "cc93ab17a857b46d",
+            "a48ae6d6e11a58fb",
+            "9973196fed9e9c44",
+            "e6a11499cb0ff476",
+            "cba8af0054c5f2d3"
+        ],
+        "x": 94,
+        "y": 2539,
+        "w": 1732,
+        "h": 162
+    },
+    {
         "id": "cf1453eb80b45c35",
         "type": "postgreSQLConfig",
         "name": "",
@@ -687,7 +718,7 @@
         "type": "function",
         "z": "147c3624ebe2d286",
         "name": "Check NPO Role",
-        "func": "if (msg.user.role !== 'npo') {\n    msg.statusCode = 403;\n    msg.payload = { error: 'Forbidden: Only members with \"npo\" role can create activities.' };\n    return [null, msg];\n}\nreturn [msg, null];",
+        "func": "\nconst hasNpo = msg.user.role.some(role => role.role_name === 'npo');\n\nif (!hasNpo) {\n    msg.statusCode = 403;\n    msg.payload = { error: 'Forbidden: Only npo member can perform this action.' };\n    return [null, msg];\n}\nreturn [msg, null];",
         "outputs": 2,
         "timeout": "",
         "noerr": 0,
@@ -719,7 +750,7 @@
         "type": "function",
         "z": "880ae79f14619c5d",
         "name": "Check admin Role",
-        "func": "if (msg.user.role !== 'admin') {\n    msg.statusCode = 403;\n    msg.payload = { error: 'Forbidden: Only members with admin role can perform this action.' };\n    return [null, msg];\n}\nreturn [msg, null];",
+        "func": "\nconst hasAdmin = msg.user.role.some(role => role.role_name === 'admin');\n\nif (!hasAdmin) {\n    msg.statusCode = 403;\n    msg.payload = { error: 'Forbidden: Only admin can perform this action.' };\n    return [null, msg];\n}\nreturn [msg, null];",
         "outputs": 2,
         "timeout": "",
         "noerr": 0,
@@ -783,7 +814,7 @@
         "type": "function",
         "z": "230b6c6a6e6632b6",
         "name": "Check ambassador Role",
-        "func": "if (msg.user.role !== 'ambassador') {\n    msg.statusCode = 403;\n    msg.payload = { error: 'Forbidden: Only members with \"ambassador\" role can perform this action.' };\n    return [null, msg];\n}\nreturn [msg, null];",
+        "func": "\nconst hasAmbassador = msg.user.role.some(role => role.role_name === 'ambassador');\nconst hasAdmin = msg.user.role.some(role => role.role_name === 'admin');\n\nif (!hasAmbassador && !hasAdmin) {\n    msg.statusCode = 403;\n    msg.payload = { error: 'Forbidden: Only ambassador or admin can perform this action.' };\n    return [null, msg];\n}\nreturn [msg, null];",
         "outputs": 2,
         "timeout": "",
         "noerr": 0,
@@ -810,7 +841,7 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 1410,
+        "x": 1630,
         "y": 80,
         "wires": [
             [
@@ -832,7 +863,7 @@
         "y": 80,
         "wires": [
             [
-                "3fa02e6179b373a7"
+                "edc37b59d467ecd7"
             ]
         ]
     },
@@ -1152,7 +1183,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1230,
+        "x": 1450,
         "y": 80,
         "wires": [
             [
@@ -1181,7 +1212,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1600,
+        "x": 1820,
         "y": 80,
         "wires": [
             [
@@ -1200,7 +1231,7 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1840,
+        "x": 2060,
         "y": 60,
         "wires": []
     },
@@ -1212,7 +1243,7 @@
         "name": "200 OK",
         "statusCode": "200",
         "headers": {},
-        "x": 1840,
+        "x": 2060,
         "y": 100,
         "wires": []
     },
@@ -2220,7 +2251,7 @@
         "z": "dbab6edfda7971c1",
         "g": "ed79720e50c3c5aa",
         "name": "Generate JWT",
-        "func": "if (msg.payload.length === 0) {\n    msg.statusCode = 401;\n    node.error('Unauthorized: Invalid email or password', msg);\n    return null;\n}\n\nconst jwt = global.get('jsonwebtoken');\n\nconst user = msg.payload[0];\n\n// Query to get the user's role\nmsg.query = `SELECT r.role_name FROM roles r JOIN member_roles mr ON r.role_id = mr.role_id WHERE mr.member_id = $1`\nmsg.params = [user.member_id]\nmsg.user_id = user.member_id;\nreturn msg;",
+        "func": "if (msg.payload.length === 0) {\n    msg.statusCode = 401;\n    node.error('Unauthorized: Invalid email or password', msg);\n    return null;\n}\n\nconst jwt = global.get('jsonwebtoken');\n\nconst user = msg.payload[0];\n\n// Query to get the user's role\nmsg.query = `SELECT \n    r.role_id,\n    r.role_name,\n    o.org_id,\n    o.org_name\nFROM \n    member_roles mr\nJOIN \n    roles r ON mr.role_id = r.role_id\nLEFT JOIN \n    organizations o ON mr.org_id = o.org_id\nWHERE \n    mr.member_id =  $1`\nmsg.params = [user.member_id]\nmsg.user_id = user.member_id;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2241,7 +2272,7 @@
         "z": "dbab6edfda7971c1",
         "g": "ed79720e50c3c5aa",
         "name": "Sign JWT",
-        "func": "const jwt = global.get('jsonwebtoken');\n\n//const role = msg.payload.length > 0 ? msg.payload[0].role_name : null;\nconst role = msg.payload.length > 0 ? msg.payload : null;\n\nmsg.payload = jwt.sign({ member_id: msg.user_id, role }, 'your-secret-key', { expiresIn: '1h' });\nmsg.statusCode = 200;\nreturn msg;",
+        "func": "const jwt = global.get('jsonwebtoken');\n\n//const role = msg.payload.length > 0 ? msg.payload[0].role_name : null;\nconst role = msg.payload.length > 0 ? msg.payload : null;\nconsole.log(role)\nmsg.payload = jwt.sign({ member_id: msg.user_id, role }, 'your-secret-key', { expiresIn: '1h' });\nmsg.statusCode = 200;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2811,7 +2842,7 @@
         "z": "dbab6edfda7971c1",
         "g": "0c3cf55a6354c68b",
         "name": "Get Member by ID",
-        "url": "/member/private/:member_id",
+        "url": "/members/private/:member_id",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
@@ -2843,7 +2874,7 @@
         "z": "dbab6edfda7971c1",
         "g": "0c3cf55a6354c68b",
         "name": "Check access",
-        "func": "console.log(msg.user.member_id)\nconsole.log(msg.req.params.member_id)\nif((msg.user.role !== 'admin') && (msg.user.member_id !== msg.req.params.member_id)){\n    msg.statusCode = 403;\n    msg.payload = { error: \"Forbidden: Only members with 'admin' role or the owner can get those info\" };\n    return [null, msg];\n}\nreturn [msg, null];",
+        "func": "\nconst hasAdmin = msg.user.role.some(role => role.role_name === 'admin');\n\nif ((!hasAdmin) && (msg.user.member_id !== msg.req.params.member_id))\n{\n    msg.statusCode = 403;\n    msg.payload = { error: \"Forbidden: Only members with 'admin' role or the owner can get those info\" };\n    return [null, msg];\n}\n\nreturn [msg, null];",
         "outputs": 2,
         "timeout": "",
         "noerr": 0,
@@ -3385,7 +3416,7 @@
         "z": "dbab6edfda7971c1",
         "g": "083ef5064dfa9c6f",
         "name": "Check access",
-        "func": "console.log(msg.user.member_id)\nconsole.log(msg.req.params.member_id)\nif((msg.user.role !== 'admin') && (msg.user.member_id !== msg.req.params.member_id)){\n    msg.statusCode = 403;\n    msg.payload = { error: \"Forbidden: Only members with 'admin' role or the owner can update those info\" };\n    return [null, msg];\n}\nreturn [msg, null];",
+        "func": "\nconst hasAdmin = msg.user.role.some(role => role.role_name === 'admin');\n\nif ((!hasAdmin) && (msg.user.member_id !== msg.req.params.member_id))\n{\n    msg.statusCode = 403;\n    msg.payload = { error: \"Forbidden: Only members with 'admin' role or the owner can get those info\" };\n    return [null, msg];\n}\n\nreturn [msg, null];",
         "outputs": 2,
         "timeout": "",
         "noerr": 0,
@@ -3655,7 +3686,7 @@
         "z": "dbab6edfda7971c1",
         "g": "0277ce09ce234c5c",
         "name": "Check access",
-        "func": "console.log(msg.user.member_id)\nconsole.log(msg.req.params.member_id)\nif((msg.user.role !== 'admin') && (msg.user.member_id !== msg.req.params.member_id)){\n    msg.statusCode = 403;\n    msg.payload = { error: \"Forbidden: Only members with 'admin' role or the owner can update those info\" };\n    return [null, msg];\n}\nreturn [msg, null];",
+        "func": "\nconst hasAdmin = msg.user.role.some(role => role.role_name === 'admin');\n\nif ((!hasAdmin) && (msg.user.member_id !== msg.req.params.member_id))\n{\n    msg.statusCode = 403;\n    msg.payload = { error: \"Forbidden: Only members with 'admin' role or the owner can get those info\" };\n    return [null, msg];\n}\n\nreturn [msg, null];",
         "outputs": 2,
         "timeout": "",
         "noerr": 0,
@@ -3686,5 +3717,251 @@
                 "7d72f3a24965f0e5"
             ]
         ]
+    },
+    {
+        "id": "50a7270d03ea421d",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "17f3dd73bc75226d",
+        "name": "Prepare SQL Query",
+        "func": "const {  \n    result_message,\n    application_status\n} = msg.updateApplication;\nconst member_application_id = msg.req.params.member_application_id;\n\n// Validation for result_message\nif (!result_message || typeof result_message !== 'string' || result_message.trim() === '') {\n    node.error('Missing or invalid result_message', msg);\n    return null;\n}\n\n// Validation for application_status\nif (!application_status || typeof application_status !== 'number') {\n    node.error('Missing or invalid application_status', msg);\n    return null;\n}\n\n// Prepare the current timestamp for completion_date\nconst completion_date = new Date().toISOString();\n\n// Prepare SQL query\nmsg.query = `\n    UPDATE member_volunteer_applications\n    SET \n        application_status = $1,\n        result_message = $2,\n        completion_date = $3\n    WHERE \n        member_application_id = $4\n    RETURNING *;\n`;\n\nmsg.params = [\n    application_status, \n    result_message, \n    completion_date,\n    member_application_id\n];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1090,
+        "y": 2620,
+        "wires": [
+            [
+                "b9ccf4737b019414"
+            ]
+        ]
+    },
+    {
+        "id": "c7556b5f2e2ac7c7",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "17f3dd73bc75226d",
+        "name": "Check Query Result",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1340,
+        "y": 2620,
+        "wires": [
+            [
+                "1c28a0b01e6117ec"
+            ],
+            [
+                "42a8b7494a855086"
+            ]
+        ]
+    },
+    {
+        "id": "1c28a0b01e6117ec",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "17f3dd73bc75226d",
+        "name": "Format Response",
+        "func": "// Extract the member data from the query result\nconst activity = msg.payload[0];\n\n// Prepare the response message\nmsg.payload = {\n    message: \"Activity application saved\",\n    activity: activity\n};\n\n// Set the response status code\nmsg.statusCode = 200;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1560,
+        "y": 2580,
+        "wires": [
+            [
+                "a200331a564dfa23"
+            ]
+        ]
+    },
+    {
+        "id": "42a8b7494a855086",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "17f3dd73bc75226d",
+        "name": "404 Not Found",
+        "statusCode": "404",
+        "headers": {},
+        "x": 1600,
+        "y": 2660,
+        "wires": []
+    },
+    {
+        "id": "a200331a564dfa23",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "17f3dd73bc75226d",
+        "name": "200 OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1740,
+        "y": 2580,
+        "wires": []
+    },
+    {
+        "id": "b9ccf4737b019414",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "17f3dd73bc75226d",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 1205,
+        "y": 2620,
+        "wires": [
+            [
+                "c7556b5f2e2ac7c7"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "05a3cf1cc5633843",
+        "type": "http in",
+        "z": "dbab6edfda7971c1",
+        "g": "17f3dd73bc75226d",
+        "name": "Result for Application",
+        "url": "/activities/apply/:member_application_id",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 2620,
+        "wires": [
+            [
+                "cc93ab17a857b46d"
+            ]
+        ]
+    },
+    {
+        "id": "cc93ab17a857b46d",
+        "type": "subflow:803db7b38fcbf7c9",
+        "z": "dbab6edfda7971c1",
+        "g": "17f3dd73bc75226d",
+        "name": "",
+        "x": 400,
+        "y": 2620,
+        "wires": [
+            [
+                "e6a11499cb0ff476"
+            ]
+        ]
+    },
+    {
+        "id": "a48ae6d6e11a58fb",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "17f3dd73bc75226d",
+        "name": "Check access",
+        "func": "const requiredRoles = ['ambassador', 'npo'];\nconst targetOrgId = msg.payload[0].activity_org; // Get the org_id from the previous query\nconsole.log(\"targetOrgId: \" + targetOrgId)\nconst hasAdmin = msg.user.role.some(role => role.role_name === 'admin' && !role.org_id);\n\n// Loop through each role in the member's role array\nfor (let i = 0; i < msg.user.role.length; i++) {\n    const role = msg.user.role[i]; // Corrected access to the role object\n\n    // Normalize IDs to ensure consistent comparison\n    const normalizedTargetOrgId = targetOrgId ? targetOrgId.trim().toLowerCase() : null;\n    const normalizedRoleOrgId = role.org_id ? role.org_id.trim().toLowerCase() : null;\n    console.log(\"Member Org Id: \" + normalizedRoleOrgId)\n    // Check if the user is an Admin (without an organization) or has the required role for the target organization\n    if (hasAdmin ||\n        (requiredRoles.includes(role.role_name.toLowerCase()) && normalizedRoleOrgId === normalizedTargetOrgId)) {\n        return [msg, null];\n    }\n}\n\n// If no matching role was found, return an error\nmsg.statusCode = 403;\nmsg.payload = { error: 'Forbidden: No access to perform this action.' };\nreturn [null, msg];\n",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 2620,
+        "wires": [
+            [
+                "50a7270d03ea421d"
+            ],
+            [
+                "9973196fed9e9c44"
+            ]
+        ]
+    },
+    {
+        "id": "9973196fed9e9c44",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "17f3dd73bc75226d",
+        "name": "Send Error",
+        "statusCode": "",
+        "headers": {},
+        "x": 1070,
+        "y": 2660,
+        "wires": []
+    },
+    {
+        "id": "edc37b59d467ecd7",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "39bab5e26253c8ec",
+        "name": "Prepare SQL Query",
+        "func": "const { member_email, member_password } = msg.payload;\n\n// Prepare the SQL query to verify the password using crypt()\nmsg.query = `SELECT member_id, member_password FROM members WHERE member_email = $1 AND member_password = crypt($2, member_password)`\nmsg.params = [member_email, member_password]\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1250,
+        "y": 80,
+        "wires": [
+            [
+                "3fa02e6179b373a7"
+            ]
+        ]
+    },
+    {
+        "id": "e6a11499cb0ff476",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "17f3dd73bc75226d",
+        "name": "Get Org ID",
+        "func": "const member_application_id = msg.req.params.member_application_id;\nmsg.updateApplication = msg.payload\n\n// Prepare SQL query to get org_id related to activity_id\nmsg.query = `\n    SELECT a.activity_org\n    FROM activities a\n    JOIN member_volunteer_applications mva ON a.activity_id = mva.activity_id\n    WHERE mva.member_application_id = $1;\n`;\n\nmsg.params = [\n    member_application_id\n];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 2620,
+        "wires": [
+            [
+                "cba8af0054c5f2d3"
+            ]
+        ]
+    },
+    {
+        "id": "cba8af0054c5f2d3",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "17f3dd73bc75226d",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 705,
+        "y": 2620,
+        "wires": [
+            [
+                "a48ae6d6e11a58fb"
+            ]
+        ],
+        "l": false
     }
 ]
