@@ -408,11 +408,12 @@
             "a507e8ae8429cd78",
             "aef9c751fd89b4db",
             "06527b6a60f2adfb",
-            "35083f92f80d197f"
+            "35083f92f80d197f",
+            "800c57a1fa08c476"
         ],
         "x": 84,
         "y": 1839,
-        "w": 1282,
+        "w": 1422,
         "h": 162
     },
     {
@@ -638,13 +639,12 @@
             "a48ae6d6e11a58fb",
             "9973196fed9e9c44",
             "e6a11499cb0ff476",
-            "cba8af0054c5f2d3",
-            "216e8ca111742be3"
+            "cba8af0054c5f2d3"
         ],
         "x": 94,
-        "y": 2519,
+        "y": 2539,
         "w": 1732,
-        "h": 182
+        "h": 162
     },
     {
         "id": "cf1453eb80b45c35",
@@ -1859,7 +1859,7 @@
         "y": 1920,
         "wires": [
             [
-                "c2478e40eca32f8d"
+                "800c57a1fa08c476"
             ],
             [
                 "5a7ada1f4c09f766"
@@ -1874,7 +1874,7 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1260,
+        "x": 1400,
         "y": 1880,
         "wires": []
     },
@@ -1884,7 +1884,7 @@
         "z": "dbab6edfda7971c1",
         "g": "2b91f5927dfc193f",
         "name": "Prepare SQL Query",
-        "func": "// Extract query parameters\nconst skip = parseInt(msg.req.query.skip) || 0;  // Default to 0 if not provided\nconst limit = parseInt(msg.req.query.limit) || 50;  // Default to 50 if not provided\n\n// Validate skip and limit\nif (isNaN(skip) || skip < 0) {\n    node.error('Invalid skip parameter', msg);\n    return null;\n}\n\nif (isNaN(limit) || limit <= 0) {\n    node.error('Invalid limit parameter', msg);\n    return null;\n}\n\nmsg.query = \"SELECT * FROM activities LIMIT $1 OFFSET $2\";\nmsg.params = [\n    limit,\n    skip\n];\nreturn msg;",
+        "func": "// Extract query parameters\nconst skip = parseInt(msg.req.query.skip) || 0;  // Default to 0 if not provided\nconst limit = parseInt(msg.req.query.limit) || 50;  // Default to 50 if not provided\n\n// Validate skip and limit\nif (isNaN(skip) || skip < 0) {\n    node.error('Invalid skip parameter', msg);\n    return null;\n}\n\nif (isNaN(limit) || limit <= 0) {\n    node.error('Invalid limit parameter', msg);\n    return null;\n}\n\nmsg.query = `SELECT \n    a.activity_id,\n    a.activity_name,\n    a.activity_desc,\n    a.activity_xp,\n    a.activity_credit,\n    a.activity_type,\n    a.activity_startdate,\n    a.activity_enddate,\n    a.activity_qr,\n    a.creation_date,\n    json_build_object('org_id', o.org_id, 'org_name', o.org_name) AS activity_org,\n    json_build_object('member_id', m.member_id, 'member_firstname', m.member_firstname, 'member_lastname', m.member_lastname) AS activity_owner,\n    array_agg(json_build_object('skill_id', s.skill_id, 'skill_name', s.skill_name)) AS skills\nFROM \n    activities a\nLEFT JOIN \n    organizations o ON a.activity_org = o.org_id\nLEFT JOIN \n    members m ON a.activity_owner = m.member_id\nLEFT JOIN \n    activity_skills act_s ON a.activity_id = act_s.activity_id\nLEFT JOIN \n    skills s ON act_s.skill_id = s.skill_id\nGROUP BY \n    a.activity_id, o.org_id, m.member_id\nORDER BY \n    a.activity_name\nLIMIT $1 OFFSET $2;`\n\nmsg.params = [\n    limit,\n    skip\n];\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -3009,7 +3009,7 @@
         "z": "dbab6edfda7971c1",
         "g": "2b91f5927dfc193f",
         "name": "",
-        "x": 510,
+        "x": 520,
         "y": 1920,
         "wires": [
             [
@@ -3960,27 +3960,30 @@
         "y": 2620,
         "wires": [
             [
-                "a48ae6d6e11a58fb",
-                "216e8ca111742be3"
+                "a48ae6d6e11a58fb"
             ]
         ],
         "l": false
     },
     {
-        "id": "216e8ca111742be3",
-        "type": "debug",
+        "id": "800c57a1fa08c476",
+        "type": "function",
         "z": "dbab6edfda7971c1",
-        "g": "17f3dd73bc75226d",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 860,
-        "y": 2560,
-        "wires": []
+        "g": "2b91f5927dfc193f",
+        "name": "Transform response",
+        "func": "const result = msg.payload;\nmsg.payload = {\n    \"count\": result.length,\n    \"response\": result\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 1900,
+        "wires": [
+            [
+                "c2478e40eca32f8d"
+            ]
+        ]
     }
 ]
