@@ -490,12 +490,13 @@
             "6",
             "7",
             "91763faa8f876344",
-            "f59ee31030a28138"
+            "f59ee31030a28138",
+            "c3358c4fbae21ff6"
         ],
         "x": 1334,
         "y": 199,
         "w": 952,
-        "h": 82
+        "h": 142
     },
     {
         "id": "0c3cf55a6354c68b",
@@ -2252,8 +2253,8 @@
         "z": "dbab6edfda7971c1",
         "g": "ed79720e50c3c5aa",
         "name": "Generate JWT",
-        "func": "if (msg.payload.length === 0) {\n    msg.statusCode = 401;\n    node.error('Unauthorized: Invalid email or password', msg);\n    return null;\n}\n\nconst jwt = global.get('jsonwebtoken');\n\nconst user = msg.payload[0];\n\n// Query to get the user's role\nmsg.query = `SELECT \n    r.role_id,\n    r.role_name,\n    o.org_id,\n    o.org_name\nFROM \n    member_roles mr\nJOIN \n    roles r ON mr.role_id = r.role_id\nLEFT JOIN \n    organizations o ON mr.org_id = o.org_id\nWHERE \n    mr.member_id =  $1`\nmsg.params = [user.member_id]\nmsg.user_id = user.member_id;\nreturn msg;",
-        "outputs": 1,
+        "func": "if (msg.payload.length === 0) {\n    msg.statusCode = 200;\n    node.error('Unauthorized: Invalid email or password', msg);\n    msg.payload = 'Unauthorized: Invalid email or password';\n    return [null,msg];\n}\n\nconst jwt = global.get('jsonwebtoken');\n\nconst user = msg.payload[0];\n\n// Query to get the user's role\nmsg.query = `SELECT \n    r.role_id,\n    r.role_name,\n    o.org_id,\n    o.org_name\nFROM \n    member_roles mr\nJOIN \n    roles r ON mr.role_id = r.role_id\nLEFT JOIN \n    organizations o ON mr.org_id = o.org_id\nWHERE \n    mr.member_id =  $1`\nmsg.params = [user.member_id]\nmsg.user_id = user.member_id;\nreturn [msg,null];",
+        "outputs": 2,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
@@ -2264,6 +2265,9 @@
         "wires": [
             [
                 "91763faa8f876344"
+            ],
+            [
+                "c3358c4fbae21ff6"
             ]
         ]
     },
@@ -3985,5 +3989,17 @@
                 "5a7ada1f4c09f766"
             ]
         ]
+    },
+    {
+        "id": "c3358c4fbae21ff6",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "ed79720e50c3c5aa",
+        "name": "200 OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1980,
+        "y": 300,
+        "wires": []
     }
 ]
