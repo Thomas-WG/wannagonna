@@ -686,8 +686,7 @@
             "866929740b621844",
             "7d5f7f7c1e018e94",
             "109f53069265dcfe",
-            "1cfeedea178448b1",
-            "923181385a6d9411"
+            "1cfeedea178448b1"
         ],
         "x": 94,
         "y": 1839,
@@ -1321,7 +1320,7 @@
         "z": "dbab6edfda7971c1",
         "g": "ba352a33ad13b2d1",
         "name": "PSQL Insert Member",
-        "func": "const { \n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture, \n    member_languages, \n    member_summary, \n    country_id, \n    member_password, \n    skill_id \n} = msg.newmember;\n\n// Validation\nif (!member_firstname || typeof member_firstname !== 'string' || member_firstname.trim() === '') {\n    node.error('Missing or invalid member_firstname', msg);\n    return null;\n}\n\nif (!member_lastname || typeof member_lastname !== 'string' || member_lastname.trim() === '') {\n    node.error('Missing or invalid member_lastname', msg);\n    return null;\n}\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\nif (!member_password || typeof member_password !== 'string' || member_password.trim() === '') {\n    node.error('Missing or invalid member_password', msg);\n    return null;\n}\n\n\n// Convert member_languages array to PostgreSQL array literal format\nconst formatted_languages = `{${member_languages.join(',')}}`;\n\n// Prepare SQL\nmsg.query = `\n    INSERT INTO members (\n        member_firstname, member_lastname, member_email, member_picture, \n        member_languages, member_summary, country_id, \n        member_password, member_status, skill_id\n    ) \n    VALUES (\n        $1, $2, $3, $4, \n        $5, $6, $7, $8, \n        $9, $10\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture || null, \n    formatted_languages, \n    member_summary, \n    country_id || null, \n    member_password, \n    \"new\", \n    skill_id || null\n];\n\nreturn msg;\n",
+        "func": "const { \n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture, \n    member_languages, \n    member_summary, \n    country_id, \n    member_password, \n    skills_ids\n} = msg.newmember;\n\n// Validation\nif (!member_firstname || typeof member_firstname !== 'string' || member_firstname.trim() === '') {\n    node.error('Missing or invalid member_firstname', msg);\n    return null;\n}\n\nif (!member_lastname || typeof member_lastname !== 'string' || member_lastname.trim() === '') {\n    node.error('Missing or invalid member_lastname', msg);\n    return null;\n}\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\nif (!member_password || typeof member_password !== 'string' || member_password.trim() === '') {\n    node.error('Missing or invalid member_password', msg);\n    return null;\n}\n\n\n// Convert member_languages array to PostgreSQL array literal format\nconst formatted_languages = `{${member_languages.join(',')}}`;\n\n// Prepare SQL\nmsg.query = `\n    INSERT INTO members (\n        member_firstname, member_lastname, member_email, member_picture, \n        member_languages, member_summary, country_id, \n        member_password, member_status, skills_ids\n    ) \n    VALUES (\n        $1, $2, $3, $4, \n        $5, $6, $7, $8, \n        $9, $10\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture || null, \n    formatted_languages, \n    member_summary, \n    country_id || null, \n    member_password, \n    \"new\", \n    skills_ids || null\n];\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -4200,8 +4199,7 @@
         "y": 1900,
         "wires": [
             [
-                "b968749d3f71b778",
-                "923181385a6d9411"
+                "b968749d3f71b778"
             ]
         ]
     },
@@ -4299,24 +4297,6 @@
         "headers": {},
         "x": 730,
         "y": 1880,
-        "wires": []
-    },
-    {
-        "id": "923181385a6d9411",
-        "type": "debug",
-        "z": "dbab6edfda7971c1",
-        "g": "e217b668807a895e",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 420,
-        "y": 1940,
         "wires": []
     }
 ]
