@@ -267,9 +267,9 @@
             "a44c078fe6fa21d3",
             "083f6f43ae863331"
         ],
-        "x": 84,
+        "x": 54,
         "y": 779,
-        "w": 1222,
+        "w": 1252,
         "h": 162
     },
     {
@@ -412,7 +412,7 @@
             "800c57a1fa08c476"
         ],
         "x": 84,
-        "y": 1859,
+        "y": 1999,
         "w": 1402,
         "h": 122
     },
@@ -439,7 +439,7 @@
             "2c1a6fd5171b3b59"
         ],
         "x": 94,
-        "y": 2019,
+        "y": 2139,
         "w": 1292,
         "h": 142
     },
@@ -466,7 +466,7 @@
             "31ab2ada5a324f3a"
         ],
         "x": 94,
-        "y": 2179,
+        "y": 2299,
         "w": 1392,
         "h": 162
     },
@@ -549,7 +549,7 @@
             "eb9feefa75040452"
         ],
         "x": 94,
-        "y": 2359,
+        "y": 2479,
         "w": 1392,
         "h": 162
     },
@@ -643,7 +643,7 @@
             "cba8af0054c5f2d3"
         ],
         "x": 94,
-        "y": 2539,
+        "y": 2659,
         "w": 1732,
         "h": 162
     },
@@ -666,6 +666,31 @@
         "x": 1414,
         "y": 379,
         "w": 892,
+        "h": 142
+    },
+    {
+        "id": "e217b668807a895e",
+        "type": "group",
+        "z": "dbab6edfda7971c1",
+        "name": "Members Exists ?",
+        "style": {
+            "stroke": "#3f93cf",
+            "fill": "#bfdbef",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "465153e654b9775c",
+            "3e06a94d857c6802",
+            "b968749d3f71b778",
+            "866929740b621844",
+            "7d5f7f7c1e018e94",
+            "109f53069265dcfe",
+            "1cfeedea178448b1"
+        ],
+        "x": 94,
+        "y": 1839,
+        "w": 872,
         "h": 142
     },
     {
@@ -951,7 +976,7 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 180,
+        "x": 150,
         "y": 860,
         "wires": [
             [
@@ -1854,7 +1879,7 @@
         "statusCode": "200",
         "headers": {},
         "x": 1400,
-        "y": 1940,
+        "y": 2080,
         "wires": []
     },
     {
@@ -1879,7 +1904,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1000,
-        "y": 1920,
+        "y": 2060,
         "wires": [
             [
                 "c2478e40eca32f8d"
@@ -1898,7 +1923,7 @@
         "statusCode": "404",
         "headers": {},
         "x": 1240,
-        "y": 1900,
+        "y": 2040,
         "wires": []
     },
     {
@@ -1915,7 +1940,7 @@
         "finalize": "",
         "libs": [],
         "x": 730,
-        "y": 1920,
+        "y": 2060,
         "wires": [
             [
                 "aef9c751fd89b4db"
@@ -1933,7 +1958,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 180,
-        "y": 1920,
+        "y": 2060,
         "wires": [
             [
                 "06527b6a60f2adfb"
@@ -1952,7 +1977,7 @@
         "rowsPerMsg": 1,
         "outputs": 1,
         "x": 855,
-        "y": 1920,
+        "y": 2060,
         "wires": [
             [
                 "b374cb0fea6b3897"
@@ -1971,7 +1996,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 200,
-        "y": 2080,
+        "y": 2200,
         "wires": [
             [
                 "773d749297e54a80"
@@ -1992,7 +2017,7 @@
         "finalize": "",
         "libs": [],
         "x": 730,
-        "y": 2080,
+        "y": 2200,
         "wires": [
             [
                 "307e56627f59548e"
@@ -2011,7 +2036,7 @@
         "rowsPerMsg": 1,
         "outputs": 1,
         "x": 845,
-        "y": 2080,
+        "y": 2200,
         "wires": [
             [
                 "bf2f9e68553ccb75"
@@ -2041,7 +2066,7 @@
         "repair": false,
         "outputs": 2,
         "x": 970,
-        "y": 2080,
+        "y": 2200,
         "wires": [
             [
                 "bc531713bb82c1d0"
@@ -2060,7 +2085,7 @@
         "statusCode": "201",
         "headers": {},
         "x": 1290,
-        "y": 2060,
+        "y": 2180,
         "wires": []
     },
     {
@@ -2072,7 +2097,7 @@
         "statusCode": "400",
         "headers": {},
         "x": 1240,
-        "y": 2120,
+        "y": 2240,
         "wires": []
     },
     {
@@ -2089,7 +2114,7 @@
         "finalize": "",
         "libs": [],
         "x": 1150,
-        "y": 2060,
+        "y": 2180,
         "wires": [
             [
                 "ed2d2dc8c080fab8"
@@ -2110,7 +2135,7 @@
         "finalize": "",
         "libs": [],
         "x": 730,
-        "y": 2260,
+        "y": 2380,
         "wires": [
             [
                 "36a435dd5284487f"
@@ -2137,7 +2162,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1000,
-        "y": 2260,
+        "y": 2380,
         "wires": [
             [
                 "45582769dbee1f97"
@@ -2161,7 +2186,7 @@
         "finalize": "",
         "libs": [],
         "x": 1220,
-        "y": 2220,
+        "y": 2340,
         "wires": [
             [
                 "85a14efd439eb0a3"
@@ -2177,7 +2202,7 @@
         "statusCode": "404",
         "headers": {},
         "x": 1260,
-        "y": 2300,
+        "y": 2420,
         "wires": []
     },
     {
@@ -2189,7 +2214,7 @@
         "statusCode": "200",
         "headers": {},
         "x": 1400,
-        "y": 2220,
+        "y": 2340,
         "wires": []
     },
     {
@@ -2204,7 +2229,7 @@
         "rowsPerMsg": 1,
         "outputs": 1,
         "x": 855,
-        "y": 2260,
+        "y": 2380,
         "wires": [
             [
                 "1b1493fa8a5b9912"
@@ -2223,7 +2248,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 200,
-        "y": 2260,
+        "y": 2380,
         "wires": [
             [
                 "3ec8d3f7f2a966a4"
@@ -2938,7 +2963,7 @@
         "g": "2b91f5927dfc193f",
         "name": "",
         "x": 340,
-        "y": 1920,
+        "y": 2060,
         "wires": [
             [
                 "35083f92f80d197f"
@@ -2980,7 +3005,7 @@
         "g": "4e3f58172aca87d0",
         "name": "",
         "x": 360,
-        "y": 2080,
+        "y": 2200,
         "wires": [
             [
                 "2c1a6fd5171b3b59"
@@ -2994,7 +3019,7 @@
         "g": "4e3f58172aca87d0",
         "name": "",
         "x": 530,
-        "y": 2080,
+        "y": 2200,
         "wires": [
             [
                 "f5b74102881341fa"
@@ -3008,7 +3033,7 @@
         "g": "aefbdd2e49c81e3f",
         "name": "",
         "x": 360,
-        "y": 2260,
+        "y": 2380,
         "wires": [
             [
                 "31ab2ada5a324f3a"
@@ -3022,7 +3047,7 @@
         "g": "aefbdd2e49c81e3f",
         "name": "",
         "x": 530,
-        "y": 2260,
+        "y": 2380,
         "wires": [
             [
                 "b019c1b471ba4625"
@@ -3036,7 +3061,7 @@
         "g": "2b91f5927dfc193f",
         "name": "",
         "x": 520,
-        "y": 1920,
+        "y": 2060,
         "wires": [
             [
                 "0ca2e856aba81c1d"
@@ -3057,7 +3082,7 @@
         "finalize": "",
         "libs": [],
         "x": 730,
-        "y": 2440,
+        "y": 2560,
         "wires": [
             [
                 "22fd5f8992199711"
@@ -3084,7 +3109,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1000,
-        "y": 2440,
+        "y": 2560,
         "wires": [
             [
                 "03095899b605f037"
@@ -3108,7 +3133,7 @@
         "finalize": "",
         "libs": [],
         "x": 1220,
-        "y": 2400,
+        "y": 2520,
         "wires": [
             [
                 "cfee23617ff5e557"
@@ -3124,7 +3149,7 @@
         "statusCode": "404",
         "headers": {},
         "x": 1260,
-        "y": 2480,
+        "y": 2600,
         "wires": []
     },
     {
@@ -3136,7 +3161,7 @@
         "statusCode": "200",
         "headers": {},
         "x": 1400,
-        "y": 2400,
+        "y": 2520,
         "wires": []
     },
     {
@@ -3151,7 +3176,7 @@
         "rowsPerMsg": 1,
         "outputs": 1,
         "x": 855,
-        "y": 2440,
+        "y": 2560,
         "wires": [
             [
                 "0b4c5f339010e936"
@@ -3170,7 +3195,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 200,
-        "y": 2440,
+        "y": 2560,
         "wires": [
             [
                 "e5734a3238d892fb"
@@ -3184,7 +3209,7 @@
         "g": "5a0547259b4b944c",
         "name": "",
         "x": 360,
-        "y": 2440,
+        "y": 2560,
         "wires": [
             [
                 "eb9feefa75040452"
@@ -3198,7 +3223,7 @@
         "g": "5a0547259b4b944c",
         "name": "",
         "x": 530,
-        "y": 2440,
+        "y": 2560,
         "wires": [
             [
                 "3b3e9dc44a7c6a77"
@@ -3759,7 +3784,7 @@
         "finalize": "",
         "libs": [],
         "x": 1090,
-        "y": 2620,
+        "y": 2740,
         "wires": [
             [
                 "b9ccf4737b019414"
@@ -3786,7 +3811,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1340,
-        "y": 2620,
+        "y": 2740,
         "wires": [
             [
                 "1c28a0b01e6117ec"
@@ -3810,7 +3835,7 @@
         "finalize": "",
         "libs": [],
         "x": 1560,
-        "y": 2580,
+        "y": 2700,
         "wires": [
             [
                 "a200331a564dfa23"
@@ -3826,7 +3851,7 @@
         "statusCode": "404",
         "headers": {},
         "x": 1600,
-        "y": 2660,
+        "y": 2780,
         "wires": []
     },
     {
@@ -3838,7 +3863,7 @@
         "statusCode": "200",
         "headers": {},
         "x": 1740,
-        "y": 2580,
+        "y": 2700,
         "wires": []
     },
     {
@@ -3853,7 +3878,7 @@
         "rowsPerMsg": 1,
         "outputs": 1,
         "x": 1205,
-        "y": 2620,
+        "y": 2740,
         "wires": [
             [
                 "c7556b5f2e2ac7c7"
@@ -3872,7 +3897,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 220,
-        "y": 2620,
+        "y": 2740,
         "wires": [
             [
                 "cc93ab17a857b46d"
@@ -3886,7 +3911,7 @@
         "g": "17f3dd73bc75226d",
         "name": "",
         "x": 400,
-        "y": 2620,
+        "y": 2740,
         "wires": [
             [
                 "e6a11499cb0ff476"
@@ -3907,7 +3932,7 @@
         "finalize": "",
         "libs": [],
         "x": 880,
-        "y": 2620,
+        "y": 2740,
         "wires": [
             [
                 "50a7270d03ea421d"
@@ -3926,7 +3951,7 @@
         "statusCode": "",
         "headers": {},
         "x": 1070,
-        "y": 2660,
+        "y": 2780,
         "wires": []
     },
     {
@@ -3943,7 +3968,7 @@
         "finalize": "",
         "libs": [],
         "x": 570,
-        "y": 2620,
+        "y": 2740,
         "wires": [
             [
                 "cba8af0054c5f2d3"
@@ -3962,7 +3987,7 @@
         "rowsPerMsg": 1,
         "outputs": 1,
         "x": 705,
-        "y": 2620,
+        "y": 2740,
         "wires": [
             [
                 "a48ae6d6e11a58fb"
@@ -3984,7 +4009,7 @@
         "finalize": "",
         "libs": [],
         "x": 1220,
-        "y": 1940,
+        "y": 2080,
         "wires": [
             [
                 "5a7ada1f4c09f766"
@@ -4124,7 +4149,7 @@
         "z": "dbab6edfda7971c1",
         "g": "ba352a33ad13b2d1",
         "name": "Error",
-        "func": "\n    msg.statusCode = 200;\n    node.error('Error: User already exists with this mail address', msg);\n    msg.payload = 'Error: User already exists with this mail addressd';\n    return msg;\n\n",
+        "func": "\n    msg.statusCode = 200;\n    node.error('Error: User already exists with this mail address', msg);\n    msg.payload = 'Error: User already exists with this mail address';\n    return msg;\n\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -4138,5 +4163,140 @@
                 "3b321b9933e736a3"
             ]
         ]
+    },
+    {
+        "id": "465153e654b9775c",
+        "type": "http in",
+        "z": "dbab6edfda7971c1",
+        "g": "e217b668807a895e",
+        "name": "Test Member",
+        "url": "/ismember",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 1900,
+        "wires": [
+            [
+                "3e06a94d857c6802"
+            ]
+        ]
+    },
+    {
+        "id": "3e06a94d857c6802",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "e217b668807a895e",
+        "name": "PSQL Check if exists",
+        "func": "const member_email = msg.req.query.member_email;\n\n\n// Prepare SQL\nmsg.query = `\n    SELECT member_id\n    FROM members\n    WHERE member_email = $1;\n`;\n\nmsg.params = [member_email];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 1900,
+        "wires": [
+            [
+                "b968749d3f71b778"
+            ]
+        ]
+    },
+    {
+        "id": "b968749d3f71b778",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "e217b668807a895e",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 545,
+        "y": 1900,
+        "wires": [
+            [
+                "866929740b621844"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "866929740b621844",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "e217b668807a895e",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "empty"
+            },
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 595,
+        "y": 1900,
+        "wires": [
+            [
+                "1cfeedea178448b1"
+            ],
+            [
+                "109f53069265dcfe"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "7d5f7f7c1e018e94",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "e217b668807a895e",
+        "name": "200 User exists",
+        "statusCode": "200",
+        "headers": {},
+        "x": 860,
+        "y": 1940,
+        "wires": []
+    },
+    {
+        "id": "109f53069265dcfe",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "e217b668807a895e",
+        "name": "Exist msg",
+        "func": "\n    msg.statusCode = 200;\n    node.error('Error: User already exists with this mail address', msg);\n    msg.payload = 'Error: User already exists with this mail address';\n    return msg;\n\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 1940,
+        "wires": [
+            [
+                "7d5f7f7c1e018e94"
+            ]
+        ]
+    },
+    {
+        "id": "1cfeedea178448b1",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "e217b668807a895e",
+        "name": "200 User not exists",
+        "statusCode": "200",
+        "headers": {},
+        "x": 730,
+        "y": 1880,
+        "wires": []
     }
 ]
