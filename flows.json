@@ -302,7 +302,8 @@
             "4b96dbd38e612725",
             "831acb19d938a2b4",
             "20b0454a4cd033d6",
-            "1f53358b748a2053"
+            "1f53358b748a2053",
+            "8acadfc979d221cb"
         ],
         "x": 74,
         "y": 959,
@@ -2601,7 +2602,7 @@
                 "92b39ec92961af98"
             ],
             [
-                "3b321b9933e736a3"
+                "8acadfc979d221cb"
             ]
         ],
         "l": false
@@ -2611,10 +2612,10 @@
         "type": "http response",
         "z": "dbab6edfda7971c1",
         "g": "ba352a33ad13b2d1",
-        "name": "409 Conflict",
-        "statusCode": "409",
+        "name": "200 User exists",
+        "statusCode": "200",
         "headers": {},
-        "x": 710,
+        "x": 840,
         "y": 1080,
         "wires": []
     },
@@ -4114,6 +4115,27 @@
         "wires": [
             [
                 "ce5b266c5aac9886"
+            ]
+        ]
+    },
+    {
+        "id": "8acadfc979d221cb",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "Error",
+        "func": "\n    msg.statusCode = 200;\n    node.error('Error: User already exists with this mail address', msg);\n    msg.payload = 'Error: User already exists with this mail addressd';\n    return msg;\n\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 1080,
+        "wires": [
+            [
+                "3b321b9933e736a3"
             ]
         ]
     }
