@@ -186,8 +186,7 @@
             "3fa02e6179b373a7",
             "7798693f4d1c5ad7",
             "fab558f57eee55da",
-            "5c48384cd53ed955",
-            "edc37b59d467ecd7"
+            "5c48384cd53ed955"
         ],
         "x": 934,
         "y": 19,
@@ -651,7 +650,7 @@
         "id": "035a5ee0cafaf303",
         "type": "group",
         "z": "dbab6edfda7971c1",
-        "name": "GET Countries",
+        "name": "GET Skills",
         "style": {
             "label": true
         },
@@ -886,7 +885,7 @@
         "y": 80,
         "wires": [
             [
-                "edc37b59d467ecd7"
+                "3fa02e6179b373a7"
             ]
         ]
     },
@@ -3927,27 +3926,6 @@
         "x": 1070,
         "y": 2660,
         "wires": []
-    },
-    {
-        "id": "edc37b59d467ecd7",
-        "type": "function",
-        "z": "dbab6edfda7971c1",
-        "g": "39bab5e26253c8ec",
-        "name": "Prepare SQL Query",
-        "func": "const { member_email, member_password } = msg.payload;\n\n// Prepare the SQL query to verify the password using crypt()\nmsg.query = `SELECT member_id, member_password FROM members WHERE member_email = $1 AND member_password = crypt($2, member_password)`\nmsg.params = [member_email, member_password]\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1250,
-        "y": 80,
-        "wires": [
-            [
-                "3fa02e6179b373a7"
-            ]
-        ]
     },
     {
         "id": "e6a11499cb0ff476",
