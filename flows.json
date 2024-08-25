@@ -190,7 +190,7 @@
         ],
         "x": 934,
         "y": 19,
-        "w": 1232,
+        "w": 892,
         "h": 122
     },
     {
@@ -863,13 +863,14 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 1630,
+        "x": 1355,
         "y": 80,
         "wires": [
             [
                 "7798693f4d1c5ad7"
             ]
-        ]
+        ],
+        "l": false
     },
     {
         "id": "59cddae29935302b",
@@ -1198,14 +1199,14 @@
         "z": "dbab6edfda7971c1",
         "g": "39bab5e26253c8ec",
         "name": "Prepare SQL Query",
-        "func": "msg.query = \"SELECT * FROM countries;\";\nreturn msg;",
+        "func": "msg.query = \"SELECT * FROM countries ORDER BY country_name ASC;\";\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1450,
+        "x": 1230,
         "y": 80,
         "wires": [
             [
@@ -1234,7 +1235,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1820,
+        "x": 1500,
         "y": 80,
         "wires": [
             [
@@ -1253,7 +1254,7 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 2060,
+        "x": 1720,
         "y": 60,
         "wires": []
     },
@@ -1265,7 +1266,7 @@
         "name": "200 OK",
         "statusCode": "200",
         "headers": {},
-        "x": 2060,
+        "x": 1700,
         "y": 100,
         "wires": []
     },
