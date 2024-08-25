@@ -2253,7 +2253,7 @@
         "z": "dbab6edfda7971c1",
         "g": "ed79720e50c3c5aa",
         "name": "Generate JWT",
-        "func": "if (msg.payload.length === 0) {\n    msg.statusCode = 200;\n    node.error('Unauthorized: Invalid email or password', msg);\n    return [null,msg];\n}\n\nconst jwt = global.get('jsonwebtoken');\n\nconst user = msg.payload[0];\n\n// Query to get the user's role\nmsg.query = `SELECT \n    r.role_id,\n    r.role_name,\n    o.org_id,\n    o.org_name\nFROM \n    member_roles mr\nJOIN \n    roles r ON mr.role_id = r.role_id\nLEFT JOIN \n    organizations o ON mr.org_id = o.org_id\nWHERE \n    mr.member_id =  $1`\nmsg.params = [user.member_id]\nmsg.user_id = user.member_id;\nreturn [msg,null];",
+        "func": "if (msg.payload.length === 0) {\n    msg.statusCode = 200;\n    node.error('Unauthorized: Invalid email or password', msg);\n    msg.payload = 'Unauthorized: Invalid email or password';\n    return [null,msg];\n}\n\nconst jwt = global.get('jsonwebtoken');\n\nconst user = msg.payload[0];\n\n// Query to get the user's role\nmsg.query = `SELECT \n    r.role_id,\n    r.role_name,\n    o.org_id,\n    o.org_name\nFROM \n    member_roles mr\nJOIN \n    roles r ON mr.role_id = r.role_id\nLEFT JOIN \n    organizations o ON mr.org_id = o.org_id\nWHERE \n    mr.member_id =  $1`\nmsg.params = [user.member_id]\nmsg.user_id = user.member_id;\nreturn [msg,null];",
         "outputs": 2,
         "timeout": "",
         "noerr": 0,
