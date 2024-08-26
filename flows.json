@@ -4149,7 +4149,7 @@
         "z": "dbab6edfda7971c1",
         "g": "ba352a33ad13b2d1",
         "name": "Error",
-        "func": "\n    msg.statusCode = 200;\n    node.error('Error: User already exists with this mail address', msg);\n    msg.payload = 'Error: User already exists with this mail address';\n    return msg;\n\n",
+        "func": "\n    msg.statusCode = 200;\n    //node.error('Error: User already exists with this mail address', msg);\n    msg.payload = {\"Error\":'User already exists with this mail address'};\n    return msg;\n\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
