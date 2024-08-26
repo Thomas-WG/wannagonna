@@ -694,6 +694,44 @@
         "h": 142
     },
     {
+        "id": "4f0bdb0c79e2d779",
+        "type": "group",
+        "z": "dbab6edfda7971c1",
+        "name": "Create Members",
+        "style": {
+            "stroke": "#3f93cf",
+            "fill": "#bfdbef",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "68f5764530c7c055",
+            "f5d58041a51ed073",
+            "6b935270fce83817",
+            "09efee6a1b8e8fcc",
+            "89c5836da86fb9cd",
+            "9e8f9f54497249e0",
+            "0a0231a96e6043c9",
+            "c82ed018433e49d5",
+            "e279c34784b65e0e",
+            "a03dfedbd49e5096",
+            "1e32d630a3f6deae",
+            "ed0e212100b1c719",
+            "80d93890628f2bac",
+            "a837e3212cae1d81",
+            "3135fda0cb57c273",
+            "401222e65e529b43",
+            "e193072b9316f83e",
+            "f0c208c923238040",
+            "690bc9848f0814cd",
+            "da9f3fde59c33f29"
+        ],
+        "x": 1674,
+        "y": 1159,
+        "w": 2372,
+        "h": 162
+    },
+    {
         "id": "cf1453eb80b45c35",
         "type": "postgreSQLConfig",
         "name": "",
@@ -4149,7 +4187,7 @@
         "z": "dbab6edfda7971c1",
         "g": "ba352a33ad13b2d1",
         "name": "Error",
-        "func": "\n    msg.statusCode = 200;\n    node.error('Error: User already exists with this mail address', msg);\n    msg.payload = 'Error: User already exists with this mail address';\n    return msg;\n\n",
+        "func": "\n    msg.statusCode = 200;\n    //node.error('Error: User already exists with this mail address', msg);\n    msg.payload = {\"Error\":'User already exists with this mail address'};\n    return msg;\n\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -4298,5 +4336,417 @@
         "x": 730,
         "y": 1880,
         "wires": []
+    },
+    {
+        "id": "68f5764530c7c055",
+        "type": "http in",
+        "z": "dbab6edfda7971c1",
+        "d": true,
+        "g": "4f0bdb0c79e2d779",
+        "name": "Create Member",
+        "url": "/members",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1780,
+        "y": 1240,
+        "wires": [
+            [
+                "a03dfedbd49e5096"
+            ]
+        ]
+    },
+    {
+        "id": "f5d58041a51ed073",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "PSQL Insert Member",
+        "func": "const { \n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture, \n    member_languages, \n    member_summary, \n    country_id, \n    member_password, \n    skill_ids\n} = msg.newmember;\n\n// Validation\nif (!member_firstname || typeof member_firstname !== 'string' || member_firstname.trim() === '') {\n    node.error('Missing or invalid member_firstname', msg);\n    return null;\n}\n\nif (!member_lastname || typeof member_lastname !== 'string' || member_lastname.trim() === '') {\n    node.error('Missing or invalid member_lastname', msg);\n    return null;\n}\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\nif (!member_password || typeof member_password !== 'string' || member_password.trim() === '') {\n    node.error('Missing or invalid member_password', msg);\n    return null;\n}\n\n\n// Convert member_languages array to PostgreSQL array literal format\nconst formatted_languages = `{${member_languages.join(',')}}`;\n\n// Prepare SQL\nmsg.query = `\n    INSERT INTO members (\n        member_firstname, member_lastname, member_email, member_picture, \n        member_languages, member_summary, country_id, \n        member_password, member_status, skill_ids\n    ) \n    VALUES (\n        $1, $2, $3, $4, \n        $5, $6, $7, $8, \n        $9, $10\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture || null, \n    formatted_languages, \n    member_summary, \n    country_id || null, \n    member_password, \n    \"new\", \n    skill_ids || null\n];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2320,
+        "y": 1240,
+        "wires": [
+            [
+                "6b935270fce83817"
+            ]
+        ]
+    },
+    {
+        "id": "6b935270fce83817",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 2455,
+        "y": 1240,
+        "wires": [
+            [
+                "3135fda0cb57c273"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "09efee6a1b8e8fcc",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "Check Insert Result",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "array",
+                "vt": "array"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 3630,
+        "y": 1220,
+        "wires": [
+            [
+                "0a0231a96e6043c9"
+            ],
+            [
+                "9e8f9f54497249e0"
+            ]
+        ]
+    },
+    {
+        "id": "89c5836da86fb9cd",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "201 Created",
+        "statusCode": "201",
+        "headers": {},
+        "x": 3950,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "9e8f9f54497249e0",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "400 Bad Request",
+        "statusCode": "400",
+        "headers": {},
+        "x": 3860,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "0a0231a96e6043c9",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "resp",
+        "func": "// Extract the member ID from the database query result\nconst createdMember = msg.payload[0]; // Assuming the result is in the first element of the array\n\n// Prepare the response message\nmsg.payload = {\n    message: \"Member has been successfully created\",\n    member_id: createdMember.member_id\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3810,
+        "y": 1200,
+        "wires": [
+            [
+                "89c5836da86fb9cd"
+            ]
+        ]
+    },
+    {
+        "id": "c82ed018433e49d5",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "PSQL get member Role",
+        "func": "msg.member_id = msg.payload[0].member_id\n\n// Prepare SQL\nmsg.query = `SELECT role_id FROM roles WHERE role_name = $1;`;\nmsg.params = ['member']\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2790,
+        "y": 1220,
+        "wires": [
+            [
+                "e279c34784b65e0e"
+            ]
+        ]
+    },
+    {
+        "id": "e279c34784b65e0e",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 2945,
+        "y": 1220,
+        "wires": [
+            [
+                "401222e65e529b43"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "a03dfedbd49e5096",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "PSQL Check if exists",
+        "func": "msg.newmember = msg.payload\nconst { \n    member_email\n} = msg.payload;\n\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\n// Prepare SQL\nmsg.query = `\n    SELECT member_id\n    FROM members\n    WHERE member_email = $1;\n`;\n\nmsg.params = [member_email];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1980,
+        "y": 1240,
+        "wires": [
+            [
+                "1e32d630a3f6deae"
+            ]
+        ]
+    },
+    {
+        "id": "1e32d630a3f6deae",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 2125,
+        "y": 1240,
+        "wires": [
+            [
+                "ed0e212100b1c719"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "ed0e212100b1c719",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "empty"
+            },
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 2175,
+        "y": 1240,
+        "wires": [
+            [
+                "f5d58041a51ed073"
+            ],
+            [
+                "da9f3fde59c33f29"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "80d93890628f2bac",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "200 User exists",
+        "statusCode": "200",
+        "headers": {},
+        "x": 2440,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "a837e3212cae1d81",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "PSQL Insert member role",
+        "func": "var role_id = msg.payload[0].role_id\n// Prepare SQL\nmsg.query = `INSERT INTO member_roles (\n    role_id,\n    member_id\n) VALUES ( $1, $2)\nRETURNING *;`;\n\nmsg.params = [role_id,msg.member_id]\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3350,
+        "y": 1220,
+        "wires": [
+            [
+                "690bc9848f0814cd"
+            ]
+        ]
+    },
+    {
+        "id": "3135fda0cb57c273",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "Check Insert Result",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "array",
+                "vt": "array"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 2570,
+        "y": 1240,
+        "wires": [
+            [
+                "c82ed018433e49d5"
+            ],
+            [
+                "f0c208c923238040"
+            ]
+        ]
+    },
+    {
+        "id": "401222e65e529b43",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "Check Query Result",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "eq",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 3100,
+        "y": 1220,
+        "wires": [
+            [
+                "a837e3212cae1d81"
+            ],
+            [
+                "e193072b9316f83e"
+            ]
+        ]
+    },
+    {
+        "id": "e193072b9316f83e",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "404 Not Found",
+        "statusCode": "404",
+        "headers": {},
+        "x": 3320,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "f0c208c923238040",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "400 Bad Request",
+        "statusCode": "400",
+        "headers": {},
+        "x": 2770,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "690bc9848f0814cd",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 3495,
+        "y": 1220,
+        "wires": [
+            [
+                "09efee6a1b8e8fcc"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "da9f3fde59c33f29",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "4f0bdb0c79e2d779",
+        "name": "Error",
+        "func": "\n    msg.statusCode = 200;\n    //node.error('Error: User already exists with this mail address', msg);\n    msg.payload = {\"Error\":'User already exists with this mail address'};\n    return msg;\n\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2290,
+        "y": 1280,
+        "wires": [
+            [
+                "80d93890628f2bac"
+            ]
+        ]
     }
 ]
