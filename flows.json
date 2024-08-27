@@ -493,8 +493,7 @@
             "7",
             "91763faa8f876344",
             "f59ee31030a28138",
-            "c3358c4fbae21ff6",
-            "3c2a3766f94fd097"
+            "c3358c4fbae21ff6"
         ],
         "x": 1334,
         "y": 199,
@@ -1362,7 +1361,7 @@
         "z": "dbab6edfda7971c1",
         "g": "ba352a33ad13b2d1",
         "name": "PSQL Insert Member",
-        "func": "const { \n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture, \n    member_languages, \n    member_summary, \n    country_id, \n    member_password, \n    skill_ids\n} = msg.newmember;\n\n// Validation\nif (!member_firstname || typeof member_firstname !== 'string' || member_firstname.trim() === '') {\n    node.error('Missing or invalid member_firstname', msg);\n    return null;\n}\n\nif (!member_lastname || typeof member_lastname !== 'string' || member_lastname.trim() === '') {\n    node.error('Missing or invalid member_lastname', msg);\n    return null;\n}\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\nif (!member_password || typeof member_password !== 'string' || member_password.trim() === '') {\n    node.error('Missing or invalid member_password', msg);\n    return null;\n}\n\n\n// Convert member_languages array to PostgreSQL array literal format\nif (typeof member_languages === 'string') {\n    msg.newmember.member_languages = member_languages.split(',').map(lang => lang.trim());\n} else if (!Array.isArray(member_languages)) {\n    node.error('member_languages is not an array or a string', msg);\n    return null;\n}\n\nconst formatted_languages = `{${msg.newmember.member_languages.map(lang => `\"${lang}\"`).join(',')}}`;\n\n// Proceed with the rest of your logic\nmsg.newmember.formatted_languages = formatted_languages;\n\n\n// Prepare SQL\nmsg.query = `\n    INSERT INTO members (\n        member_firstname, member_lastname, member_email, member_picture, \n        member_languages, member_summary, country_id, \n        member_password, member_status, skill_ids\n    ) \n    VALUES (\n        $1, $2, $3, $4, \n        $5, $6, $7, $8, \n        $9, $10\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture || null, \n    formatted_languages, \n    member_summary, \n    country_id || null, \n    member_password, \n    \"new\", \n    skill_ids || null\n];\n\nreturn msg;\n",
+        "func": "const { \n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture, \n    member_languages, \n    member_summary, \n    country_id, \n    member_password, \n    skill_ids\n} = msg.newmember;\nconsole.log(\"tada: \" + member_picture)\n// Validation\nif (!member_firstname || typeof member_firstname !== 'string' || member_firstname.trim() === '') {\n    node.error('Missing or invalid member_firstname', msg);\n    return null;\n}\n\nif (!member_lastname || typeof member_lastname !== 'string' || member_lastname.trim() === '') {\n    node.error('Missing or invalid member_lastname', msg);\n    return null;\n}\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\nif (!member_password || typeof member_password !== 'string' || member_password.trim() === '') {\n    node.error('Missing or invalid member_password', msg);\n    return null;\n}\n\n\n// Convert member_languages array to PostgreSQL array literal format\nif (typeof member_languages === 'string') {\n    msg.newmember.member_languages = member_languages.split(',').map(lang => lang.trim());\n} else if (!Array.isArray(member_languages)) {\n    node.error('member_languages is not an array or a string', msg);\n    return null;\n}\nconst formatted_languages = `{${msg.newmember.member_languages.map(lang => `\"${lang}\"`).join(',')}}`;\n\n// Proceed with the rest of your logic\nmsg.newmember.formatted_languages = formatted_languages;\n\n// Convert member_skills array to PostgreSQL array literal format\nif (typeof skill_ids === 'string') {\n    msg.newmember.skill_ids = skill_ids.split(',').map(skill => skill.trim());\n} else if (!Array.isArray(skill_ids)) {\n    node.error('skill_ids is not an array or a string', msg);\n    return null;\n}\nconst formatted_skills = `{${msg.newmember.skill_ids.map(skill => `\"${skill}\"`).join(',')}}`;\n\n// Proceed with the rest of your logic\nmsg.newmember.formatted_skills = formatted_skills;\n\n\n\n// Prepare SQL\nmsg.query = `\n    INSERT INTO members (\n        member_firstname, member_lastname, member_email, member_picture, \n        member_languages, member_summary, country_id, \n        member_password, member_status, skill_ids\n    ) \n    VALUES (\n        $1, $2, $3, $4, \n        $5, $6, $7, $8, \n        $9, $10\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture || null, \n    formatted_languages, \n    member_summary, \n    country_id || null, \n    member_password, \n    \"new\", \n    formatted_skills || null\n];\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2342,7 +2341,7 @@
         "z": "dbab6edfda7971c1",
         "g": "ed79720e50c3c5aa",
         "name": "Generate JWT",
-        "func": "if (msg.payload.length === 0) {\n    msg.statusCode = 200;\n    node.error('Unauthorized: Invalid email or password', msg);\n    msg.payload = 'Unauthorized: Invalid email or password';\n    return [null,msg];\n}\n\nconst jwt = global.get('jsonwebtoken');\n\nconst user = msg.payload[0];\n\n// Query to get the user's role\nmsg.query = `SELECT \n    r.role_id,\n    r.role_name,\n    o.org_id,\n    o.org_name\nFROM \n    member_roles mr\nJOIN \n    roles r ON mr.role_id = r.role_id\nLEFT JOIN \n    organizations o ON mr.org_id = o.org_id\nWHERE \n    mr.member_id =  $1`\nmsg.params = [user.member_id]\nmsg.user_id = user.member_id;\nreturn [msg,null];",
+        "func": "if (msg.payload.length === 0) {\n    msg.statusCode = 200;\n    node.error('Unauthorized: Invalid email or password', msg);\n    msg.payload = {'token':''};\n    return [null,msg];\n}\n\nconst jwt = global.get('jsonwebtoken');\n\nconst user = msg.payload[0];\n\n// Query to get the user's role\nmsg.query = `SELECT \n    r.role_id,\n    r.role_name,\n    o.org_id,\n    o.org_name\nFROM \n    member_roles mr\nJOIN \n    roles r ON mr.role_id = r.role_id\nLEFT JOIN \n    organizations o ON mr.org_id = o.org_id\nWHERE \n    mr.member_id =  $1`\nmsg.params = [user.member_id]\nmsg.user_id = user.member_id;\nreturn [msg,null];",
         "outputs": 2,
         "timeout": "",
         "noerr": 0,
@@ -2377,8 +2376,7 @@
         "y": 240,
         "wires": [
             [
-                "7",
-                "3c2a3766f94fd097"
+                "7"
             ]
         ]
     },
@@ -4760,7 +4758,7 @@
         "z": "dbab6edfda7971c1",
         "g": "ba352a33ad13b2d1",
         "name": "function 1",
-        "func": "// Initialize msg.newmember if it doesn't exist\nmsg.newmember = msg.newmember || {};\n\n// Check if files are present in the request\nif (msg.req.files && msg.req.files['member_picture'] && msg.req.files['member_picture'][0]) {\n    const imageFile = msg.req.files['member_picture'][0]; // Access the first file\n\n    // Check if the image file was properly uploaded\n    if (imageFile.buffer) {\n        // Add the image buffer to the member data\n        msg.newmember.member_picture = imageFile.buffer;\n    } else {\n        node.warn('Uploaded file is invalid, but proceeding without a picture');\n    }\n} else {\n    node.warn('No picture uploaded, proceeding without a picture');\n    msg.newmember.member_picture = null; // Set member_picture to null if no file is uploaded\n}\n\n// Proceed with other member data\nreturn msg;\n",
+        "func": "// Initialize msg.newmember if it doesn't exist\nmsg.newmember = msg.payload || {};\n\n// Check if files are present in the request\nif (msg.req.files && msg.req.files[0].fieldname == 'member_picture') {\n    const imageFile = msg.req.files[0]; // Access the first file\n    console.log(imageFile)\n    // Check if the image file was properly uploaded\n    if (imageFile.buffer) {\n        // Add the image buffer to the member data\n        msg.newmember.member_picture = imageFile.buffer;\n    } else {\n        node.warn('Uploaded file is invalid, but proceeding without a picture');\n    }\n} else {\n    node.warn('No picture uploaded, proceeding without a picture');\n    msg.newmember.member_picture = null; // Set member_picture to null if no file is uploaded\n}\n\n// Proceed with other member data\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -4774,23 +4772,6 @@
                 "67478bbf2dddb2b7"
             ]
         ]
-    },
-    {
-        "id": "5361aa407e9e048f",
-        "type": "debug",
-        "z": "dbab6edfda7971c1",
-        "g": "ba352a33ad13b2d1",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 540,
-        "y": 960,
-        "wires": []
     },
     {
         "id": "0deff47f183e2eb6",
@@ -4811,11 +4792,11 @@
         ]
     },
     {
-        "id": "3c2a3766f94fd097",
+        "id": "5361aa407e9e048f",
         "type": "debug",
         "z": "dbab6edfda7971c1",
-        "g": "ed79720e50c3c5aa",
-        "name": "debug 5",
+        "g": "ba352a33ad13b2d1",
+        "name": "debug 4",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -4824,8 +4805,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2200,
-        "y": 300,
+        "x": 540,
+        "y": 960,
         "wires": []
     }
 ]
