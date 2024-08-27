@@ -267,8 +267,8 @@
             "a44c078fe6fa21d3",
             "083f6f43ae863331"
         ],
-        "x": 54,
-        "y": 779,
+        "x": 74,
+        "y": 759,
         "w": 1252,
         "h": 162
     },
@@ -304,12 +304,13 @@
             "20b0454a4cd033d6",
             "1f53358b748a2053",
             "8acadfc979d221cb",
-            "7d8cfc8c484a4117"
+            "7d8cfc8c484a4117",
+            "5361aa407e9e048f"
         ],
         "x": 74,
-        "y": 939,
+        "y": 919,
         "w": 2372,
-        "h": 182
+        "h": 202
     },
     {
         "id": "2d9b645b715b3674",
@@ -492,11 +493,12 @@
             "7",
             "91763faa8f876344",
             "f59ee31030a28138",
-            "c3358c4fbae21ff6"
+            "c3358c4fbae21ff6",
+            "3c2a3766f94fd097"
         ],
         "x": 1334,
         "y": 199,
-        "w": 952,
+        "w": 972,
         "h": 142
     },
     {
@@ -1015,8 +1017,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 150,
-        "y": 860,
+        "x": 170,
+        "y": 840,
         "wires": [
             [
                 "a44c078fe6fa21d3"
@@ -1036,8 +1038,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 730,
-        "y": 860,
+        "x": 750,
+        "y": 840,
         "wires": [
             [
                 "d4d62d83d3a983e7"
@@ -1065,8 +1067,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1000,
-        "y": 860,
+        "x": 1020,
+        "y": 840,
         "wires": [
             [
                 "c2f7fbb0.89f8a8"
@@ -1084,8 +1086,8 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1200,
-        "y": 820,
+        "x": 1220,
+        "y": 800,
         "wires": []
     },
     {
@@ -1096,8 +1098,8 @@
         "name": "200 OK",
         "statusCode": "200",
         "headers": {},
-        "x": 1200,
-        "y": 900,
+        "x": 1220,
+        "y": 880,
         "wires": []
     },
     {
@@ -1349,7 +1351,8 @@
         "y": 1040,
         "wires": [
             [
-                "7d8cfc8c484a4117"
+                "7d8cfc8c484a4117",
+                "5361aa407e9e048f"
             ]
         ]
     },
@@ -1359,7 +1362,7 @@
         "z": "dbab6edfda7971c1",
         "g": "ba352a33ad13b2d1",
         "name": "PSQL Insert Member",
-        "func": "const { \n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture, \n    member_languages, \n    member_summary, \n    country_id, \n    member_password, \n    skill_ids\n} = msg.newmember;\n\n// Validation\nif (!member_firstname || typeof member_firstname !== 'string' || member_firstname.trim() === '') {\n    node.error('Missing or invalid member_firstname', msg);\n    return null;\n}\n\nif (!member_lastname || typeof member_lastname !== 'string' || member_lastname.trim() === '') {\n    node.error('Missing or invalid member_lastname', msg);\n    return null;\n}\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\nif (!member_password || typeof member_password !== 'string' || member_password.trim() === '') {\n    node.error('Missing or invalid member_password', msg);\n    return null;\n}\n\n\n// Convert member_languages array to PostgreSQL array literal format\nconst formatted_languages = `{${member_languages.join(',')}}`;\n\n// Prepare SQL\nmsg.query = `\n    INSERT INTO members (\n        member_firstname, member_lastname, member_email, member_picture, \n        member_languages, member_summary, country_id, \n        member_password, member_status, skill_ids\n    ) \n    VALUES (\n        $1, $2, $3, $4, \n        $5, $6, $7, $8, \n        $9, $10\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture || null, \n    formatted_languages, \n    member_summary, \n    country_id || null, \n    member_password, \n    \"new\", \n    skill_ids || null\n];\n\nreturn msg;\n",
+        "func": "const { \n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture, \n    member_languages, \n    member_summary, \n    country_id, \n    member_password, \n    skill_ids\n} = msg.newmember;\n\n// Validation\nif (!member_firstname || typeof member_firstname !== 'string' || member_firstname.trim() === '') {\n    node.error('Missing or invalid member_firstname', msg);\n    return null;\n}\n\nif (!member_lastname || typeof member_lastname !== 'string' || member_lastname.trim() === '') {\n    node.error('Missing or invalid member_lastname', msg);\n    return null;\n}\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\nif (!member_password || typeof member_password !== 'string' || member_password.trim() === '') {\n    node.error('Missing or invalid member_password', msg);\n    return null;\n}\n\n\n// Convert member_languages array to PostgreSQL array literal format\nif (typeof member_languages === 'string') {\n    msg.newmember.member_languages = member_languages.split(',').map(lang => lang.trim());\n} else if (!Array.isArray(member_languages)) {\n    node.error('member_languages is not an array or a string', msg);\n    return null;\n}\n\nconst formatted_languages = `{${msg.newmember.member_languages.map(lang => `\"${lang}\"`).join(',')}}`;\n\n// Proceed with the rest of your logic\nmsg.newmember.formatted_languages = formatted_languages;\n\n\n// Prepare SQL\nmsg.query = `\n    INSERT INTO members (\n        member_firstname, member_lastname, member_email, member_picture, \n        member_languages, member_summary, country_id, \n        member_password, member_status, skill_ids\n    ) \n    VALUES (\n        $1, $2, $3, $4, \n        $5, $6, $7, $8, \n        $9, $10\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture || null, \n    formatted_languages, \n    member_summary, \n    country_id || null, \n    member_password, \n    \"new\", \n    skill_ids || null\n];\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -1459,8 +1462,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 865,
-        "y": 860,
+        "x": 885,
+        "y": 840,
         "wires": [
             [
                 "cbf657c0.fdae98"
@@ -2363,7 +2366,7 @@
         "z": "dbab6edfda7971c1",
         "g": "ed79720e50c3c5aa",
         "name": "Sign JWT",
-        "func": "const jwt = global.get('jsonwebtoken');\n\n//const role = msg.payload.length > 0 ? msg.payload[0].role_name : null;\nconst role = msg.payload.length > 0 ? msg.payload : null;\nconsole.log(role)\nmsg.payload = jwt.sign({ member_id: msg.user_id, role }, 'your-secret-key', { expiresIn: '1h' });\nmsg.statusCode = 200;\nreturn msg;",
+        "func": "const jwt = global.get('jsonwebtoken');\nmsg.headers = msg.headers || {};\n\n//const role = msg.payload.length > 0 ? msg.payload[0].role_name : null;\nconst role = msg.payload.length > 0 ? msg.payload : null;\n\n\n// Set the 'Set-Cookie' header\nmsg.headers['Set-Cookie'] = \"wg_jwt=\" + jwt.sign({ member_id: msg.user_id, role }, 'your-secret-key', { expiresIn: '1h' }) +\"; HttpOnly; Secure; Max-Age=3600\";\n/*\nmsg.headers = { 'Content-Type': 'text/html' };\nmsg.payload = `\n    <html>\n    <body>\n        <script>\n            document.cookie = \"wg_jwt=` + jwt.sign({ member_id: msg.user_id, role }, 'your-secret-key', { expiresIn: '1h' }) +`; path=/; max-age=3600; secure; HttpOnly;\";\n            document.write(\"Cookie has been set via JavaScript.\");\n        </script>\n    </body>\n    </html>\n`;\n*/\nreturn msg;\n\n\n\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2374,7 +2377,8 @@
         "y": 240,
         "wires": [
             [
-                "7"
+                "7",
+                "3c2a3766f94fd097"
             ]
         ]
     },
@@ -2536,8 +2540,8 @@
         "z": "dbab6edfda7971c1",
         "g": "aad75d5c826ca0b1",
         "name": "",
-        "x": 320,
-        "y": 860,
+        "x": 340,
+        "y": 840,
         "wires": [
             [
                 "083f6f43ae863331"
@@ -3015,8 +3019,8 @@
         "z": "dbab6edfda7971c1",
         "g": "aad75d5c826ca0b1",
         "name": "",
-        "x": 510,
-        "y": 860,
+        "x": 530,
+        "y": 840,
         "wires": [
             [
                 "9e9d7e60.87b97"
@@ -4756,7 +4760,7 @@
         "z": "dbab6edfda7971c1",
         "g": "ba352a33ad13b2d1",
         "name": "function 1",
-        "func": "const memberData = msg.req.body;\nconst imageFile = msg.req.files.profilepic[0]; // Assuming 'image' is the field name for the file upload\n\nif (!imageFile || !imageFile.buffer) {\n    node.error('No image uploaded', msg);\n    return null;\n}\n\n// Add the image buffer to the member data\nmemberData.member_picture = imageFile.buffer;\n\n// Assign processed data back to msg.newmember\nmsg.newmember = memberData;\n\nreturn msg;\n",
+        "func": "// Initialize msg.newmember if it doesn't exist\nmsg.newmember = msg.newmember || {};\n\n// Check if files are present in the request\nif (msg.req.files && msg.req.files['member_picture'] && msg.req.files['member_picture'][0]) {\n    const imageFile = msg.req.files['member_picture'][0]; // Access the first file\n\n    // Check if the image file was properly uploaded\n    if (imageFile.buffer) {\n        // Add the image buffer to the member data\n        msg.newmember.member_picture = imageFile.buffer;\n    } else {\n        node.warn('Uploaded file is invalid, but proceeding without a picture');\n    }\n} else {\n    node.warn('No picture uploaded, proceeding without a picture');\n    msg.newmember.member_picture = null; // Set member_picture to null if no file is uploaded\n}\n\n// Proceed with other member data\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -4770,5 +4774,58 @@
                 "67478bbf2dddb2b7"
             ]
         ]
+    },
+    {
+        "id": "5361aa407e9e048f",
+        "type": "debug",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "0deff47f183e2eb6",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "name": "Sign JWT",
+        "func": "const jwt = global.get('jsonwebtoken');\nmsg.headers = msg.headers || {};\n\n//const role = msg.payload.length > 0 ? msg.payload[0].role_name : null;\nconst role = msg.payload.length > 0 ? msg.payload : null;\n\nmsg.payload = jwt.sign({ member_id: msg.user_id, role }, 'your-secret-key', { expiresIn: '1h' });\n\n// Set the cookie in the response headers\nconst cookie = \"token='\"+ msg.payload +\"'; HttpOnly; Secure; Max-Age=3600\";\nconsole.log(cookie)\n// Set the 'Set-Cookie' header\nmsg.headers['Set-Cookie'] = cookie;\n\nmsg.statusCode = 200;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2040,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3c2a3766f94fd097",
+        "type": "debug",
+        "z": "dbab6edfda7971c1",
+        "g": "ed79720e50c3c5aa",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2200,
+        "y": 300,
+        "wires": []
     }
 ]
