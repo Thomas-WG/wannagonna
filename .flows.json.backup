@@ -2366,7 +2366,7 @@
         "z": "dbab6edfda7971c1",
         "g": "ed79720e50c3c5aa",
         "name": "Sign JWT",
-        "func": "const jwt = global.get('jsonwebtoken');\nmsg.headers = msg.headers || {};\n\n//const role = msg.payload.length > 0 ? msg.payload[0].role_name : null;\nconst role = msg.payload.length > 0 ? msg.payload : null;\n\n\n// Set the 'Set-Cookie' header\n//msg.headers['Set-Cookie'] = \"wg_jwt=\" + jwt.sign({ member_id: msg.user_id, role }, 'your-secret-key', { expiresIn: '1h' }) +\"; HttpOnly; Secure; Max-Age=3600\";\n\nmsg.headers = { 'Content-Type': 'text/html' };\nmsg.payload = `\n    <html>\n    <body>\n        <script>\n            document.cookie = \"wg_jwt=` + jwt.sign({ member_id: msg.user_id, role }, 'your-secret-key', { expiresIn: '1h' }) +`; path=/; max-age=3600; secure; HttpOnly;\";\n            document.write(\"Cookie has been set via JavaScript.\");\n        </script>\n    </body>\n    </html>\n`;\n\nreturn msg;\n\n\n\n",
+        "func": "const jwt = global.get('jsonwebtoken');\nmsg.headers = msg.headers || {};\n\n//const role = msg.payload.length > 0 ? msg.payload[0].role_name : null;\nconst role = msg.payload.length > 0 ? msg.payload : null;\n\nconst token = jwt.sign({ member_id: msg.user_id, role }, 'your-secret-key', { expiresIn: '1h' });\n// Set the 'Set-Cookie' header\n//msg.headers['Set-Cookie'] = \"wg_jwt=\" + cookie +\"; HttpOnly; Secure; Max-Age=3600\";\nmsg.payload = {'token': token};\n\nreturn msg;\n\n\n\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
