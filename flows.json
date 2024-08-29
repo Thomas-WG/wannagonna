@@ -4822,7 +4822,7 @@
         "z": "dbab6edfda7971c1",
         "g": "3347283c3ab55d97",
         "name": "Prepare SQL Query",
-        "func": "const member_id = msg.user.member_id;\n\n// Prepare SQL to get the member without the password\nmsg.query = `\n    SELECT \n        member_firstname,\n        member_lastname,\n        member_email,\n        member_picture,\n        member_languages,\n        member_summary,\n        country_id,\n        member_status,\n        skill_ids\n    FROM \n        members\n    WHERE \n        member_id = $1\n`;\n\nmsg.params = [member_id];\n\nreturn msg;",
+        "func": "const member_id = msg.user.member_id;\n\n// Prepare SQL to get the member without the password\nmsg.query = `\n    SELECT \n        member_firstname,\n        member_lastname,\n        member_email,\n        member_picture,\n        member_languages,\n        member_summary,\n        country_id,\n        member_status,\n        skill_ids\n    FROM \n        members\n    WHERE \n        member_id = $1\n;`;\n\nmsg.params = [member_id];\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
