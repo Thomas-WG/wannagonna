@@ -579,11 +579,12 @@
             "9c73712dd6014031",
             "87e3519ad243592b",
             "367d7037f8f7e71d",
-            "9813d77d28293b73"
+            "9813d77d28293b73",
+            "f2823ff1203dcf8f"
         ],
         "x": 74,
         "y": 1499,
-        "w": 1712,
+        "w": 1892,
         "h": 142
     },
     {
@@ -1386,7 +1387,7 @@
         "z": "dbab6edfda7971c1",
         "g": "ba352a33ad13b2d1",
         "name": "PSQL Insert Member",
-        "func": "const { \n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture, \n    member_languages, \n    member_summary, \n    country_id, \n    member_password, \n    skill_ids\n} = msg.newmember;\nconsole.log(\"tada: \" + member_picture)\n// Validation\nif (!member_firstname || typeof member_firstname !== 'string' || member_firstname.trim() === '') {\n    node.error('Missing or invalid member_firstname', msg);\n    return null;\n}\n\nif (!member_lastname || typeof member_lastname !== 'string' || member_lastname.trim() === '') {\n    node.error('Missing or invalid member_lastname', msg);\n    return null;\n}\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\nif (!member_password || typeof member_password !== 'string' || member_password.trim() === '') {\n    node.error('Missing or invalid member_password', msg);\n    return null;\n}\n\n\n// Convert member_languages array to PostgreSQL array literal format\nif (typeof member_languages === 'string') {\n    msg.newmember.member_languages = member_languages.split(',').map(lang => lang.trim());\n} else if (!Array.isArray(member_languages)) {\n    node.error('member_languages is not an array or a string', msg);\n    return null;\n}\nconst formatted_languages = `{${msg.newmember.member_languages.map(lang => `\"${lang}\"`).join(',')}}`;\n\n// Proceed with the rest of your logic\nmsg.newmember.formatted_languages = formatted_languages;\n\n// Convert member_skills array to PostgreSQL array literal format\nif (typeof skill_ids === 'string') {\n    msg.newmember.skill_ids = skill_ids.split(',').map(skill => skill.trim());\n} else if (!Array.isArray(skill_ids)) {\n    node.error('skill_ids is not an array or a string', msg);\n    return null;\n}\nconst formatted_skills = `{${msg.newmember.skill_ids.map(skill => `\"${skill}\"`).join(',')}}`;\n\n// Proceed with the rest of your logic\nmsg.newmember.formatted_skills = formatted_skills;\n\n\n\n// Prepare SQL\nmsg.query = `\n    INSERT INTO members (\n        member_firstname, member_lastname, member_email, member_picture, \n        member_languages, member_summary, country_id, \n        member_password, member_status, skill_ids\n    ) \n    VALUES (\n        $1, $2, $3, $4, \n        $5, $6, $7, $8, \n        $9, $10\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture || null, \n    formatted_languages, \n    member_summary, \n    country_id || null, \n    member_password, \n    \"new\", \n    formatted_skills || null\n];\n\nreturn msg;\n",
+        "func": "const { \n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture, \n    member_languages, \n    member_summary, \n    country_id, \n    member_password, \n    skill_ids\n} = msg.newmember;\n\n// Validation\nif (!member_firstname || typeof member_firstname !== 'string' || member_firstname.trim() === '') {\n    node.error('Missing or invalid member_firstname', msg);\n    return null;\n}\n\nif (!member_lastname || typeof member_lastname !== 'string' || member_lastname.trim() === '') {\n    node.error('Missing or invalid member_lastname', msg);\n    return null;\n}\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\nif (!member_password || typeof member_password !== 'string' || member_password.trim() === '') {\n    node.error('Missing or invalid member_password', msg);\n    return null;\n}\n\n\n// Convert member_languages array to PostgreSQL array literal format\nif (typeof member_languages === 'string') {\n    msg.newmember.member_languages = member_languages.split(',').map(lang => lang.trim());\n} else if (!Array.isArray(member_languages)) {\n    node.error('member_languages is not an array or a string', msg);\n    return null;\n}\nconst formatted_languages = `{${msg.newmember.member_languages.map(lang => `\"${lang}\"`).join(',')}}`;\n\n// Proceed with the rest of your logic\nmsg.newmember.formatted_languages = formatted_languages;\n\n// Convert member_skills array to PostgreSQL array literal format\nif (typeof skill_ids === 'string') {\n    msg.newmember.skill_ids = skill_ids.split(',').map(skill => skill.trim());\n} else if (!Array.isArray(skill_ids)) {\n    node.error('skill_ids is not an array or a string', msg);\n    return null;\n}\nconst formatted_skills = `{${msg.newmember.skill_ids.map(skill => `\"${skill}\"`).join(',')}}`;\n\n// Proceed with the rest of your logic\nmsg.newmember.formatted_skills = formatted_skills;\n\n\n\n// Prepare SQL\nmsg.query = `\n    INSERT INTO members (\n        member_firstname, member_lastname, member_email, member_picture, \n        member_languages, member_summary, country_id, \n        member_password, member_status, skill_ids\n    ) \n    VALUES (\n        $1, $2, $3, $4, \n        $5, $6, $7, $8, \n        $9, $10\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture || null, \n    formatted_languages, \n    member_summary, \n    country_id || null, \n    member_password, \n    \"new\", \n    formatted_skills || null\n];\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -3303,8 +3304,8 @@
         "g": "083ef5064dfa9c6f",
         "name": "Update Member",
         "url": "/members/:member_id",
-        "method": "put",
-        "upload": false,
+        "method": "post",
+        "upload": true,
         "swaggerDoc": "",
         "x": 180,
         "y": 1560,
@@ -3320,14 +3321,14 @@
         "z": "dbab6edfda7971c1",
         "g": "083ef5064dfa9c6f",
         "name": "PSQL Update Member",
-        "func": "const member_id = msg.payload[0].member_id;\nconst { \n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture, \n    member_languages, \n    member_summary, \n    country_id, \n    member_password, \n    skill_id \n} = msg.member;\n\n// Validation\nif (!member_firstname || typeof member_firstname !== 'string' || member_firstname.trim() === '') {\n    node.error('Missing or invalid member_firstname', msg);\n    return null;\n}\n\nif (!member_lastname || typeof member_lastname !== 'string' || member_lastname.trim() === '') {\n    node.error('Missing or invalid member_lastname', msg);\n    return null;\n}\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\nif (!member_password || typeof member_password !== 'string' || member_password.trim() === '') {\n    node.error('Missing or invalid member_password', msg);\n    return null;\n}\n\n\n// Convert member_languages array to PostgreSQL array literal format\nconst formatted_languages = `{${member_languages.join(',')}}`;\n\n// Prepare SQL\nmsg.query = `\n    UPDATE members \n    SET\n        member_firstname = $1, \n        member_lastname = $2, \n        member_email = $3, \n        member_picture = $4, \n        member_languages = $5, \n        member_summary = $6, \n        country_id = $7, \n        member_password = $8, \n        skill_id = $9\n    WHERE member_id = $10\n    RETURNING *;\n`;\n\nmsg.params = [\n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture || null, \n    formatted_languages, \n    member_summary, \n    country_id || null, \n    member_password, \n    skill_id || null,\n    member_id\n];\n\nreturn msg;\n",
+        "func": "\nconst member_id = msg.req.params.member_id;\nconst { \n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture, \n    member_languages, \n    member_summary, \n    country_id, \n    skill_ids\n} = msg.member;\n\n// Validation\nif (!member_firstname || typeof member_firstname !== 'string' || member_firstname.trim() === '') {\n    node.error('Missing or invalid member_firstname', msg);\n    return null;\n}\n\nif (!member_lastname || typeof member_lastname !== 'string' || member_lastname.trim() === '') {\n    node.error('Missing or invalid member_lastname', msg);\n    return null;\n}\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\n\n\n// Convert member_languages array to PostgreSQL array literal format\nif (typeof member_languages === 'string') {\n    msg.member.member_languages = member_languages.split(',').map(lang => lang.trim());\n} else if (!Array.isArray(member_languages)) {\n    node.error('member_languages is not an array or a string', msg);\n    return null;\n}\nconst formatted_languages = `{${msg.member.member_languages.map(lang => `\"${lang}\"`).join(',')}}`;\n\n// Proceed with the rest of your logic\nmsg.member.formatted_languages = formatted_languages;\n\n// Convert member_skills array to PostgreSQL array literal format\nif (typeof skill_ids === 'string') {\n    msg.member.skill_ids = skill_ids.split(',').map(skill => skill.trim());\n} else if (!Array.isArray(skill_ids)) {\n    node.error('skill_ids is not an array or a string', msg);\n    return null;\n}\nconst formatted_skills = `{${msg.member.skill_ids.map(skill => `\"${skill}\"`).join(',')}}`;\n\n// Proceed with the rest of your logic\nmsg.member.formatted_skills = formatted_skills;\nconsole.log(formatted_skills)\n// Prepare SQL\nmsg.query = `\n    UPDATE members \n    SET\n        member_firstname = $1, \n        member_lastname = $2, \n        member_email = $3, \n        member_picture = $4, \n        member_languages = $5, \n        member_summary = $6, \n        country_id = $7, \n        skill_ids = $8\n    WHERE member_id = $9\n    RETURNING *;\n`;\n\nmsg.params = [\n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture || null, \n    formatted_languages, \n    member_summary, \n    country_id || null, \n    formatted_skills || null,\n    member_id\n];\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1120,
+        "x": 1300,
         "y": 1560,
         "wires": [
             [
@@ -3346,7 +3347,7 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 1255,
+        "x": 1435,
         "y": 1560,
         "wires": [
             [
@@ -3363,7 +3364,7 @@
         "name": "201 Updated",
         "statusCode": "201",
         "headers": {},
-        "x": 1690,
+        "x": 1870,
         "y": 1540,
         "wires": []
     },
@@ -3380,7 +3381,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1550,
+        "x": 1730,
         "y": 1540,
         "wires": [
             [
@@ -3452,7 +3453,7 @@
         "y": 1560,
         "wires": [
             [
-                "8110795bc64320e3"
+                "f2823ff1203dcf8f"
             ],
             [
                 "9c73712dd6014031"
@@ -3481,7 +3482,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1370,
+        "x": 1550,
         "y": 1560,
         "wires": [
             [
@@ -3500,7 +3501,7 @@
         "name": "400 Bad Request",
         "statusCode": "400",
         "headers": {},
-        "x": 1570,
+        "x": 1750,
         "y": 1580,
         "wires": []
     },
@@ -3512,7 +3513,7 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1100,
+        "x": 1280,
         "y": 1600,
         "wires": []
     },
@@ -4873,7 +4874,7 @@
         "z": "dbab6edfda7971c1",
         "g": "3347283c3ab55d97",
         "name": "Format Response",
-        "func": "// Assuming msg.payload[0] contains the returned member data\nconst member = msg.payload[0];\n\n\n// Convert any arrays to strings if needed\nmember.member_languages = member.member_languages ? member.member_languages.join(', ') : '';\nmember.skill_ids = member.skill_ids ? member.skill_ids.join(', ') : '';\n\n// Prepare the output payload for Bubble.io\nmsg.payload = {\n    member_id: member.member_id,\n    firstname: member.member_firstname,\n    lastname: member.member_lastname,\n    email: member.member_email,\n    picture: 'data:image/png;base64,'+ member.member_picture ? member.member_picture.toString('base64') : null, // Convert picture to base64 if needed\n    languages: member.member_languages,\n    summary: member.member_summary,\n    country: member.country_id,\n    status: member.member_status,\n    skills: member.skill_ids\n};\n\nreturn msg;\n\n",
+        "func": "// Assuming msg.payload[0] contains the returned member data\nconst member = msg.payload[0];\n\n\n// Convert any arrays to strings if needed\nmember.member_languages = member.member_languages ? member.member_languages.join(', ') : '';\nmember.skill_ids = member.skill_ids ? member.skill_ids.join(', ') : '';\n\n// Prepare the output payload for Bubble.io\nmsg.payload = {\n    member_id: member.member_id,\n    firstname: member.member_firstname,\n    lastname: member.member_lastname,\n    email: member.member_email,\n    picture:  member.member_picture ? 'data:image/png;base64,'+ member.member_picture.toString('base64') : null, // Convert picture to base64 if needed\n    languages: member.member_languages,\n    summary: member.member_summary,\n    country: member.country_id,\n    status: member.member_status,\n    skills: member.skill_ids\n};\n\nreturn msg;\n\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -4982,5 +4983,26 @@
         "x": 300,
         "y": 2100,
         "wires": []
+    },
+    {
+        "id": "f2823ff1203dcf8f",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "083ef5064dfa9c6f",
+        "name": "Check picture",
+        "func": "\n\n// Check if files are present in the request\nif (msg.req.files && msg.req.files[0].fieldname == 'member_picture') {\n    const imageFile = msg.req.files[0]; // Access the first file\n    // Check if the image file was properly uploaded\n    if (imageFile.buffer) {\n        // Add the image buffer to the member data\n        msg.member.member_picture = imageFile.buffer;\n    } else {\n        node.warn('Uploaded file is invalid, but proceeding without a picture');\n    }\n} else {\n    node.warn('No picture uploaded, proceeding without a picture');\n    msg.member.member_picture = null; // Set member_picture to null if no file is uploaded\n}\n\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 1540,
+        "wires": [
+            [
+                "8110795bc64320e3"
+            ]
+        ]
     }
 ]
