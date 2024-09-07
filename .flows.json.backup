@@ -4990,7 +4990,7 @@
         "z": "dbab6edfda7971c1",
         "g": "083ef5064dfa9c6f",
         "name": "Check picture",
-        "func": "\n\n// Check if files are present in the request\nif (msg.req.files && msg.req.files[0].fieldname == 'member_picture') {\n    const imageFile = msg.req.files[0]; // Access the first file\n    console.log(imageFile)\n    // Check if the image file was properly uploaded\n    if (imageFile.buffer) {\n        // Add the image buffer to the member data\n        msg.newmember.member_picture = imageFile.buffer;\n    } else {\n        node.warn('Uploaded file is invalid, but proceeding without a picture');\n    }\n} else {\n    node.warn('No picture uploaded, proceeding without a picture');\n    msg.newmember.member_picture = null; // Set member_picture to null if no file is uploaded\n}\n\n// Proceed with other member data\n\nreturn msg;\n",
+        "func": "\n\n// Check if files are present in the request\nif (msg.req.files && msg.req.files[0].fieldname == 'member_picture') {\n    const imageFile = msg.req.files[0]; // Access the first file\n    // Check if the image file was properly uploaded\n    if (imageFile.buffer) {\n        // Add the image buffer to the member data\n        msg.member.member_picture = imageFile.buffer;\n    } else {\n        node.warn('Uploaded file is invalid, but proceeding without a picture');\n    }\n} else {\n    node.warn('No picture uploaded, proceeding without a picture');\n    msg.member.member_picture = null; // Set member_picture to null if no file is uploaded\n}\n\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
