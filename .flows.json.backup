@@ -412,8 +412,8 @@
             "35083f92f80d197f",
             "800c57a1fa08c476"
         ],
-        "x": 84,
-        "y": 2199,
+        "x": 104,
+        "y": 2379,
         "w": 1402,
         "h": 122
     },
@@ -439,8 +439,8 @@
             "773d749297e54a80",
             "2c1a6fd5171b3b59"
         ],
-        "x": 94,
-        "y": 2339,
+        "x": 114,
+        "y": 2519,
         "w": 1292,
         "h": 142
     },
@@ -466,8 +466,8 @@
             "3ec8d3f7f2a966a4",
             "31ab2ada5a324f3a"
         ],
-        "x": 94,
-        "y": 2499,
+        "x": 114,
+        "y": 2679,
         "w": 1392,
         "h": 162
     },
@@ -549,8 +549,8 @@
             "e5734a3238d892fb",
             "eb9feefa75040452"
         ],
-        "x": 94,
-        "y": 2679,
+        "x": 114,
+        "y": 2859,
         "w": 1392,
         "h": 162
     },
@@ -644,8 +644,8 @@
             "e6a11499cb0ff476",
             "cba8af0054c5f2d3"
         ],
-        "x": 94,
-        "y": 2859,
+        "x": 114,
+        "y": 3039,
         "w": 1732,
         "h": 162
     },
@@ -764,32 +764,58 @@
         "id": "3c858fe6ed15c734",
         "type": "group",
         "z": "dbab6edfda7971c1",
-        "name": "Record Activity History",
+        "name": "Get member history",
         "style": {
-            "stroke": "#addb7b",
+            "stroke": "#7fb7df",
+            "fill": "#bfdbef",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "a2e928012d22c4a5",
+            "22444750f28aa280",
+            "3c81fd487f4dd6fd",
+            "163bd09d2356002c",
+            "6d431b703baf060d",
+            "883a2e4e72584b80",
+            "d08ae8d0554b1246",
+            "817ff12bf82e6617",
+            "8bdbb6efe12ea1ef"
+        ],
+        "x": 94,
+        "y": 2179,
+        "w": 1552,
+        "h": 162
+    },
+    {
+        "id": "8fb8c2d3ea0660f4",
+        "type": "group",
+        "z": "dbab6edfda7971c1",
+        "name": "Add activity record",
+        "style": {
+            "stroke": "#c8e7a7",
             "fill": "#e3f3d3",
             "label": true,
             "color": "#000000"
         },
         "nodes": [
             "0f5db994f0e25ba8",
-            "a2e928012d22c4a5",
-            "22444750f28aa280",
-            "3c81fd487f4dd6fd",
-            "163bd09d2356002c",
-            "81676fe8e96d9499",
-            "6d431b703baf060d",
-            "883a2e4e72584b80",
             "8ef9292978a073e9",
             "913da9133d1b1117",
-            "d08ae8d0554b1246",
-            "817ff12bf82e6617",
-            "8bdbb6efe12ea1ef"
+            "deab1ecc4b2e3dbb",
+            "c1ac5487b4dd9d7e",
+            "f8b99035c680c051",
+            "4074fad116715110",
+            "9316618e82fcf064",
+            "6d092e4f13ea7d9d",
+            "24550c97470d16d7",
+            "17c898e2aba6508b",
+            "5f66738c7136ddf3"
         ],
-        "x": 94,
-        "y": 3039,
-        "w": 1932,
-        "h": 162
+        "x": 114,
+        "y": 3239,
+        "w": 1752,
+        "h": 182
     },
     {
         "id": "cf1453eb80b45c35",
@@ -1976,8 +2002,8 @@
         "name": "200 OK",
         "statusCode": "200",
         "headers": {},
-        "x": 1400,
-        "y": 2280,
+        "x": 1420,
+        "y": 2460,
         "wires": []
     },
     {
@@ -2001,8 +2027,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1000,
-        "y": 2260,
+        "x": 1020,
+        "y": 2440,
         "wires": [
             [
                 "c2478e40eca32f8d"
@@ -2020,8 +2046,8 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1240,
-        "y": 2240,
+        "x": 1260,
+        "y": 2420,
         "wires": []
     },
     {
@@ -2037,8 +2063,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 730,
-        "y": 2260,
+        "x": 750,
+        "y": 2440,
         "wires": [
             [
                 "aef9c751fd89b4db"
@@ -2055,8 +2081,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 180,
-        "y": 2260,
+        "x": 200,
+        "y": 2440,
         "wires": [
             [
                 "06527b6a60f2adfb"
@@ -2074,8 +2100,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 855,
-        "y": 2260,
+        "x": 875,
+        "y": 2440,
         "wires": [
             [
                 "b374cb0fea6b3897"
@@ -2093,8 +2119,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 200,
-        "y": 2400,
+        "x": 220,
+        "y": 2580,
         "wires": [
             [
                 "773d749297e54a80"
@@ -2114,8 +2140,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 730,
-        "y": 2400,
+        "x": 750,
+        "y": 2580,
         "wires": [
             [
                 "307e56627f59548e"
@@ -2133,8 +2159,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 845,
-        "y": 2400,
+        "x": 865,
+        "y": 2580,
         "wires": [
             [
                 "bf2f9e68553ccb75"
@@ -2163,8 +2189,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 970,
-        "y": 2400,
+        "x": 990,
+        "y": 2580,
         "wires": [
             [
                 "bc531713bb82c1d0"
@@ -2182,8 +2208,8 @@
         "name": "201 Created",
         "statusCode": "201",
         "headers": {},
-        "x": 1290,
-        "y": 2380,
+        "x": 1310,
+        "y": 2560,
         "wires": []
     },
     {
@@ -2194,8 +2220,8 @@
         "name": "400 Bad Request",
         "statusCode": "400",
         "headers": {},
-        "x": 1240,
-        "y": 2440,
+        "x": 1260,
+        "y": 2620,
         "wires": []
     },
     {
@@ -2211,8 +2237,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1150,
-        "y": 2380,
+        "x": 1170,
+        "y": 2560,
         "wires": [
             [
                 "ed2d2dc8c080fab8"
@@ -2232,8 +2258,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 730,
-        "y": 2580,
+        "x": 750,
+        "y": 2760,
         "wires": [
             [
                 "36a435dd5284487f"
@@ -2259,8 +2285,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1000,
-        "y": 2580,
+        "x": 1020,
+        "y": 2760,
         "wires": [
             [
                 "45582769dbee1f97"
@@ -2283,8 +2309,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1220,
-        "y": 2540,
+        "x": 1240,
+        "y": 2720,
         "wires": [
             [
                 "85a14efd439eb0a3"
@@ -2299,8 +2325,8 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1260,
-        "y": 2620,
+        "x": 1280,
+        "y": 2800,
         "wires": []
     },
     {
@@ -2311,8 +2337,8 @@
         "name": "200 OK",
         "statusCode": "200",
         "headers": {},
-        "x": 1400,
-        "y": 2540,
+        "x": 1420,
+        "y": 2720,
         "wires": []
     },
     {
@@ -2326,8 +2352,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 855,
-        "y": 2580,
+        "x": 875,
+        "y": 2760,
         "wires": [
             [
                 "1b1493fa8a5b9912"
@@ -2345,8 +2371,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 200,
-        "y": 2580,
+        "x": 220,
+        "y": 2760,
         "wires": [
             [
                 "3ec8d3f7f2a966a4"
@@ -3060,8 +3086,8 @@
         "z": "dbab6edfda7971c1",
         "g": "2b91f5927dfc193f",
         "name": "",
-        "x": 340,
-        "y": 2260,
+        "x": 360,
+        "y": 2440,
         "wires": [
             [
                 "35083f92f80d197f"
@@ -3102,8 +3128,8 @@
         "z": "dbab6edfda7971c1",
         "g": "4e3f58172aca87d0",
         "name": "",
-        "x": 360,
-        "y": 2400,
+        "x": 380,
+        "y": 2580,
         "wires": [
             [
                 "2c1a6fd5171b3b59"
@@ -3116,8 +3142,8 @@
         "z": "dbab6edfda7971c1",
         "g": "4e3f58172aca87d0",
         "name": "",
-        "x": 530,
-        "y": 2400,
+        "x": 550,
+        "y": 2580,
         "wires": [
             [
                 "f5b74102881341fa"
@@ -3130,8 +3156,8 @@
         "z": "dbab6edfda7971c1",
         "g": "aefbdd2e49c81e3f",
         "name": "",
-        "x": 360,
-        "y": 2580,
+        "x": 380,
+        "y": 2760,
         "wires": [
             [
                 "31ab2ada5a324f3a"
@@ -3144,8 +3170,8 @@
         "z": "dbab6edfda7971c1",
         "g": "aefbdd2e49c81e3f",
         "name": "",
-        "x": 530,
-        "y": 2580,
+        "x": 550,
+        "y": 2760,
         "wires": [
             [
                 "b019c1b471ba4625"
@@ -3158,8 +3184,8 @@
         "z": "dbab6edfda7971c1",
         "g": "2b91f5927dfc193f",
         "name": "",
-        "x": 520,
-        "y": 2260,
+        "x": 540,
+        "y": 2440,
         "wires": [
             [
                 "0ca2e856aba81c1d"
@@ -3179,8 +3205,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 730,
-        "y": 2760,
+        "x": 750,
+        "y": 2940,
         "wires": [
             [
                 "22fd5f8992199711"
@@ -3206,8 +3232,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1000,
-        "y": 2760,
+        "x": 1020,
+        "y": 2940,
         "wires": [
             [
                 "03095899b605f037"
@@ -3230,8 +3256,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1220,
-        "y": 2720,
+        "x": 1240,
+        "y": 2900,
         "wires": [
             [
                 "cfee23617ff5e557"
@@ -3246,8 +3272,8 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1260,
-        "y": 2800,
+        "x": 1280,
+        "y": 2980,
         "wires": []
     },
     {
@@ -3258,8 +3284,8 @@
         "name": "200 OK",
         "statusCode": "200",
         "headers": {},
-        "x": 1400,
-        "y": 2720,
+        "x": 1420,
+        "y": 2900,
         "wires": []
     },
     {
@@ -3273,8 +3299,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 855,
-        "y": 2760,
+        "x": 875,
+        "y": 2940,
         "wires": [
             [
                 "0b4c5f339010e936"
@@ -3292,8 +3318,8 @@
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 200,
-        "y": 2760,
+        "x": 220,
+        "y": 2940,
         "wires": [
             [
                 "e5734a3238d892fb"
@@ -3306,8 +3332,8 @@
         "z": "dbab6edfda7971c1",
         "g": "5a0547259b4b944c",
         "name": "",
-        "x": 360,
-        "y": 2760,
+        "x": 380,
+        "y": 2940,
         "wires": [
             [
                 "eb9feefa75040452"
@@ -3320,8 +3346,8 @@
         "z": "dbab6edfda7971c1",
         "g": "5a0547259b4b944c",
         "name": "",
-        "x": 530,
-        "y": 2760,
+        "x": 550,
+        "y": 2940,
         "wires": [
             [
                 "3b3e9dc44a7c6a77"
@@ -3881,8 +3907,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1090,
-        "y": 2940,
+        "x": 1110,
+        "y": 3120,
         "wires": [
             [
                 "b9ccf4737b019414"
@@ -3908,8 +3934,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1340,
-        "y": 2940,
+        "x": 1360,
+        "y": 3120,
         "wires": [
             [
                 "1c28a0b01e6117ec"
@@ -3932,8 +3958,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1560,
-        "y": 2900,
+        "x": 1580,
+        "y": 3080,
         "wires": [
             [
                 "a200331a564dfa23"
@@ -3948,8 +3974,8 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1600,
-        "y": 2980,
+        "x": 1620,
+        "y": 3160,
         "wires": []
     },
     {
@@ -3960,8 +3986,8 @@
         "name": "200 OK",
         "statusCode": "200",
         "headers": {},
-        "x": 1740,
-        "y": 2900,
+        "x": 1760,
+        "y": 3080,
         "wires": []
     },
     {
@@ -3975,8 +4001,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 1205,
-        "y": 2940,
+        "x": 1225,
+        "y": 3120,
         "wires": [
             [
                 "c7556b5f2e2ac7c7"
@@ -3994,8 +4020,8 @@
         "method": "put",
         "upload": false,
         "swaggerDoc": "",
-        "x": 220,
-        "y": 2940,
+        "x": 240,
+        "y": 3120,
         "wires": [
             [
                 "cc93ab17a857b46d"
@@ -4008,8 +4034,8 @@
         "z": "dbab6edfda7971c1",
         "g": "17f3dd73bc75226d",
         "name": "",
-        "x": 400,
-        "y": 2940,
+        "x": 420,
+        "y": 3120,
         "wires": [
             [
                 "e6a11499cb0ff476"
@@ -4029,8 +4055,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 880,
-        "y": 2940,
+        "x": 900,
+        "y": 3120,
         "wires": [
             [
                 "50a7270d03ea421d"
@@ -4048,8 +4074,8 @@
         "name": "Send Error",
         "statusCode": "",
         "headers": {},
-        "x": 1070,
-        "y": 2980,
+        "x": 1090,
+        "y": 3160,
         "wires": []
     },
     {
@@ -4065,8 +4091,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 570,
-        "y": 2940,
+        "x": 590,
+        "y": 3120,
         "wires": [
             [
                 "cba8af0054c5f2d3"
@@ -4084,8 +4110,8 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 705,
-        "y": 2940,
+        "x": 725,
+        "y": 3120,
         "wires": [
             [
                 "a48ae6d6e11a58fb"
@@ -4106,8 +4132,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1220,
-        "y": 2280,
+        "x": 1240,
+        "y": 2460,
         "wires": [
             [
                 "5a7ada1f4c09f766"
@@ -5082,27 +5108,6 @@
         "wires": []
     },
     {
-        "id": "0f5db994f0e25ba8",
-        "type": "function",
-        "z": "dbab6edfda7971c1",
-        "g": "3c858fe6ed15c734",
-        "name": "Prepare SQL Query",
-        "func": "const member_id = msg.user.member_id;\nconst activity_id = msg.req.params.activtiy_id;\nconst completion_date = new Date().toISOString();\nconst activity_xp = msg.payload[0].activity_xp;\nconst activity_credit = msg.payload[0].activity_credit;\n\nmsg.query = `\n    INSERT INTO member_activity_records ( \n        activity_id, \n        member_id,\n        completion_date,\n        activity_xp,\n        npo_approved,\n        activity_credit\n    ) \n    VALUES (\n        $1, $2, $3, $4, $5, $6\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    activity_id, \n    member_id,\n    completion_date,\n    activity_xp,\n    true,\n    activity_credit\n];\n\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1290,
-        "y": 3120,
-        "wires": [
-            [
-                "81676fe8e96d9499"
-            ]
-        ]
-    },
-    {
         "id": "a2e928012d22c4a5",
         "type": "switch",
         "z": "dbab6edfda7971c1",
@@ -5121,8 +5126,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1540,
-        "y": 3120,
+        "x": 1160,
+        "y": 2260,
         "wires": [
             [
                 "22444750f28aa280"
@@ -5138,15 +5143,15 @@
         "z": "dbab6edfda7971c1",
         "g": "3c858fe6ed15c734",
         "name": "Format Response",
-        "func": "// Extract the member data from the query result\nconst activity = msg.payload[0];\n\n// Prepare the response message\nmsg.payload = {\n    message: \"Activity application saved\",\n    activity: activity\n};\n\n// Set the response status code\nmsg.statusCode = 200;\n\nreturn msg;",
+        "func": "// Extract the member data from the query result\nconst history = msg.payload[0].member_records;\n\n// Prepare the response message\nmsg.payload = history\n\n// Set the response status code\nmsg.statusCode = 200;\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1760,
-        "y": 3080,
+        "x": 1380,
+        "y": 2220,
         "wires": [
             [
                 "163bd09d2356002c"
@@ -5161,8 +5166,8 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1800,
-        "y": 3160,
+        "x": 1420,
+        "y": 2300,
         "wires": []
     },
     {
@@ -5173,42 +5178,22 @@
         "name": "200 OK",
         "statusCode": "200",
         "headers": {},
-        "x": 1940,
-        "y": 3080,
+        "x": 1560,
+        "y": 2220,
         "wires": []
-    },
-    {
-        "id": "81676fe8e96d9499",
-        "type": "postgresql",
-        "z": "dbab6edfda7971c1",
-        "g": "3c858fe6ed15c734",
-        "name": "",
-        "query": "",
-        "postgreSQLConfig": "cf1453eb80b45c35",
-        "split": false,
-        "rowsPerMsg": 1,
-        "outputs": 1,
-        "x": 1405,
-        "y": 3120,
-        "wires": [
-            [
-                "a2e928012d22c4a5"
-            ]
-        ],
-        "l": false
     },
     {
         "id": "6d431b703baf060d",
         "type": "http in",
         "z": "dbab6edfda7971c1",
         "g": "3c858fe6ed15c734",
-        "name": "Result for Application",
+        "name": "Get member activity hist",
         "url": "/activities/record/:member_id",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 220,
-        "y": 3120,
+        "x": 230,
+        "y": 2260,
         "wires": [
             [
                 "883a2e4e72584b80"
@@ -5221,8 +5206,8 @@
         "z": "dbab6edfda7971c1",
         "g": "3c858fe6ed15c734",
         "name": "",
-        "x": 400,
-        "y": 3120,
+        "x": 440,
+        "y": 2260,
         "wires": [
             [
                 "8bdbb6efe12ea1ef"
@@ -5230,56 +5215,20 @@
         ]
     },
     {
-        "id": "8ef9292978a073e9",
-        "type": "function",
-        "z": "dbab6edfda7971c1",
-        "g": "3c858fe6ed15c734",
-        "name": "Check activity status",
-        "func": "const activity_status = msg.payload[0].activity_status; \n\n    // Check if the user is an Admin (without an organization) or has the required role for the target organization\n    if (activity_status == 'current')\n    {\n        return [msg, null];\n    }\n\n\n// If no matching role was found, return an error\nmsg.statusCode = 403;\nmsg.payload = { error: 'Forbidden: activity is either not existing or not active anymore' };\nreturn [null, msg];\n",
-        "outputs": 2,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1080,
-        "y": 3120,
-        "wires": [
-            [
-                "0f5db994f0e25ba8"
-            ],
-            [
-                "913da9133d1b1117"
-            ]
-        ]
-    },
-    {
-        "id": "913da9133d1b1117",
-        "type": "http response",
-        "z": "dbab6edfda7971c1",
-        "g": "3c858fe6ed15c734",
-        "name": "Send Error",
-        "statusCode": "",
-        "headers": {},
-        "x": 1270,
-        "y": 3160,
-        "wires": []
-    },
-    {
         "id": "d08ae8d0554b1246",
         "type": "function",
         "z": "dbab6edfda7971c1",
         "g": "3c858fe6ed15c734",
-        "name": "Get Activity info",
-        "func": "const member_id = msg.req.params.member_id;\n\n\nmsg.query = `SELECT\nm.member_id,\narray_agg(json_build_object('member_activity_id',ma.member_activity_id,'activity_xp',ma.activity_xp,'activity_credit',ma.activity_credit,'activity_name',a.activity_name,'organization_name',o.org_name)) as member_records\nFROM\nmembers m\nJOIN member_activity_records ma ON ma.member_id = m.member_id\nJOIN activities a ON a.activity_id = ma.activity_id\nJOIN organizations o ON o.org_id = a.activity_org\nWHERE\nm.member_id = $1\nGROUP BY m.member_id;\n`\n\nmsg.params = [\n    member_id\n];\nconsole.log(\"member id is: \" + member_id)\nreturn msg;",
+        "name": "Get history info",
+        "func": "const member_id = msg.req.params.member_id;\n\n\nmsg.query = `SELECT\nm.member_id,\narray_agg(json_build_object('member_activity_id',ma.member_activity_id,'activity_xp',ma.activity_xp,'activity_credit',ma.activity_credit,'activity_name',a.activity_name,'organization_name',o.org_name)) as member_records\nFROM\nmembers m\nJOIN member_activity_records ma ON ma.member_id = m.member_id\nJOIN activities a ON a.activity_id = ma.activity_id\nJOIN organizations o ON o.org_id = a.activity_org\nWHERE\nm.member_id = $1\nGROUP BY m.member_id;\n`\n\nmsg.params = [\n    member_id\n];\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 800,
-        "y": 3120,
+        "x": 840,
+        "y": 2260,
         "wires": [
             [
                 "817ff12bf82e6617"
@@ -5297,11 +5246,11 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 935,
-        "y": 3120,
+        "x": 975,
+        "y": 2260,
         "wires": [
             [
-                "45caad7956e63776"
+                "a2e928012d22c4a5"
             ]
         ],
         "l": false
@@ -5327,8 +5276,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "str",
-        "x": 270,
-        "y": 3280,
+        "x": 250,
+        "y": 3840,
         "wires": [
             [
                 "3d716d8a8fbff804"
@@ -5358,8 +5307,8 @@
                 "valueValue": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJfaWQiOiJiOTZiODE1Yi1iNjE4LTRkNmUtYmI2Ny00MjJkMTVkZmNhYmUiLCJyb2xlIjpbeyJyb2xlX2lkIjoiNTdlYmM4ZDctYWM0Ni00MjU2LWJjOGUtMTlhNTc2ZjNkYjk1Iiwicm9sZV9uYW1lIjoiYWRtaW4iLCJvcmdfaWQiOm51bGwsIm9yZ19uYW1lIjpudWxsfSx7InJvbGVfaWQiOiI2MjM5NDRlNS0zMWUyLTRjNWYtODM4ZC0zMTJkNzIyZDVjMTciLCJyb2xlX25hbWUiOiJtZW1iZXIiLCJvcmdfaWQiOm51bGwsIm9yZ19uYW1lIjpudWxsfV0sImlhdCI6MTcyNTk2NTM5MywiZXhwIjoxNzI4NTU3MzkzfQ.RUeyALO0qt8W12B2eIzCglxaIpWw4ayHN74pRkVoolY"
             }
         ],
-        "x": 410,
-        "y": 3280,
+        "x": 390,
+        "y": 3840,
         "wires": [
             [
                 "54ec4412c3ba37b3"
@@ -5372,8 +5321,8 @@
         "z": "dbab6edfda7971c1",
         "g": "3c858fe6ed15c734",
         "name": "",
-        "x": 600,
-        "y": 3120,
+        "x": 640,
+        "y": 2260,
         "wires": [
             [
                 "d08ae8d0554b1246"
@@ -5393,25 +5342,233 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 560,
-        "y": 3320,
+        "x": 540,
+        "y": 3880,
         "wires": []
     },
     {
-        "id": "45caad7956e63776",
-        "type": "debug",
+        "id": "0f5db994f0e25ba8",
+        "type": "function",
         "z": "dbab6edfda7971c1",
-        "name": "debug 8",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 940,
+        "g": "8fb8c2d3ea0660f4",
+        "name": "Prepare SQL Query",
+        "func": "const member_id = msg.user.member_id;\nconst activity_id = msg.req.params.activity_id;\nconst completion_date = new Date().toISOString();\nconst activity_xp = msg.payload[0].activity_xp;\nconst activity_credit = msg.payload[0].activity_credit;\n\nmsg.query = `\n    INSERT INTO member_activity_records ( \n        activity_id, \n        member_id,\n        completion_date,\n        activity_xp,\n        npo_approved,\n        activity_credit\n    ) \n    VALUES (\n        $1, $2, $3, $4, $5, $6\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    activity_id, \n    member_id,\n    completion_date,\n    activity_xp,\n    true,\n    activity_credit\n];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1110,
+        "y": 3320,
+        "wires": [
+            [
+                "c1ac5487b4dd9d7e"
+            ]
+        ]
+    },
+    {
+        "id": "8ef9292978a073e9",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "8fb8c2d3ea0660f4",
+        "name": "Check activity status",
+        "func": "const activity_status = msg.payload[0].activity_status; \n\n    // Check if the user is an Admin (without an organization) or has the required role for the target organization\n    if (activity_status == 'current')\n    {\n        return [msg, null];\n    }\n\n\n// If no matching role was found, return an error\nmsg.statusCode = 403;\nmsg.payload = { error: 'Forbidden: activity is either not existing or not active anymore' };\nreturn [null, msg];\n",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
         "y": 3340,
+        "wires": [
+            [
+                "0f5db994f0e25ba8"
+            ],
+            [
+                "913da9133d1b1117"
+            ]
+        ]
+    },
+    {
+        "id": "913da9133d1b1117",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "8fb8c2d3ea0660f4",
+        "name": "Send Error",
+        "statusCode": "",
+        "headers": {},
+        "x": 1050,
+        "y": 3380,
         "wires": []
+    },
+    {
+        "id": "deab1ecc4b2e3dbb",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "8fb8c2d3ea0660f4",
+        "name": "Check Query Result",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1380,
+        "y": 3320,
+        "wires": [
+            [
+                "9316618e82fcf064"
+            ],
+            [
+                "4074fad116715110"
+            ]
+        ]
+    },
+    {
+        "id": "c1ac5487b4dd9d7e",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "8fb8c2d3ea0660f4",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 1245,
+        "y": 3320,
+        "wires": [
+            [
+                "deab1ecc4b2e3dbb"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "f8b99035c680c051",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "8fb8c2d3ea0660f4",
+        "name": "200 OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1780,
+        "y": 3280,
+        "wires": []
+    },
+    {
+        "id": "4074fad116715110",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "8fb8c2d3ea0660f4",
+        "name": "404 Not Found",
+        "statusCode": "404",
+        "headers": {},
+        "x": 1640,
+        "y": 3360,
+        "wires": []
+    },
+    {
+        "id": "9316618e82fcf064",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "8fb8c2d3ea0660f4",
+        "name": "Format Response",
+        "func": "// Extract the member data from the query result\nconst activity = msg.payload[0];\n\n// Prepare the response message\nmsg.payload = {\n    message: \"Activity application saved\",\n    activity: activity\n};\n\n// Set the response status code\nmsg.statusCode = 200;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1610,
+        "y": 3280,
+        "wires": [
+            [
+                "f8b99035c680c051"
+            ]
+        ]
+    },
+    {
+        "id": "6d092e4f13ea7d9d",
+        "type": "http in",
+        "z": "dbab6edfda7971c1",
+        "g": "8fb8c2d3ea0660f4",
+        "name": "New activity record",
+        "url": "/activities/record/:activity_id",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 230,
+        "y": 3340,
+        "wires": [
+            [
+                "24550c97470d16d7"
+            ]
+        ]
+    },
+    {
+        "id": "24550c97470d16d7",
+        "type": "subflow:803db7b38fcbf7c9",
+        "z": "dbab6edfda7971c1",
+        "g": "8fb8c2d3ea0660f4",
+        "name": "",
+        "x": 410,
+        "y": 3340,
+        "wires": [
+            [
+                "17c898e2aba6508b"
+            ]
+        ]
+    },
+    {
+        "id": "17c898e2aba6508b",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "8fb8c2d3ea0660f4",
+        "name": "Get Activity Info",
+        "func": "const activity_id = msg.req.params.activity_id;\n\n// Prepare SQL query to get org_id related to activity_id\nmsg.query = `\n    SELECT \n        activity_status,\n        activity_id,\n        activity_xp,\n        activity_credit\n    FROM activities\n    WHERE activity_id = $1;\n`;\n\nmsg.params = [\n    activity_id\n];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 3340,
+        "wires": [
+            [
+                "5f66738c7136ddf3"
+            ]
+        ]
+    },
+    {
+        "id": "5f66738c7136ddf3",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "8fb8c2d3ea0660f4",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 715,
+        "y": 3340,
+        "wires": [
+            [
+                "8ef9292978a073e9"
+            ]
+        ],
+        "l": false
     }
 ]
