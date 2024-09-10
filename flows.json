@@ -761,6 +761,33 @@
         "h": 162
     },
     {
+        "id": "3c858fe6ed15c734",
+        "type": "group",
+        "z": "dbab6edfda7971c1",
+        "name": "Record Activity History",
+        "style": {
+            "stroke": "#addb7b",
+            "fill": "#e3f3d3",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "a2e928012d22c4a5",
+            "22444750f28aa280",
+            "3c81fd487f4dd6fd",
+            "163bd09d2356002c",
+            "6d431b703baf060d",
+            "883a2e4e72584b80",
+            "d08ae8d0554b1246",
+            "817ff12bf82e6617",
+            "8bdbb6efe12ea1ef"
+        ],
+        "x": 94,
+        "y": 3039,
+        "w": 1552,
+        "h": 162
+    },
+    {
         "id": "cf1453eb80b45c35",
         "type": "postgreSQLConfig",
         "name": "",
@@ -770,8 +797,8 @@
         "portFieldType": "env",
         "database": "DB_NAME",
         "databaseFieldType": "env",
-        "ssl": "{\"require\":true,\"rejectUnauthorized\":false}",
-        "sslFieldType": "json",
+        "ssl": "false",
+        "sslFieldType": "bool",
         "applicationName": "",
         "applicationNameType": "str",
         "max": "10",
@@ -1057,7 +1084,7 @@
         "z": "dbab6edfda7971c1",
         "g": "aad75d5c826ca0b1",
         "name": "Prepare SQL Query",
-        "func": "// Extract query parameters\nconst skip = parseInt(msg.req.query.skip) || 0;  // Default to 0 if not provided\nconst limit = parseInt(msg.req.query.limit) || 50;  // Default to 50 if not provided\n\n// Validate skip and limit\nif (isNaN(skip) || skip < 0) {\n    node.error('Invalid skip parameter', msg);\n    return null;\n}\n\nif (isNaN(limit) || limit <= 0) {\n    node.error('Invalid limit parameter', msg);\n    return null;\n}\nmsg.query = `SELECT \n        member_id, \n        member_firstname, \n        member_lastname, \n        member_picture, \n        member_languages, \n        member_summary, \n        country_id, \n        member_status, \n        member_level, \n        skill_id, \n        creation_date\n        FROM members \n        LIMIT $1 \n        OFFSET $2`;\nmsg.params = [\n    limit,\n    skip\n];\nreturn msg;",
+        "func": "// Extract query parameters\nconst skip = parseInt(msg.req.query.skip) || 0;  // Default to 0 if not provided\nconst limit = parseInt(msg.req.query.limit) || 50;  // Default to 50 if not provided\n\n// Validate skip and limit\nif (isNaN(skip) || skip < 0) {\n    node.error('Invalid skip parameter', msg);\n    return null;\n}\n\nif (isNaN(limit) || limit <= 0) {\n    node.error('Invalid limit parameter', msg);\n    return null;\n}\nmsg.query = `SELECT \n        member_id, \n        member_firstname, \n        member_lastname, \n        member_picture, \n        member_languages, \n        member_summary, \n        country_id, \n        member_status, \n        member_level, \n        skill_ids, \n        creation_date\n        FROM members \n        LIMIT $1 \n        OFFSET $2`;\nmsg.params = [\n    limit,\n    skip\n];\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2391,7 +2418,7 @@
         "z": "dbab6edfda7971c1",
         "g": "ed79720e50c3c5aa",
         "name": "Sign JWT",
-        "func": "const jwt = global.get('jsonwebtoken');\nmsg.headers = msg.headers || {};\n\n//const role = msg.payload.length > 0 ? msg.payload[0].role_name : null;\nconst role = msg.payload.length > 0 ? msg.payload : null;\n\nconst token = jwt.sign({ member_id: msg.user_id, role }, 'your-secret-key', { expiresIn: '1h' });\n// Set the 'Set-Cookie' header\n//msg.headers['Set-Cookie'] = \"wg_jwt=\" + cookie +\"; HttpOnly; Secure; Max-Age=3600\";\nmsg.payload = {'token': token};\n\nreturn msg;\n\n\n\n",
+        "func": "const jwt = global.get('jsonwebtoken');\nmsg.headers = msg.headers || {};\n\n//const role = msg.payload.length > 0 ? msg.payload[0].role_name : null;\nconst role = msg.payload.length > 0 ? msg.payload : null;\n\nconst token = jwt.sign({ member_id: msg.user_id, role }, 'your-secret-key', { expiresIn: '30d' });\n// Set the 'Set-Cookie' header\n//msg.headers['Set-Cookie'] = \"wg_jwt=\" + cookie +\"; HttpOnly; Secure; Max-Age=3600\";\nmsg.payload = {'token': token};\n\nreturn msg;\n\n\n\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -5004,5 +5031,289 @@
                 "8110795bc64320e3"
             ]
         ]
+    },
+    {
+        "id": "45765f077d5923fb",
+        "type": "inject",
+        "z": "dbab6edfda7971c1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "DB_PASSWORD",
+        "payloadType": "env",
+        "x": 1430,
+        "y": 180,
+        "wires": [
+            [
+                "64300dc4513f28f1"
+            ]
+        ]
+    },
+    {
+        "id": "64300dc4513f28f1",
+        "type": "debug",
+        "z": "dbab6edfda7971c1",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1600,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "a2e928012d22c4a5",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "3c858fe6ed15c734",
+        "name": "Check Query Result",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1160,
+        "y": 3120,
+        "wires": [
+            [
+                "22444750f28aa280"
+            ],
+            [
+                "3c81fd487f4dd6fd"
+            ]
+        ]
+    },
+    {
+        "id": "22444750f28aa280",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "3c858fe6ed15c734",
+        "name": "Format Response",
+        "func": "// Extract the member data from the query result\nconst activity = msg.payload[0];\n\n// Prepare the response message\nmsg.payload = {\n    message: \"Activity application saved\",\n    activity: activity\n};\n\n// Set the response status code\nmsg.statusCode = 200;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1380,
+        "y": 3080,
+        "wires": [
+            [
+                "163bd09d2356002c"
+            ]
+        ]
+    },
+    {
+        "id": "3c81fd487f4dd6fd",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "3c858fe6ed15c734",
+        "name": "404 Not Found",
+        "statusCode": "404",
+        "headers": {},
+        "x": 1420,
+        "y": 3160,
+        "wires": []
+    },
+    {
+        "id": "163bd09d2356002c",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "3c858fe6ed15c734",
+        "name": "200 OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1560,
+        "y": 3080,
+        "wires": []
+    },
+    {
+        "id": "6d431b703baf060d",
+        "type": "http in",
+        "z": "dbab6edfda7971c1",
+        "g": "3c858fe6ed15c734",
+        "name": "Get member activity hist",
+        "url": "/activities/record/:member_id",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 230,
+        "y": 3120,
+        "wires": [
+            [
+                "883a2e4e72584b80"
+            ]
+        ]
+    },
+    {
+        "id": "883a2e4e72584b80",
+        "type": "subflow:803db7b38fcbf7c9",
+        "z": "dbab6edfda7971c1",
+        "g": "3c858fe6ed15c734",
+        "name": "",
+        "x": 440,
+        "y": 3120,
+        "wires": [
+            [
+                "8bdbb6efe12ea1ef"
+            ]
+        ]
+    },
+    {
+        "id": "d08ae8d0554b1246",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "3c858fe6ed15c734",
+        "name": "Get history info",
+        "func": "const member_id = msg.req.params.member_id;\n\n\nmsg.query = `SELECT\nm.member_id,\narray_agg(json_build_object('member_activity_id',ma.member_activity_id,'activity_xp',ma.activity_xp,'activity_credit',ma.activity_credit,'activity_name',a.activity_name,'organization_name',o.org_name)) as member_records\nFROM\nmembers m\nJOIN member_activity_records ma ON ma.member_id = m.member_id\nJOIN activities a ON a.activity_id = ma.activity_id\nJOIN organizations o ON o.org_id = a.activity_org\nWHERE\nm.member_id = $1\nGROUP BY m.member_id;\n`\n\nmsg.params = [\n    member_id\n];\nconsole.log(\"member id is: \" + member_id)\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 3120,
+        "wires": [
+            [
+                "817ff12bf82e6617"
+            ]
+        ]
+    },
+    {
+        "id": "817ff12bf82e6617",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "3c858fe6ed15c734",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 975,
+        "y": 3120,
+        "wires": [
+            [
+                "a2e928012d22c4a5"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "687c1fedd06c9004",
+        "type": "inject",
+        "z": "dbab6edfda7971c1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 270,
+        "y": 3280,
+        "wires": [
+            [
+                "3d716d8a8fbff804"
+            ]
+        ]
+    },
+    {
+        "id": "3d716d8a8fbff804",
+        "type": "http request",
+        "z": "dbab6edfda7971c1",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "localhost:1880/activities/record/b96b815b-b618-4d6e-bb67-422d15dfcabe",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "Authorization",
+                "keyValue": "",
+                "valueType": "other",
+                "valueValue": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJfaWQiOiJiOTZiODE1Yi1iNjE4LTRkNmUtYmI2Ny00MjJkMTVkZmNhYmUiLCJyb2xlIjpbeyJyb2xlX2lkIjoiNTdlYmM4ZDctYWM0Ni00MjU2LWJjOGUtMTlhNTc2ZjNkYjk1Iiwicm9sZV9uYW1lIjoiYWRtaW4iLCJvcmdfaWQiOm51bGwsIm9yZ19uYW1lIjpudWxsfSx7InJvbGVfaWQiOiI2MjM5NDRlNS0zMWUyLTRjNWYtODM4ZC0zMTJkNzIyZDVjMTciLCJyb2xlX25hbWUiOiJtZW1iZXIiLCJvcmdfaWQiOm51bGwsIm9yZ19uYW1lIjpudWxsfV0sImlhdCI6MTcyNTk2NTM5MywiZXhwIjoxNzI4NTU3MzkzfQ.RUeyALO0qt8W12B2eIzCglxaIpWw4ayHN74pRkVoolY"
+            }
+        ],
+        "x": 410,
+        "y": 3280,
+        "wires": [
+            [
+                "54ec4412c3ba37b3"
+            ]
+        ]
+    },
+    {
+        "id": "8bdbb6efe12ea1ef",
+        "type": "subflow:84b08c8e5dbc93fb",
+        "z": "dbab6edfda7971c1",
+        "g": "3c858fe6ed15c734",
+        "name": "",
+        "x": 640,
+        "y": 3120,
+        "wires": [
+            [
+                "d08ae8d0554b1246"
+            ]
+        ]
+    },
+    {
+        "id": "54ec4412c3ba37b3",
+        "type": "debug",
+        "z": "dbab6edfda7971c1",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 3320,
+        "wires": []
     }
 ]
