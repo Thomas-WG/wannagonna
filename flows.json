@@ -818,6 +818,27 @@
         "h": 182
     },
     {
+        "id": "73a4ed48b078a6bd",
+        "type": "group",
+        "z": "dbab6edfda7971c1",
+        "name": "GET Badges",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "59a147b6d6708ac6",
+            "340158cd677272f2",
+            "3cdabe2c6f0558b3",
+            "d72e38ac285124c0",
+            "7a1a597f77e7069f",
+            "51b92928002eed90"
+        ],
+        "x": 1444,
+        "y": 539,
+        "w": 892,
+        "h": 142
+    },
+    {
         "id": "cf1453eb80b45c35",
         "type": "postgreSQLConfig",
         "name": "",
@@ -4857,30 +4878,12 @@
         ]
     },
     {
-        "id": "0deff47f183e2eb6",
-        "type": "function",
-        "z": "dbab6edfda7971c1",
-        "name": "Sign JWT",
-        "func": "const jwt = global.get('jsonwebtoken');\nmsg.headers = msg.headers || {};\n\n//const role = msg.payload.length > 0 ? msg.payload[0].role_name : null;\nconst role = msg.payload.length > 0 ? msg.payload : null;\n\nmsg.payload = jwt.sign({ member_id: msg.user_id, role }, 'your-secret-key', { expiresIn: '1h' });\n\n// Set the cookie in the response headers\nconst cookie = \"token='\"+ msg.payload +\"'; HttpOnly; Secure; Max-Age=3600\";\nconsole.log(cookie)\n// Set the 'Set-Cookie' header\nmsg.headers['Set-Cookie'] = cookie;\n\nmsg.statusCode = 200;\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 2040,
-        "y": 140,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "430163ae12e1b57f",
         "type": "function",
         "z": "dbab6edfda7971c1",
         "g": "3347283c3ab55d97",
         "name": "Prepare SQL Query",
-        "func": "const member_id = msg.user.member_id;\n\n// Prepare SQL to get the member without the password\nmsg.query = `\n    SELECT \n        member_firstname,\n        member_lastname,\n        member_email,\n        member_picture,\n        member_languages,\n        member_summary,\n        country_id,\n        member_status,\n        skill_ids\n    FROM \n        members\n    WHERE \n        member_id = $1\n;`;\n\nmsg.params = [member_id];\n\nreturn msg;",
+        "func": "const member_id = msg.user.member_id;\n\n// Prepare SQL to get the member without the password\nmsg.query = `\n    SELECT \n        member_firstname,\n        member_lastname,\n        member_email,\n        member_picture,\n        member_languages,\n        member_summary,\n        country_id,\n        member_status,\n        skill_ids,\n        member_xp,\n        member_credit\n    FROM \n        members\n    WHERE \n        member_id = $1\n;`;\n\nmsg.params = [member_id];\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -5059,35 +5062,6 @@
         "wires": [
             [
                 "8110795bc64320e3"
-            ]
-        ]
-    },
-    {
-        "id": "45765f077d5923fb",
-        "type": "inject",
-        "z": "dbab6edfda7971c1",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "DB_PASSWORD",
-        "payloadType": "env",
-        "x": 1430,
-        "y": 180,
-        "wires": [
-            [
-                "64300dc4513f28f1"
             ]
         ]
     },
@@ -5570,5 +5544,149 @@
             ]
         ],
         "l": false
+    },
+    {
+        "id": "45765f077d5923fb",
+        "type": "inject",
+        "z": "dbab6edfda7971c1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "DB_PASSWORD",
+        "payloadType": "env",
+        "x": 1430,
+        "y": 180,
+        "wires": [
+            [
+                "64300dc4513f28f1"
+            ]
+        ]
+    },
+    {
+        "id": "59a147b6d6708ac6",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "73a4ed48b078a6bd",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 1855,
+        "y": 620,
+        "wires": [
+            [
+                "3cdabe2c6f0558b3"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "340158cd677272f2",
+        "type": "http in",
+        "z": "dbab6edfda7971c1",
+        "g": "73a4ed48b078a6bd",
+        "name": "GET badges",
+        "url": "/badges",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1540,
+        "y": 620,
+        "wires": [
+            [
+                "51b92928002eed90"
+            ]
+        ]
+    },
+    {
+        "id": "3cdabe2c6f0558b3",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "73a4ed48b078a6bd",
+        "name": "Check Query Result",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "",
+                "vt": "str"
+            },
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1990,
+        "y": 620,
+        "wires": [
+            [
+                "d72e38ac285124c0"
+            ],
+            [
+                "7a1a597f77e7069f"
+            ]
+        ]
+    },
+    {
+        "id": "d72e38ac285124c0",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "73a4ed48b078a6bd",
+        "name": "404 Not Found",
+        "statusCode": "404",
+        "headers": {},
+        "x": 2230,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "7a1a597f77e7069f",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "73a4ed48b078a6bd",
+        "name": "200 OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 2210,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "51b92928002eed90",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "73a4ed48b078a6bd",
+        "name": "Prepare SQL Query",
+        "func": "\nmsg.query = `SELECT * FROM badges;`\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1720,
+        "y": 620,
+        "wires": [
+            [
+                "59a147b6d6708ac6"
+            ]
+        ]
     }
 ]
