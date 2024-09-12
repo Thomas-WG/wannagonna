@@ -4146,7 +4146,7 @@
         "z": "dbab6edfda7971c1",
         "g": "2b91f5927dfc193f",
         "name": "Transform response",
-        "func": "const result = msg.payload;\nmsg.payload = {\n    \"count\": result.length,\n    \"response\": result\n}\nreturn msg;",
+        "func": "const result = msg.payload;\nresult.org_picture = 'data:image/png;base64,'+ result.org_picture\nmsg.payload = {\n    \"count\": result.length,\n    \"response\": result\n}\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
