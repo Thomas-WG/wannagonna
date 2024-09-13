@@ -760,8 +760,7 @@
             "c296180b31e2b636",
             "e8561cfd23d5072f",
             "03124eefcabaeb99",
-            "9e0a04327ac1db8d",
-            "6ba54bc719fddb10"
+            "9e0a04327ac1db8d"
         ],
         "x": 94,
         "y": 1999,
@@ -4891,7 +4890,7 @@
         "z": "dbab6edfda7971c1",
         "g": "3347283c3ab55d97",
         "name": "Prepare SQL Query",
-        "func": "const member_id = msg.user.member_id;\n\n// Prepare SQL to get the member without the password\nmsg.query = `\n    SELECT \n        member_id,\n        member_firstname,\n        member_lastname,\n        member_email,\n        member_picture,\n        member_languages,\n        member_summary,\n        country_id,\n        member_status,\n        member_xp,\n        member_credit,\n        member_referral_code\n    FROM \n        members\n    WHERE \n        member_id = $1\n;`;\n\nmsg.params = [member_id];\n\nreturn msg;",
+        "func": "const member_id = msg.user.member_id;\n\n// Prepare SQL to get the member without the password\nmsg.query = `\n    SELECT \n        member_id,\n        member_firstname,\n        member_lastname,\n        member_email,\n        member_picture,\n        member_languages,\n        member_summary,\n        country_id,\n        member_status,\n        member_xp,\n        member_credit,\n        skill_ids,\n        member_referral_code\n    FROM \n        members\n    WHERE \n        member_id = $1\n;`;\n\nmsg.params = [member_id];\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -5015,8 +5014,7 @@
         "y": 2040,
         "wires": [
             [
-                "9e0a04327ac1db8d",
-                "6ba54bc719fddb10"
+                "9e0a04327ac1db8d"
             ]
         ]
     },
@@ -5033,24 +5031,6 @@
                 "430163ae12e1b57f"
             ]
         ]
-    },
-    {
-        "id": "6ba54bc719fddb10",
-        "type": "debug",
-        "z": "dbab6edfda7971c1",
-        "g": "3347283c3ab55d97",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 300,
-        "y": 2100,
-        "wires": []
     },
     {
         "id": "f2823ff1203dcf8f",
