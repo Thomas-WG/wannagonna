@@ -304,11 +304,19 @@
             "20b0454a4cd033d6",
             "1f53358b748a2053",
             "8acadfc979d221cb",
-            "7d8cfc8c484a4117"
+            "7d8cfc8c484a4117",
+            "738b670f94e82732",
+            "b87b5669365a41b8",
+            "b99bc67b38257d07",
+            "d9ddc55a22f85a23",
+            "886e1105d0bcd742",
+            "1c812ae965dfc460",
+            "8905fc4b76e2f9b9",
+            "2def59d0069f770d"
         ],
         "x": 74,
         "y": 939,
-        "w": 2572,
+        "w": 3992,
         "h": 162
     },
     {
@@ -1465,14 +1473,14 @@
         "z": "dbab6edfda7971c1",
         "g": "ba352a33ad13b2d1",
         "name": "PSQL Insert Member",
-        "func": "const { \n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture, \n    member_languages, \n    member_summary, \n    country_id, \n    member_password, \n    skill_ids\n} = msg.newmember;\n\n// Validation\nif (!member_firstname || typeof member_firstname !== 'string' || member_firstname.trim() === '') {\n    node.error('Missing or invalid member_firstname', msg);\n    return null;\n}\n\nif (!member_lastname || typeof member_lastname !== 'string' || member_lastname.trim() === '') {\n    node.error('Missing or invalid member_lastname', msg);\n    return null;\n}\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\nif (!member_password || typeof member_password !== 'string' || member_password.trim() === '') {\n    node.error('Missing or invalid member_password', msg);\n    return null;\n}\n\n\n// Convert member_languages array to PostgreSQL array literal format\nif (typeof member_languages === 'string') {\n    msg.newmember.member_languages = member_languages.split(',').map(lang => lang.trim());\n} else if (!Array.isArray(member_languages)) {\n    node.error('member_languages is not an array or a string', msg);\n    return null;\n}\nconst formatted_languages = `{${msg.newmember.member_languages.map(lang => `\"${lang}\"`).join(',')}}`;\n\n// Proceed with the rest of your logic\nmsg.newmember.formatted_languages = formatted_languages;\n\n// Convert member_skills array to PostgreSQL array literal format\nif (typeof skill_ids === 'string') {\n    msg.newmember.skill_ids = skill_ids.split(',').map(skill => skill.trim());\n} else if (!Array.isArray(skill_ids)) {\n    node.error('skill_ids is not an array or a string', msg);\n    return null;\n}\nconst formatted_skills = `{${msg.newmember.skill_ids.map(skill => `\"${skill}\"`).join(',')}}`;\n\n// Proceed with the rest of your logic\nmsg.newmember.formatted_skills = formatted_skills;\n\n\n\n// Prepare SQL\nmsg.query = `\n    INSERT INTO members (\n        member_firstname, member_lastname, member_email, member_picture, \n        member_languages, member_summary, country_id, \n        member_password, member_status, skill_ids\n    ) \n    VALUES (\n        $1, $2, $3, $4, \n        $5, $6, $7, $8, \n        $9, $10\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture || null, \n    formatted_languages, \n    member_summary, \n    country_id || null, \n    member_password, \n    \"new\", \n    formatted_skills || null\n];\n\nreturn msg;\n",
+        "func": "\nconst { \n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture, \n    member_languages, \n    member_summary, \n    country_id, \n    member_password, \n    skill_ids\n} = msg.newmember;\n\n// Validation\nif (!member_firstname || typeof member_firstname !== 'string' || member_firstname.trim() === '') {\n    node.error('Missing or invalid member_firstname', msg);\n    return null;\n}\n\nif (!member_lastname || typeof member_lastname !== 'string' || member_lastname.trim() === '') {\n    node.error('Missing or invalid member_lastname', msg);\n    return null;\n}\n\nif (!member_email || typeof member_email !== 'string' || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(member_email)) {\n    node.error('Missing or invalid member_email', msg);\n    return null;\n}\n\nif (!member_password || typeof member_password !== 'string' || member_password.trim() === '') {\n    node.error('Missing or invalid member_password', msg);\n    return null;\n}\n\n\n// Convert member_languages array to PostgreSQL array literal format\nif (typeof member_languages === 'string') {\n    msg.newmember.member_languages = member_languages.split(',').map(lang => lang.trim());\n} else if (!Array.isArray(member_languages)) {\n    node.error('member_languages is not an array or a string', msg);\n    return null;\n}\nconst formatted_languages = `{${msg.newmember.member_languages.map(lang => `\"${lang}\"`).join(',')}}`;\n\n// Proceed with the rest of your logic\nmsg.newmember.formatted_languages = formatted_languages;\n\n// Convert member_skills array to PostgreSQL array literal format\nif (typeof skill_ids === 'string') {\n    msg.newmember.skill_ids = skill_ids.split(',').map(skill => skill.trim());\n} else if (!Array.isArray(skill_ids)) {\n    node.error('skill_ids is not an array or a string', msg);\n    return null;\n}\nconst formatted_skills = `{${msg.newmember.skill_ids.map(skill => `\"${skill}\"`).join(',')}}`;\n\n// Proceed with the rest of your logic\nmsg.newmember.formatted_skills = formatted_skills;\n\n\n\n// Prepare SQL\nmsg.query = `\n    INSERT INTO members (\n        member_firstname, member_lastname, member_email, member_picture, \n        member_languages, member_summary, country_id, \n        member_password, member_status, skill_ids\n    ) \n    VALUES (\n        $1, $2, $3, $4, \n        $5, $6, $7, $8, \n        $9, $10\n    ) \n    RETURNING *;\n`;\n\nmsg.params = [\n    member_firstname, \n    member_lastname, \n    member_email, \n    member_picture || null, \n    formatted_languages, \n    member_summary, \n    country_id || null, \n    member_password, \n    \"new\", \n    formatted_skills || null\n];\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 920,
+        "x": 1660,
         "y": 1020,
         "wires": [
             [
@@ -1501,11 +1509,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 2230,
+        "x": 3290,
         "y": 1000,
         "wires": [
             [
-                "54387abb3b891c74"
+                "1c812ae965dfc460"
             ],
             [
                 "2b7eed18ecbca6f1"
@@ -1520,7 +1528,7 @@
         "name": "201 Created",
         "statusCode": "201",
         "headers": {},
-        "x": 2550,
+        "x": 3970,
         "y": 980,
         "wires": []
     },
@@ -1532,7 +1540,7 @@
         "name": "400 Bad Request",
         "statusCode": "400",
         "headers": {},
-        "x": 2460,
+        "x": 3510,
         "y": 1020,
         "wires": []
     },
@@ -1585,7 +1593,7 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 1055,
+        "x": 1795,
         "y": 1020,
         "wires": [
             [
@@ -1600,14 +1608,14 @@
         "z": "dbab6edfda7971c1",
         "g": "ba352a33ad13b2d1",
         "name": "resp",
-        "func": "// Extract the member ID from the database query result\nconst createdMember = msg.payload[0]; // Assuming the result is in the first element of the array\n\n// Prepare the response message\nmsg.payload = {\n    message: \"Member has been successfully created\",\n    member_id: createdMember.member_id\n};\n\nreturn msg;\n",
+        "func": "// Extract the member ID from the database query result\nconst createdMember = msg.member_id; // Assuming the result is in the first element of the array\n\n// Prepare the response message\nmsg.payload = {\n    message: \"Member has been successfully created\",\n    member_id: createdMember\n};\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2410,
+        "x": 3830,
         "y": 980,
         "wires": [
             [
@@ -2077,7 +2085,7 @@
         "z": "dbab6edfda7971c1",
         "g": "2b91f5927dfc193f",
         "name": "Prepare SQL Query",
-        "func": "// Extract query parameters\nconst skip = parseInt(msg.req.query.skip) || 0;  // Default to 0 if not provided\nconst limit = parseInt(msg.req.query.limit) || 50;  // Default to 50 if not provided\n\n// Validate skip and limit\nif (isNaN(skip) || skip < 0) {\n    node.error('Invalid skip parameter', msg);\n    return null;\n}\n\nif (isNaN(limit) || limit <= 0) {\n    node.error('Invalid limit parameter', msg);\n    return null;\n}\n\nmsg.query = `SELECT \n    a.activity_id,\n    a.activity_name,\n    a.activity_desc,\n    a.activity_xp,\n    a.activity_credit,\n    a.activity_type,\n    a.activity_startdate,\n    a.activity_enddate,\n    a.activity_qr,\n    a.creation_date,\n    json_build_object(\n        'org_id', o.org_id, \n        'org_name', o.org_name, \n        'org_picture', CONCAT('data:image/png;base64,', o.org_picture),\n        'country_name', c.country_name, \n        'continent_name', c.continent_name\n    ) AS activity_org,  -- Include country and continent in organization info\n    json_build_object('member_id', m.member_id, 'member_firstname', m.member_firstname, 'member_lastname', m.member_lastname) AS activity_owner,\n    array_agg(\n        json_build_object(\n            'skill_id', s.skill_id, \n            'skill_name', s.skill_name, \n            'skill_category', s.skill_category\n        )\n    ) AS skills,  -- Aggregate skills with name and category\n    COUNT(mva.member_application_id) AS num_applications  -- Count applications for each activity\nFROM \n    activities a\nLEFT JOIN \n    organizations o ON a.activity_org = o.org_id\nLEFT JOIN \n    countries c ON o.country_id = c.country_id  -- Join with countries table\nLEFT JOIN \n    members m ON a.activity_owner = m.member_id\nLEFT JOIN \n    activity_skills act_s ON a.activity_id = act_s.activity_id\nLEFT JOIN \n    skills s ON act_s.skill_id = s.skill_id\nLEFT JOIN \n    member_volunteer_applications mva ON a.activity_id = mva.activity_id  -- Join with applications table\nGROUP BY \n    a.activity_id, o.org_id, c.country_name, c.continent_name, m.member_id  -- Group by country and continent\nORDER BY \n    a.activity_name\nLIMIT $1 OFFSET $2;\n\n`\n\nmsg.params = [\n    limit,\n    skip\n];\nreturn msg;",
+        "func": "// Extract query parameters\nconst skip = parseInt(msg.req.query.skip) || 0;  // Default to 0 if not provided\nconst limit = parseInt(msg.req.query.limit) || 50;  // Default to 50 if not provided\n\n// Validate skip and limit\nif (isNaN(skip) || skip < 0) {\n    node.error('Invalid skip parameter', msg);\n    return null;\n}\n\nif (isNaN(limit) || limit <= 0) {\n    node.error('Invalid limit parameter', msg);\n    return null;\n}\n\nmsg.query = `SELECT \n    a.activity_id,\n    a.activity_name,\n    a.activity_desc,\n    a.activity_xp,\n    a.activity_credit,\n    a.activity_type,\n    a.activity_startdate,\n    a.activity_enddate,\n    a.activity_qr,\n    a.creation_date,\n    json_build_object(\n        'org_id', o.org_id, \n        'org_name', o.org_name, \n        'org_picture', CONCAT('data:image/png;base64,', encode(o.org_picture, 'base64')),\n        'country_name', c.country_name, \n        'continent_name', c.continent_name\n    ) AS activity_org,  -- Include country and continent in organization info\n    json_build_object('member_id', m.member_id, 'member_firstname', m.member_firstname, 'member_lastname', m.member_lastname) AS activity_owner,\n    array_agg(\n        json_build_object(\n            'skill_id', s.skill_id, \n            'skill_name', s.skill_name, \n            'skill_category', s.skill_category\n        )\n    ) AS skills,  -- Aggregate skills with name and category\n    COUNT(mva.member_application_id) AS num_applications  -- Count applications for each activity\nFROM \n    activities a\nLEFT JOIN \n    organizations o ON a.activity_org = o.org_id\nLEFT JOIN \n    countries c ON o.country_id = c.country_id  -- Join with countries table\nLEFT JOIN \n    members m ON a.activity_owner = m.member_id\nLEFT JOIN \n    activity_skills act_s ON a.activity_id = act_s.activity_id\nLEFT JOIN \n    skills s ON act_s.skill_id = s.skill_id\nLEFT JOIN \n    member_volunteer_applications mva ON a.activity_id = mva.activity_id  -- Join with applications table\nGROUP BY \n    a.activity_id, o.org_id, c.country_name, c.continent_name, m.member_id  -- Group by country and continent\nORDER BY \n    a.activity_name\nLIMIT $1 OFFSET $2;\n\n`\n\nmsg.params = [\n    limit,\n    skip\n];\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -2677,7 +2685,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1390,
+        "x": 2130,
         "y": 1000,
         "wires": [
             [
@@ -2696,7 +2704,7 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 1545,
+        "x": 2285,
         "y": 1000,
         "wires": [
             [
@@ -2718,7 +2726,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
+        "x": 580,
         "y": 1020,
         "wires": [
             [
@@ -2769,7 +2777,7 @@
         "y": 1020,
         "wires": [
             [
-                "92b39ec92961af98"
+                "b99bc67b38257d07"
             ],
             [
                 "8acadfc979d221cb"
@@ -2795,14 +2803,14 @@
         "z": "dbab6edfda7971c1",
         "g": "ba352a33ad13b2d1",
         "name": "PSQL Insert member role",
-        "func": "var role_id = msg.payload[0].role_id\n// Prepare SQL\nmsg.query = `INSERT INTO member_roles (\n    role_id,\n    member_id\n) VALUES ( $1, $2)\nRETURNING *;`;\n\nmsg.params = [role_id,msg.member_id]\n\nreturn msg;\n",
+        "func": "var role_id = msg.role_id\n// Prepare SQL\nmsg.query = `INSERT INTO member_roles (\n    role_id,\n    member_id\n) VALUES ( $1, $2)\nRETURNING *;`;\n\nmsg.params = [role_id,msg.member_id]\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1950,
+        "x": 3010,
         "y": 1000,
         "wires": [
             [
@@ -2831,7 +2839,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1170,
+        "x": 1910,
         "y": 1020,
         "wires": [
             [
@@ -2863,11 +2871,11 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1700,
+        "x": 2440,
         "y": 1000,
         "wires": [
             [
-                "1bc22e46e42f09f4"
+                "738b670f94e82732"
             ],
             [
                 "831acb19d938a2b4"
@@ -2882,7 +2890,7 @@
         "name": "404 Not Found",
         "statusCode": "404",
         "headers": {},
-        "x": 1920,
+        "x": 2980,
         "y": 1040,
         "wires": []
     },
@@ -2894,7 +2902,7 @@
         "name": "400 Bad Request",
         "statusCode": "400",
         "headers": {},
-        "x": 1370,
+        "x": 2110,
         "y": 1040,
         "wires": []
     },
@@ -2909,7 +2917,7 @@
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 2095,
+        "x": 3155,
         "y": 1000,
         "wires": [
             [
@@ -4883,7 +4891,7 @@
         "z": "dbab6edfda7971c1",
         "g": "3347283c3ab55d97",
         "name": "Prepare SQL Query",
-        "func": "const member_id = msg.user.member_id;\n\n// Prepare SQL to get the member without the password\nmsg.query = `\n    SELECT \n        member_id,\n        member_firstname,\n        member_lastname,\n        member_email,\n        member_picture,\n        member_languages,\n        member_summary,\n        country_id,\n        member_status,\n        skill_ids,\n        member_xp,\n        member_credit\n    FROM \n        members\n    WHERE \n        member_id = $1\n;`;\n\nmsg.params = [member_id];\n\nreturn msg;",
+        "func": "const member_id = msg.user.member_id;\n\n// Prepare SQL to get the member without the password\nmsg.query = `\n    SELECT \n        member_id,\n        member_firstname,\n        member_lastname,\n        member_email,\n        member_picture,\n        member_languages,\n        member_summary,\n        country_id,\n        member_status,\n        skill_ids,\n        member_xp,\n        member_credit,\n        member_referral_code\n    FROM \n        members\n    WHERE \n        member_id = $1\n;`;\n\nmsg.params = [member_id];\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -4934,7 +4942,7 @@
         "z": "dbab6edfda7971c1",
         "g": "3347283c3ab55d97",
         "name": "Format Response",
-        "func": "// Assuming msg.payload[0] contains the returned member data\nconst member = msg.payload[0];\n\n\n// Convert any arrays to strings if needed\nmember.member_languages = member.member_languages ? member.member_languages.join(', ') : '';\nmember.skill_ids = member.skill_ids ? member.skill_ids.join(', ') : '';\n\n// Prepare the output payload for Bubble.io\nmsg.payload = {\n    member_id: member.member_id,\n    firstname: member.member_firstname,\n    lastname: member.member_lastname,\n    email: member.member_email,\n    picture:  member.member_picture ? 'data:image/png;base64,'+ member.member_picture.toString('base64') : null, // Convert picture to base64 if needed\n    languages: member.member_languages,\n    summary: member.member_summary,\n    country: member.country_id,\n    status: member.member_status,\n    skills: member.skill_ids,\n    member_xp: member.member_xp,\n    member_credit: member.member_credit\n};\n\nreturn msg;\n\n",
+        "func": "// Assuming msg.payload[0] contains the returned member data\nconst member = msg.payload[0];\n\n\n// Convert any arrays to strings if needed\nmember.member_languages = member.member_languages ? member.member_languages.join(', ') : '';\nmember.skill_ids = member.skill_ids ? member.skill_ids.join(', ') : '';\n\n// Prepare the output payload for Bubble.io\nmsg.payload = {\n    member_id: member.member_id,\n    firstname: member.member_firstname,\n    lastname: member.member_lastname,\n    email: member.member_email,\n    picture:  member.member_picture ? 'data:image/png;base64,'+ member.member_picture.toString('base64') : null, // Convert picture to base64 if needed\n    languages: member.member_languages,\n    summary: member.member_summary,\n    country: member.country_id,\n    status: member.member_status,\n    skills: member.skill_ids,\n    member_xp: member.member_xp,\n    member_credit: member.member_credit,\n    member_referral_code: member.member_referral_code\n};\n\nreturn msg;\n\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -5686,6 +5694,191 @@
         "wires": [
             [
                 "59a147b6d6708ac6"
+            ]
+        ]
+    },
+    {
+        "id": "738b670f94e82732",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "Generate invitation key",
+        "func": "msg.role_id = msg.payload[0].role_id // save the role id of member for later\n\nfunction generateRandomString(length) {\n    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; // Use alphanumeric characters for memorability\n    let result = '';\n    for (let i = 0; i < length; i++) {\n        result += chars.charAt(Math.floor(Math.random() * chars.length));\n    }\n    return result;\n}\n\nconst memberId = msg.member_id;  // Assuming you have the member_id\nconst shortMemberId = Buffer.from(memberId).toString('base64').slice(0, 4);  // Convert to base64 and take first 4 characters\n\nconst uniqueCode = shortMemberId + generateRandomString(4);  // Add random 4 characters to ensure uniqueness\n\nmsg.query = `UPDATE members SET member_referral_code = $1 WHERE member_id = $2;`;\nmsg.params = [uniqueCode,msg.member_id]\n\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2680,
+        "y": 980,
+        "wires": [
+            [
+                "b87b5669365a41b8"
+            ]
+        ]
+    },
+    {
+        "id": "b87b5669365a41b8",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 2835,
+        "y": 980,
+        "wires": [
+            [
+                "1bc22e46e42f09f4"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "b99bc67b38257d07",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "",
+        "property": "newmember.member_referral_code",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "null"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 845,
+        "y": 1020,
+        "wires": [
+            [
+                "d9ddc55a22f85a23"
+            ],
+            [
+                "92b39ec92961af98"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "d9ddc55a22f85a23",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "Get the member inviter",
+        "func": "const referralCode = msg.newmember.member_referral_code;\n\n// Validate the referral code input\nif (!referralCode || typeof referralCode !== 'string' || referralCode.trim() === '') {\n    node.error('Invalid or missing referral code', msg);\n    return null;\n}\n\n// Prepare the query to check if the referral code exists and retrieve the member who shared it\nmsg.query = `\n    SELECT member_id, member_referral_code\n    FROM members\n    WHERE member_referral_code = $1;\n`;\n\n// Set the parameter for the query (the referral code)\nmsg.params = [referralCode];\n\n// If the referral code exists, return the `member_id` and member information of the inviter\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 1000,
+        "wires": [
+            [
+                "886e1105d0bcd742"
+            ]
+        ]
+    },
+    {
+        "id": "886e1105d0bcd742",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 1155,
+        "y": 1000,
+        "wires": [
+            [
+                "2def59d0069f770d"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "1c812ae965dfc460",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "Record invitation",
+        "func": "\n\n// Extract required data from the incoming message\nconst inviterMemberId = msg.inviter_member_id;  // ID of the member who shared the code\nconst inviteeMemberId = msg.member_id;  // ID of the member who signed up using the code\n\n// Validate input data\nif (!inviterMemberId || typeof inviterMemberId !== 'string' || inviterMemberId.trim() === '') {\n    return [msg, null];\n}\n\nif (!inviteeMemberId || typeof inviteeMemberId !== 'string' || inviteeMemberId.trim() === '') {\n    node.error('Invalid or missing invitee_member_id', msg);\n    return [msg, null];\n}\n\n// Prepare the SQL query to insert a new entry into the member_invites table\nmsg.query = `\n    INSERT INTO member_invitations (\n        inviter_member_id, invited_member_id\n    ) VALUES (\n        $1, $2\n    )\n    RETURNING invitation_id;\n`;\n\n// Set the parameters for the query\nmsg.params = [inviterMemberId, inviteeMemberId];\n\n// Return the message to proceed with the database query\nreturn [null, msg];\n",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 3510,
+        "y": 980,
+        "wires": [
+            [
+                "54387abb3b891c74"
+            ],
+            [
+                "8905fc4b76e2f9b9"
+            ]
+        ]
+    },
+    {
+        "id": "8905fc4b76e2f9b9",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 3645,
+        "y": 1000,
+        "wires": [
+            [
+                "54387abb3b891c74"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "2def59d0069f770d",
+        "type": "change",
+        "z": "dbab6edfda7971c1",
+        "g": "ba352a33ad13b2d1",
+        "name": "Save inviter id",
+        "rules": [
+            {
+                "t": "set",
+                "p": "inviter_member_id",
+                "pt": "msg",
+                "to": "payload[0].member_id",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1260,
+        "y": 1000,
+        "wires": [
+            [
+                "92b39ec92961af98"
             ]
         ]
     }
