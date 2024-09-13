@@ -421,7 +421,7 @@
             "800c57a1fa08c476"
         ],
         "x": 104,
-        "y": 2379,
+        "y": 2539,
         "w": 1402,
         "h": 122
     },
@@ -448,7 +448,7 @@
             "2c1a6fd5171b3b59"
         ],
         "x": 114,
-        "y": 2519,
+        "y": 2679,
         "w": 1292,
         "h": 142
     },
@@ -475,7 +475,7 @@
             "31ab2ada5a324f3a"
         ],
         "x": 114,
-        "y": 2679,
+        "y": 2839,
         "w": 1422,
         "h": 162
     },
@@ -558,7 +558,7 @@
             "eb9feefa75040452"
         ],
         "x": 114,
-        "y": 2859,
+        "y": 3019,
         "w": 1422,
         "h": 162
     },
@@ -653,7 +653,7 @@
             "cba8af0054c5f2d3"
         ],
         "x": 114,
-        "y": 3039,
+        "y": 3199,
         "w": 1732,
         "h": 162
     },
@@ -760,8 +760,7 @@
             "c296180b31e2b636",
             "e8561cfd23d5072f",
             "03124eefcabaeb99",
-            "9e0a04327ac1db8d",
-            "6ba54bc719fddb10"
+            "9e0a04327ac1db8d"
         ],
         "x": 94,
         "y": 1999,
@@ -821,7 +820,7 @@
             "5f66738c7136ddf3"
         ],
         "x": 114,
-        "y": 3239,
+        "y": 3399,
         "w": 1752,
         "h": 182
     },
@@ -847,6 +846,33 @@
         "h": 142
     },
     {
+        "id": "0e6f0fc2688405ec",
+        "type": "group",
+        "z": "dbab6edfda7971c1",
+        "name": "Check Referral code",
+        "style": {
+            "stroke": "#7fb7df",
+            "fill": "#bfdbef",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "3b0662c7b5f79d3c",
+            "81866bf8f7b33fe9",
+            "477fe252d83e71f1",
+            "4ed8569e59b35e7c",
+            "767b8c32f9182fc2",
+            "eba35c8f85bf65de",
+            "b79d17af0e52cf6d",
+            "b8f0d1c0ce3567e3",
+            "0b5645c110eaa6db"
+        ],
+        "x": 94,
+        "y": 2359,
+        "w": 1132,
+        "h": 142
+    },
+    {
         "id": "cf1453eb80b45c35",
         "type": "postgreSQLConfig",
         "name": "",
@@ -856,8 +882,8 @@
         "portFieldType": "env",
         "database": "DB_NAME",
         "databaseFieldType": "env",
-        "ssl": "{\"require\":true,\"rejectUnauthorized\":false}",
-        "sslFieldType": "json",
+        "ssl": "false",
+        "sslFieldType": "bool",
         "applicationName": "",
         "applicationNameType": "str",
         "max": "10",
@@ -2032,7 +2058,7 @@
         "statusCode": "200",
         "headers": {},
         "x": 1420,
-        "y": 2460,
+        "y": 2620,
         "wires": []
     },
     {
@@ -2057,7 +2083,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1020,
-        "y": 2440,
+        "y": 2600,
         "wires": [
             [
                 "c2478e40eca32f8d"
@@ -2076,7 +2102,7 @@
         "statusCode": "404",
         "headers": {},
         "x": 1260,
-        "y": 2420,
+        "y": 2580,
         "wires": []
     },
     {
@@ -2093,7 +2119,7 @@
         "finalize": "",
         "libs": [],
         "x": 750,
-        "y": 2440,
+        "y": 2600,
         "wires": [
             [
                 "aef9c751fd89b4db"
@@ -2111,7 +2137,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 200,
-        "y": 2440,
+        "y": 2600,
         "wires": [
             [
                 "06527b6a60f2adfb"
@@ -2130,7 +2156,7 @@
         "rowsPerMsg": 1,
         "outputs": 1,
         "x": 875,
-        "y": 2440,
+        "y": 2600,
         "wires": [
             [
                 "b374cb0fea6b3897"
@@ -2149,7 +2175,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 220,
-        "y": 2580,
+        "y": 2740,
         "wires": [
             [
                 "773d749297e54a80"
@@ -2170,7 +2196,7 @@
         "finalize": "",
         "libs": [],
         "x": 750,
-        "y": 2580,
+        "y": 2740,
         "wires": [
             [
                 "307e56627f59548e"
@@ -2189,7 +2215,7 @@
         "rowsPerMsg": 1,
         "outputs": 1,
         "x": 865,
-        "y": 2580,
+        "y": 2740,
         "wires": [
             [
                 "bf2f9e68553ccb75"
@@ -2219,7 +2245,7 @@
         "repair": false,
         "outputs": 2,
         "x": 990,
-        "y": 2580,
+        "y": 2740,
         "wires": [
             [
                 "bc531713bb82c1d0"
@@ -2238,7 +2264,7 @@
         "statusCode": "201",
         "headers": {},
         "x": 1310,
-        "y": 2560,
+        "y": 2720,
         "wires": []
     },
     {
@@ -2250,7 +2276,7 @@
         "statusCode": "400",
         "headers": {},
         "x": 1260,
-        "y": 2620,
+        "y": 2780,
         "wires": []
     },
     {
@@ -2267,7 +2293,7 @@
         "finalize": "",
         "libs": [],
         "x": 1170,
-        "y": 2560,
+        "y": 2720,
         "wires": [
             [
                 "ed2d2dc8c080fab8"
@@ -2288,7 +2314,7 @@
         "finalize": "",
         "libs": [],
         "x": 780,
-        "y": 2760,
+        "y": 2920,
         "wires": [
             [
                 "36a435dd5284487f"
@@ -2315,7 +2341,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1050,
-        "y": 2760,
+        "y": 2920,
         "wires": [
             [
                 "45582769dbee1f97"
@@ -2339,7 +2365,7 @@
         "finalize": "",
         "libs": [],
         "x": 1270,
-        "y": 2720,
+        "y": 2880,
         "wires": [
             [
                 "85a14efd439eb0a3"
@@ -2355,7 +2381,7 @@
         "statusCode": "404",
         "headers": {},
         "x": 1310,
-        "y": 2800,
+        "y": 2960,
         "wires": []
     },
     {
@@ -2367,7 +2393,7 @@
         "statusCode": "200",
         "headers": {},
         "x": 1450,
-        "y": 2720,
+        "y": 2880,
         "wires": []
     },
     {
@@ -2382,7 +2408,7 @@
         "rowsPerMsg": 1,
         "outputs": 1,
         "x": 905,
-        "y": 2760,
+        "y": 2920,
         "wires": [
             [
                 "1b1493fa8a5b9912"
@@ -2401,7 +2427,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 220,
-        "y": 2760,
+        "y": 2920,
         "wires": [
             [
                 "3ec8d3f7f2a966a4"
@@ -3116,7 +3142,7 @@
         "g": "2b91f5927dfc193f",
         "name": "",
         "x": 360,
-        "y": 2440,
+        "y": 2600,
         "wires": [
             [
                 "35083f92f80d197f"
@@ -3158,7 +3184,7 @@
         "g": "4e3f58172aca87d0",
         "name": "",
         "x": 380,
-        "y": 2580,
+        "y": 2740,
         "wires": [
             [
                 "2c1a6fd5171b3b59"
@@ -3172,7 +3198,7 @@
         "g": "4e3f58172aca87d0",
         "name": "",
         "x": 550,
-        "y": 2580,
+        "y": 2740,
         "wires": [
             [
                 "f5b74102881341fa"
@@ -3186,7 +3212,7 @@
         "g": "aefbdd2e49c81e3f",
         "name": "",
         "x": 380,
-        "y": 2760,
+        "y": 2920,
         "wires": [
             [
                 "31ab2ada5a324f3a"
@@ -3200,7 +3226,7 @@
         "g": "aefbdd2e49c81e3f",
         "name": "",
         "x": 580,
-        "y": 2760,
+        "y": 2920,
         "wires": [
             [
                 "b019c1b471ba4625"
@@ -3214,7 +3240,7 @@
         "g": "2b91f5927dfc193f",
         "name": "",
         "x": 540,
-        "y": 2440,
+        "y": 2600,
         "wires": [
             [
                 "0ca2e856aba81c1d"
@@ -3235,7 +3261,7 @@
         "finalize": "",
         "libs": [],
         "x": 780,
-        "y": 2940,
+        "y": 3100,
         "wires": [
             [
                 "22fd5f8992199711"
@@ -3262,7 +3288,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1050,
-        "y": 2940,
+        "y": 3100,
         "wires": [
             [
                 "03095899b605f037"
@@ -3286,7 +3312,7 @@
         "finalize": "",
         "libs": [],
         "x": 1270,
-        "y": 2900,
+        "y": 3060,
         "wires": [
             [
                 "cfee23617ff5e557"
@@ -3302,7 +3328,7 @@
         "statusCode": "404",
         "headers": {},
         "x": 1310,
-        "y": 2980,
+        "y": 3140,
         "wires": []
     },
     {
@@ -3314,7 +3340,7 @@
         "statusCode": "200",
         "headers": {},
         "x": 1450,
-        "y": 2900,
+        "y": 3060,
         "wires": []
     },
     {
@@ -3329,7 +3355,7 @@
         "rowsPerMsg": 1,
         "outputs": 1,
         "x": 905,
-        "y": 2940,
+        "y": 3100,
         "wires": [
             [
                 "0b4c5f339010e936"
@@ -3348,7 +3374,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 220,
-        "y": 2940,
+        "y": 3100,
         "wires": [
             [
                 "e5734a3238d892fb"
@@ -3362,7 +3388,7 @@
         "g": "5a0547259b4b944c",
         "name": "",
         "x": 380,
-        "y": 2940,
+        "y": 3100,
         "wires": [
             [
                 "eb9feefa75040452"
@@ -3376,7 +3402,7 @@
         "g": "5a0547259b4b944c",
         "name": "",
         "x": 580,
-        "y": 2940,
+        "y": 3100,
         "wires": [
             [
                 "3b3e9dc44a7c6a77"
@@ -3937,7 +3963,7 @@
         "finalize": "",
         "libs": [],
         "x": 1110,
-        "y": 3120,
+        "y": 3280,
         "wires": [
             [
                 "b9ccf4737b019414"
@@ -3964,7 +3990,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1360,
-        "y": 3120,
+        "y": 3280,
         "wires": [
             [
                 "1c28a0b01e6117ec"
@@ -3988,7 +4014,7 @@
         "finalize": "",
         "libs": [],
         "x": 1580,
-        "y": 3080,
+        "y": 3240,
         "wires": [
             [
                 "a200331a564dfa23"
@@ -4004,7 +4030,7 @@
         "statusCode": "404",
         "headers": {},
         "x": 1620,
-        "y": 3160,
+        "y": 3320,
         "wires": []
     },
     {
@@ -4016,7 +4042,7 @@
         "statusCode": "200",
         "headers": {},
         "x": 1760,
-        "y": 3080,
+        "y": 3240,
         "wires": []
     },
     {
@@ -4031,7 +4057,7 @@
         "rowsPerMsg": 1,
         "outputs": 1,
         "x": 1225,
-        "y": 3120,
+        "y": 3280,
         "wires": [
             [
                 "c7556b5f2e2ac7c7"
@@ -4050,7 +4076,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 240,
-        "y": 3120,
+        "y": 3280,
         "wires": [
             [
                 "cc93ab17a857b46d"
@@ -4064,7 +4090,7 @@
         "g": "17f3dd73bc75226d",
         "name": "",
         "x": 420,
-        "y": 3120,
+        "y": 3280,
         "wires": [
             [
                 "e6a11499cb0ff476"
@@ -4085,7 +4111,7 @@
         "finalize": "",
         "libs": [],
         "x": 900,
-        "y": 3120,
+        "y": 3280,
         "wires": [
             [
                 "50a7270d03ea421d"
@@ -4104,7 +4130,7 @@
         "statusCode": "",
         "headers": {},
         "x": 1090,
-        "y": 3160,
+        "y": 3320,
         "wires": []
     },
     {
@@ -4121,7 +4147,7 @@
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 3120,
+        "y": 3280,
         "wires": [
             [
                 "cba8af0054c5f2d3"
@@ -4140,7 +4166,7 @@
         "rowsPerMsg": 1,
         "outputs": 1,
         "x": 725,
-        "y": 3120,
+        "y": 3280,
         "wires": [
             [
                 "a48ae6d6e11a58fb"
@@ -4162,7 +4188,7 @@
         "finalize": "",
         "libs": [],
         "x": 1240,
-        "y": 2460,
+        "y": 2620,
         "wires": [
             [
                 "5a7ada1f4c09f766"
@@ -5015,8 +5041,7 @@
         "y": 2040,
         "wires": [
             [
-                "9e0a04327ac1db8d",
-                "6ba54bc719fddb10"
+                "9e0a04327ac1db8d"
             ]
         ]
     },
@@ -5033,24 +5058,6 @@
                 "430163ae12e1b57f"
             ]
         ]
-    },
-    {
-        "id": "6ba54bc719fddb10",
-        "type": "debug",
-        "z": "dbab6edfda7971c1",
-        "g": "3347283c3ab55d97",
-        "name": "debug 4",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 300,
-        "y": 2100,
-        "wires": []
     },
     {
         "id": "f2823ff1203dcf8f",
@@ -5342,7 +5349,7 @@
         "finalize": "",
         "libs": [],
         "x": 1110,
-        "y": 3320,
+        "y": 3480,
         "wires": [
             [
                 "c1ac5487b4dd9d7e"
@@ -5363,7 +5370,7 @@
         "finalize": "",
         "libs": [],
         "x": 860,
-        "y": 3340,
+        "y": 3500,
         "wires": [
             [
                 "0f5db994f0e25ba8"
@@ -5382,7 +5389,7 @@
         "statusCode": "",
         "headers": {},
         "x": 1050,
-        "y": 3380,
+        "y": 3540,
         "wires": []
     },
     {
@@ -5405,7 +5412,7 @@
         "repair": false,
         "outputs": 2,
         "x": 1380,
-        "y": 3320,
+        "y": 3480,
         "wires": [
             [
                 "9316618e82fcf064"
@@ -5427,7 +5434,7 @@
         "rowsPerMsg": 1,
         "outputs": 1,
         "x": 1245,
-        "y": 3320,
+        "y": 3480,
         "wires": [
             [
                 "deab1ecc4b2e3dbb"
@@ -5444,7 +5451,7 @@
         "statusCode": "200",
         "headers": {},
         "x": 1780,
-        "y": 3280,
+        "y": 3440,
         "wires": []
     },
     {
@@ -5456,7 +5463,7 @@
         "statusCode": "404",
         "headers": {},
         "x": 1640,
-        "y": 3360,
+        "y": 3520,
         "wires": []
     },
     {
@@ -5473,7 +5480,7 @@
         "finalize": "",
         "libs": [],
         "x": 1610,
-        "y": 3280,
+        "y": 3440,
         "wires": [
             [
                 "f8b99035c680c051"
@@ -5491,7 +5498,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 230,
-        "y": 3340,
+        "y": 3500,
         "wires": [
             [
                 "24550c97470d16d7"
@@ -5505,7 +5512,7 @@
         "g": "8fb8c2d3ea0660f4",
         "name": "",
         "x": 410,
-        "y": 3340,
+        "y": 3500,
         "wires": [
             [
                 "17c898e2aba6508b"
@@ -5526,7 +5533,7 @@
         "finalize": "",
         "libs": [],
         "x": 580,
-        "y": 3340,
+        "y": 3500,
         "wires": [
             [
                 "5f66738c7136ddf3"
@@ -5545,7 +5552,7 @@
         "rowsPerMsg": 1,
         "outputs": 1,
         "x": 715,
-        "y": 3340,
+        "y": 3500,
         "wires": [
             [
                 "8ef9292978a073e9"
@@ -5881,5 +5888,180 @@
                 "92b39ec92961af98"
             ]
         ]
+    },
+    {
+        "id": "3b0662c7b5f79d3c",
+        "type": "switch",
+        "z": "dbab6edfda7971c1",
+        "g": "0e6f0fc2688405ec",
+        "name": "Check Query Result",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 660,
+        "y": 2440,
+        "wires": [
+            [
+                "81866bf8f7b33fe9"
+            ],
+            [
+                "b79d17af0e52cf6d"
+            ]
+        ]
+    },
+    {
+        "id": "81866bf8f7b33fe9",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "0e6f0fc2688405ec",
+        "name": "Format Response true",
+        "func": "\n\n// Prepare the response message\nmsg.payload = \"true\"\n\n// Set the response status code\nmsg.statusCode = 200;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 2420,
+        "wires": [
+            [
+                "477fe252d83e71f1"
+            ]
+        ]
+    },
+    {
+        "id": "477fe252d83e71f1",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "0e6f0fc2688405ec",
+        "name": "200 OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1140,
+        "y": 2420,
+        "wires": []
+    },
+    {
+        "id": "4ed8569e59b35e7c",
+        "type": "http in",
+        "z": "dbab6edfda7971c1",
+        "g": "0e6f0fc2688405ec",
+        "name": "Check code",
+        "url": "/code/:member_referral_code",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 2440,
+        "wires": [
+            [
+                "767b8c32f9182fc2"
+            ]
+        ]
+    },
+    {
+        "id": "767b8c32f9182fc2",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "0e6f0fc2688405ec",
+        "name": "Get member from code",
+        "func": "const member_referral_code = msg.req.params.member_referral_code;\n\n\nmsg.query = `SELECT\nmember_id\nFROM\nmembers\nWHERE\nmember_referral_code = $1;\n`\n\nmsg.params = [\n    member_referral_code\n];\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 2440,
+        "wires": [
+            [
+                "eba35c8f85bf65de",
+                "0b5645c110eaa6db"
+            ]
+        ]
+    },
+    {
+        "id": "eba35c8f85bf65de",
+        "type": "postgresql",
+        "z": "dbab6edfda7971c1",
+        "g": "0e6f0fc2688405ec",
+        "name": "",
+        "query": "",
+        "postgreSQLConfig": "cf1453eb80b45c35",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 525,
+        "y": 2440,
+        "wires": [
+            [
+                "3b0662c7b5f79d3c",
+                "0b5645c110eaa6db"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "b79d17af0e52cf6d",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "0e6f0fc2688405ec",
+        "name": "Format Response false",
+        "func": "\n\n// Prepare the response message\nmsg.payload = \"false\"\n\n// Set the response status code\nmsg.statusCode = 200;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 2460,
+        "wires": [
+            [
+                "b8f0d1c0ce3567e3"
+            ]
+        ]
+    },
+    {
+        "id": "b8f0d1c0ce3567e3",
+        "type": "http response",
+        "z": "dbab6edfda7971c1",
+        "g": "0e6f0fc2688405ec",
+        "name": "200 OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1140,
+        "y": 2460,
+        "wires": []
+    },
+    {
+        "id": "0b5645c110eaa6db",
+        "type": "debug",
+        "z": "dbab6edfda7971c1",
+        "g": "0e6f0fc2688405ec",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 2400,
+        "wires": []
     }
 ]
