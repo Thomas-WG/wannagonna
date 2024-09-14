@@ -696,11 +696,12 @@
             "866929740b621844",
             "7d5f7f7c1e018e94",
             "109f53069265dcfe",
-            "1cfeedea178448b1"
+            "1cfeedea178448b1",
+            "66a6e44d5fe7e90c"
         ],
         "x": 94,
         "y": 1839,
-        "w": 872,
+        "w": 932,
         "h": 142
     },
     {
@@ -4424,7 +4425,7 @@
         "y": 1900,
         "wires": [
             [
-                "1cfeedea178448b1"
+                "66a6e44d5fe7e90c"
             ],
             [
                 "109f53069265dcfe"
@@ -4450,7 +4451,7 @@
         "z": "dbab6edfda7971c1",
         "g": "e217b668807a895e",
         "name": "Exist msg",
-        "func": "\n    msg.statusCode = 200;\n    node.error('Error: User already exists with this mail address', msg);\n    msg.payload = 'Error: User already exists with this mail address';\n    return msg;\n\n",
+        "func": "\n    msg.statusCode = 200;\n    node.error('Error: User already exists with this mail address', msg);\n    msg.payload = {'exists': true};\n    return msg;\n\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -4473,7 +4474,7 @@
         "name": "200 User not exists",
         "statusCode": "200",
         "headers": {},
-        "x": 730,
+        "x": 910,
         "y": 1880,
         "wires": []
     },
@@ -6042,5 +6043,26 @@
         "x": 1140,
         "y": 2460,
         "wires": []
+    },
+    {
+        "id": "66a6e44d5fe7e90c",
+        "type": "function",
+        "z": "dbab6edfda7971c1",
+        "g": "e217b668807a895e",
+        "name": "Not Exist msg",
+        "func": "\n    msg.statusCode = 200;\n    msg.payload = {'exists': false};\n    return msg;\n\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 1880,
+        "wires": [
+            [
+                "1cfeedea178448b1"
+            ]
+        ]
     }
 ]
