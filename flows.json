@@ -6017,7 +6017,7 @@
         "z": "dbab6edfda7971c1",
         "g": "0e6f0fc2688405ec",
         "name": "Format Response false",
-        "func": "\n\n// Prepare the response message\nmsg.payload = {\"Valid\": true}\n\n// Set the response status code\nmsg.statusCode = 200;\n\nreturn msg;",
+        "func": "\n\n// Prepare the response message\nmsg.payload = {\"Valid\": false}\n\n// Set the response status code\nmsg.statusCode = 200;\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
