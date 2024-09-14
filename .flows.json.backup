@@ -4795,66 +4795,6 @@
         "l": false
     },
     {
-        "id": "687c1fedd06c9004",
-        "type": "inject",
-        "z": "dbab6edfda7971c1",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "str",
-        "x": 250,
-        "y": 3840,
-        "wires": [
-            [
-                "3d716d8a8fbff804"
-            ]
-        ]
-    },
-    {
-        "id": "3d716d8a8fbff804",
-        "type": "http request",
-        "z": "dbab6edfda7971c1",
-        "name": "",
-        "method": "GET",
-        "ret": "txt",
-        "paytoqs": "ignore",
-        "url": "localhost:1880/activities/record/b96b815b-b618-4d6e-bb67-422d15dfcabe",
-        "tls": "",
-        "persist": false,
-        "proxy": "",
-        "insecureHTTPParser": false,
-        "authType": "",
-        "senderr": false,
-        "headers": [
-            {
-                "keyType": "Authorization",
-                "keyValue": "",
-                "valueType": "other",
-                "valueValue": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJfaWQiOiJiOTZiODE1Yi1iNjE4LTRkNmUtYmI2Ny00MjJkMTVkZmNhYmUiLCJyb2xlIjpbeyJyb2xlX2lkIjoiNTdlYmM4ZDctYWM0Ni00MjU2LWJjOGUtMTlhNTc2ZjNkYjk1Iiwicm9sZV9uYW1lIjoiYWRtaW4iLCJvcmdfaWQiOm51bGwsIm9yZ19uYW1lIjpudWxsfSx7InJvbGVfaWQiOiI2MjM5NDRlNS0zMWUyLTRjNWYtODM4ZC0zMTJkNzIyZDVjMTciLCJyb2xlX25hbWUiOiJtZW1iZXIiLCJvcmdfaWQiOm51bGwsIm9yZ19uYW1lIjpudWxsfV0sImlhdCI6MTcyNTk2NTM5MywiZXhwIjoxNzI4NTU3MzkzfQ.RUeyALO0qt8W12B2eIzCglxaIpWw4ayHN74pRkVoolY"
-            }
-        ],
-        "x": 390,
-        "y": 3840,
-        "wires": [
-            [
-                "54ec4412c3ba37b3"
-            ]
-        ]
-    },
-    {
         "id": "8bdbb6efe12ea1ef",
         "type": "subflow:84b08c8e5dbc93fb",
         "z": "dbab6edfda7971c1",
@@ -4867,23 +4807,6 @@
                 "d08ae8d0554b1246"
             ]
         ]
-    },
-    {
-        "id": "54ec4412c3ba37b3",
-        "type": "debug",
-        "z": "dbab6edfda7971c1",
-        "name": "debug 7",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 540,
-        "y": 3880,
-        "wires": []
     },
     {
         "id": "0f5db994f0e25ba8",
