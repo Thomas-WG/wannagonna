@@ -1883,7 +1883,7 @@
         "z": "dbab6edfda7971c1",
         "g": "05b8ed53065a8cd1",
         "name": "Prepare SQL Query",
-        "func": "const org_id = msg.req.params.org_id;\n\n// Prepare SQL to get the member without the password\nmsg.query = `\n    SELECT \n        *\n    FROM \n        organizations\n    WHERE \n        org_id = $1\n`;\n\nmsg.params = [org_id];\n\nreturn msg;",
+        "func": "const org_id = msg.req.params.org_id;\n\n// Prepare SQL to get the member without the password\nmsg.query = `\n    SELECT\n    o.*,\n    COALESCE(\n        json_agg(\n            json_build_object(\n                'activity_name', a.activity_name,\n                'skills', (\n                    SELECT array_agg(s.skill_name)\n                    FROM skills s\n                    JOIN activity_skills aks ON aks.skill_id = s.skill_id\n                    WHERE aks.activity_id = a.activity_id\n                ),\n                'application_count', (\n                    SELECT COUNT(*)\n                    FROM member_volunteer_applications mva\n                    WHERE mva.activity_id = a.activity_id\n                )\n            )\n        ) FILTER (WHERE a.activity_id IS NOT NULL), '[]'\n    ) AS activities\nFROM\n    organizations o\nLEFT JOIN activities a ON o.org_id = a.activity_org\nWHERE\n    o.org_id = $1\nGROUP BY\n    o.org_id; \n`;\n\nmsg.params = [org_id];\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
