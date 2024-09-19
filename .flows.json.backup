@@ -1934,7 +1934,7 @@
         "z": "dbab6edfda7971c1",
         "g": "05b8ed53065a8cd1",
         "name": "Format Response",
-        "func": "// Extract the member data from the query result\nconst organization = msg.payload[0];\n\n// Prepare the response message\nmsg.payload = {\n    message: \"Organization found\",\n    organization: organization\n};\n\n// Set the response status code\nmsg.statusCode = 200;\n\nreturn msg;",
+        "func": "// Extract the member data from the query result\nconst organization = msg.payload[0];\n\norganization.org_picture = 'data:image/png;base64,'+ organization.org_picture.toString('base64')\n\n\n// Prepare the response message\nmsg.payload = {\n    message: \"Organization found\",\n    organization: organization\n};\n\n// Set the response status code\nmsg.statusCode = 200;\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,

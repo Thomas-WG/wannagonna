@@ -3331,7 +3331,7 @@
         "z": "dbab6edfda7971c1",
         "g": "5a0547259b4b944c",
         "name": "Apply to activity",
-        "url": "/activities/apply/:activity_id",
+        "url": "/activities/apply",
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
